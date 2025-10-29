@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --color-rn-blue: #2563eb;
+  --color-rn-blue-dark: #1e3a8a;
+  --color-rn-blue-light: #3b82f6;
+  --color-rn-red: #dc2626;
+  --color-rn-red-dark: #991b1b;
+  --color-rn-red-light: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animations personnalisées */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 1s ease-out;
+  transform-origin: top;
+}
+
+.animate-menu-slide {
+  animation: slideDownFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
