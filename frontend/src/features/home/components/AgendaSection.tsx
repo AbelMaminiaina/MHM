@@ -35,9 +35,9 @@ const agendaData: AgendaEvent[] = [
     day: '29',
     month: 'OCTOBRE',
     time: '12H00',
-    title: '« CE QUE VEULENT LES MALGACHES »',
+    title: '« CE QUE VEULENT LES MALAGASY »',
     category: 'Evenements',
-    description: '« Ce que veulent les Malgaches » : précommandez dès maintenant le nouveau livre de Valohery',
+    description: '« Ce que veulent les Malagasy » : précommandez dès maintenant le nouveau livre de Valohery',
     imageUrl: '/images/book-event.jpg'
   },
   {

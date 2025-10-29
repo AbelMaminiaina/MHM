@@ -1,0 +1,207 @@
+/* Animation d'accueil moderne - Style Apple */
+
+.welcome-animation {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  background: #000;
+}
+
+.welcome-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.welcome-image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-image-container.left {
+  width: 50%;
+  height: 100%;
+}
+
+.welcome-image-container.right {
+  width: 50%;
+  height: 100%;
+}
+
+.welcome-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.welcome-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlays pour le contraste */
+.welcome-overlay-left {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.1));
+  pointer-events: none;
+}
+
+.welcome-overlay-right {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.1));
+  pointer-events: none;
+}
+
+/* Ligne lumineuse centrale */
+.welcome-glow-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.glow-core {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.glow-inner {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.4);
+  filter: blur(4px);
+  width: 8px;
+  transform: translateX(-50%);
+}
+
+.glow-middle {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.2);
+  filter: blur(12px);
+  width: 16px;
+  transform: translateX(-50%);
+}
+
+.glow-outer {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  filter: blur(24px);
+  width: 32px;
+  transform: translateX(-50%);
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .welcome-container {
+    flex-direction: column;
+  }
+
+  .welcome-image-container.left,
+  .welcome-image-container.right {
+    width: 100%;
+    height: 50%;
+  }
+
+  .welcome-glow-line {
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    transform: translateY(-50%);
+  }
+
+  .glow-core {
+    width: 100%;
+    height: 1px;
+  }
+
+  .glow-inner {
+    width: 100%;
+    height: 8px;
+    transform: translateY(-50%);
+  }
+
+  .glow-middle {
+    width: 100%;
+    height: 16px;
+    transform: translateY(-50%);
+  }
+
+  .glow-outer {
+    width: 100%;
+    height: 32px;
+    transform: translateY(-50%);
+  }
+
+  .welcome-overlay-left {
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));
+  }
+
+  .welcome-overlay-right {
+    background: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.1));
+  }
+}
+
+/* Animations CSS alternatives (pour version sans Framer Motion) */
+@keyframes zoomIn {
+  from {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(1);
+  }
+}
+
+/* Classe pour animation CSS pure */
+.css-animation .welcome-image.left {
+  animation: zoomIn 1.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+.css-animation .welcome-image.right {
+  animation: slideFromRight 1.5s cubic-bezier(0.25, 0.1, 0.25, 1) 0.2s forwards;
+}
+
+.css-animation .welcome-glow-line {
+  animation: glowPulse 1.2s ease-out 0.3s forwards;
+}
