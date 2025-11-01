@@ -10,7 +10,7 @@ Placez les images suivantes dans ce dossier (`frontend/public/images/`) :
 - **Source** : Site officiel du RN ou éditeur Fayard
 
 ### 3. rally.jpg
-- **Description** : Photo d'un rassemblement du MHN
+- **Description** : Photo d'un  du MHN
 - **Dimensions recommandées** : 1200x800px (paysage)
 - **Source** : Photos officielles du RN
 

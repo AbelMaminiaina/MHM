@@ -15,7 +15,7 @@ const agendaData: AgendaEvent[] = [
     day: '28',
     month: 'OCTOBRE',
     time: '07H45',
-    title: 'LAURENT JACOBELLI SUR MADAGASIKARA INFO',
+    title: 'VAL SUR MADAGASIKARA INFO',
     category: 'Medias',
     description: 'Val sera l\'invité de Madagasikara Info mardi 28 octobre à 7h45.',
     imageUrl: '/images/jacobelli.jpg'
@@ -45,7 +45,7 @@ const agendaData: AgendaEvent[] = [
     day: '29',
     month: 'OCTOBRE',
     time: '18H00',
-    title: 'SÉANCE DE DÉDICACES À BRUAY-LA-BUISSIÈRE',
+    title: 'SÉANCE DE DÉDICACES À VELIZY',
     category: 'Deplacements',
     description: 'Séance de dédicaces du nouveau livre de Valohery',
     imageUrl: '/images/book-signing.jpg'
@@ -61,22 +61,22 @@ const actionItems = [
 
 export const AgendaSection = () => {
   return (
-    <section className="bg-white py-20 px-10">
+    <section className="bg-white py-8 px-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
         {/* Left - Agenda */}
         <div>
-          <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-10 uppercase">
+          <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-10 uppercase">
             AGENDA
           </h2>
-          <div className="space-y-8">
+          <div className="space-y-6">
             {agendaData.map((event) => (
               <div
                 key={event.id}
-                className="flex gap-5 pb-8 border-b border-gray-200 last:border-b-0"
+                className="flex gap-5 pb-4 border-b border-gray-200 last:border-b-0"
               >
                 {/* Date */}
                 <div className="flex-shrink-0 text-center min-w-[100px]">
-                  <div className="text-5xl font-black text-gray-900 leading-none">
+                  <div className="text-4xl font-black text-gray-900 leading-none">
                     {event.day}
                   </div>
                   <div className="text-xs font-bold text-gray-600 uppercase mt-1">
@@ -97,13 +97,13 @@ export const AgendaSection = () => {
                     />
                   )}
                   <div className="flex-1">
-                    <h3 className="text-xl font-black text-gray-900 mb-2 uppercase">
+                    <h3 className="text-xl font-black text-gray-900 mb-3 uppercase">
                       {event.title}
                     </h3>
-                    <span className="inline-block text-xs font-bold text-gray-600 uppercase mb-3">
+                    <span className="inline-block text-xs font-bold text-gray-600 uppercase mb-4">
                       {event.category}
                     </span>
-                    <p className="text-sm text-gray-700 leading-relaxed">
+                    <p className="text-sm text-gray-700 leading-tight">
                       {event.description}
                     </p>
                   </div>

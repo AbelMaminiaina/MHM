@@ -1,11 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { FaMap, FaGlobe, FaUsers, FaUserGroup, FaBuilding, FaCircleCheck, FaFileLines, FaVideo, FaMicrophone, FaEnvelope } from "react-icons/fa6";
 
 export const Navbar = () => {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Fermer les menus lors du scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (openMenu !== null || mobileMenuOpen) {
+        setOpenMenu(null);
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [openMenu, mobileMenuOpen]);
+
   return (
-    <nav className="relative bg-white border-b border-gray-200 px-4 md:px-8 py-4">
+    <nav className="sticky top-0 z-50 bg-white border-b border-gray-200 px-4 md:px-8 py-4 shadow-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-3">
@@ -35,7 +49,7 @@ export const Navbar = () => {
 
             {/* Sous-menu Organisation */}
             {openMenu === 'organisation' && (
-              <div className="fixed left-0 right-0 top-[72px] w-full bg-white shadow-2xl border-t border-gray-200 z-50 animate-menu-slide">
+              <div className="fixed left-0 right-0 top-[73px] w-full bg-white shadow-2xl border-t border-gray-200 z-40 animate-menu-slide">
               <div className="max-w-7xl mx-auto grid grid-cols-3 gap-8 p-8">
 
                 {/* Colonne 1: FÉDÉRATIONS */}
@@ -43,16 +57,12 @@ export const Navbar = () => {
                   <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">FÉDÉRATIONS</h3>
                   <div className="space-y-3">
                     <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                      </svg>
-                      <span className="font-medium">Les fédérations métropolitaines</span>
+                      <FaMap className="w-5 h-5 text-gray-400" ></FaMap>
+                      <span className="font-medium">Les fédérations provinciales</span>
                     </a>
                     <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span className="font-medium">Les fédérations d'Outre-mer</span>
+                      <FaGlobe className="w-5 h-5 text-gray-400" />
+                      <span className="font-medium">Les fédérations régionales</span>
                     </a>
                   </div>
                 </div>
@@ -62,34 +72,24 @@ export const Navbar = () => {
                   <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">LES INSTANCES</h3>
                   <div className="space-y-3">
                     <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                      </svg>
+                      <FaUsers className="w-5 h-5 text-gray-400" />
                       <span className="font-medium">Bureau exécutif</span>
                     </a>
                     <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                      </svg>
+                      <FaUserGroup className="w-5 h-5 text-gray-400" />
                       <span className="font-medium">Bureau national</span>
                     </a>
                     <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                      </svg>
+                      <FaCircleCheck className="w-5 h-5 text-gray-400" />
                       <span className="font-medium">Commission nationale d'investiture</span>
                     </a>
                     <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                      </svg>
+                      <FaCircleCheck className="w-5 h-5 text-gray-400" />
                       <span className="font-medium">Commission des conflits</span>
                     </a>
                     <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span className="font-medium">Les Français de l'étranger</span>
+                      <FaMap className="w-5 h-5 text-gray-400" />
+                      <span className="font-medium">Les Malagasy de la diaspora</span>
                     </a>
                   </div>
                 </div>
@@ -98,9 +98,7 @@ export const Navbar = () => {
                 <div>
                   <div className="space-y-3 mt-8">
                     <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                      </svg>
+                      <FaBuilding className="w-5 h-5 text-gray-400" />
                       <span className="font-medium">Conseil national</span>
                     </a>
                   </div>
@@ -112,15 +110,11 @@ export const Navbar = () => {
               <div className="border-t border-gray-200 px-8 py-6">
                 <div className="max-w-7xl mx-auto flex gap-8">
                   <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
+                    <FaFileLines className="w-5 h-5 text-gray-400" />
                     <span className="font-medium">Le règlement intérieur</span>
                   </a>
                   <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
+                    <FaFileLines className="w-5 h-5 text-gray-400" />
                     <span className="font-medium">Statuts du MADAGASIKARA HOAN'NY MALAGASY (MHM)</span>
                   </a>
                 </div>
@@ -139,6 +133,84 @@ export const Navbar = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
+
+            {/* Sous-menu Actualités */}
+            {openMenu === 'actualites' && (
+              <div className="fixed left-0 right-0 top-[73px] w-full bg-white shadow-2xl border-t border-gray-200 z-40 animate-menu-slide">
+                <div className="max-w-7xl mx-auto grid grid-cols-3 gap-8 p-8">
+
+                  {/* Colonne 1: ACTUALITÉ */}
+                  <div>
+                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">ACTUALITÉ</h3>
+                    <div className="space-y-3">
+                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
+                        <FaVideo className="w-5 h-5 text-gray-400" />
+                        <span className="font-medium">Vidéos</span>
+                      </a>
+                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
+                        <FaMicrophone className="w-5 h-5 text-gray-400" />
+                        <span className="font-medium">Communiqués</span>
+                      </a>
+                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
+                        <FaUserGroup className="w-5 h-5 text-gray-400" />
+                        <span className="font-medium">Vie parlementaire</span>
+                      </a>
+                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
+                        <FaFileLines className="w-5 h-5 text-gray-400" />
+                        <span className="font-medium">Tribunes libres</span>
+                      </a>
+                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
+                        <FaMicrophone className="w-5 h-5 text-gray-400" />
+                        <span className="font-medium">Discours</span>
+                      </a>
+                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
+                        <FaEnvelope className="w-5 h-5 text-gray-400" />
+                        <span className="font-medium">Lettre ouverte</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Colonne 2 & 3: À LA UNE */}
+                  <div className="col-span-2">
+                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">À LA UNE</h3>
+                    <div className="space-y-4">
+                      <a href="#" className="flex gap-4 group hover:bg-gray-50 p-3 rounded-lg transition-colors">
+                        <img
+                          src="https://images.unsplash.com/photo-1589139663095-034ec884b46c?w=200&h=200&fit=crop"
+                          alt="Madagascar"
+                          className="w-24 h-24 object-cover rounded flex-shrink-0"
+                        />
+                        <div className="flex-1">
+                          <h4 className="font-bold text-gray-900 text-base mb-2 group-hover:text-teal-600 transition-colors leading-snug">
+                            MADAGASCAR : LE MHM APPELLE À LA SOUVERAINETÉ NATIONALE
+                          </h4>
+                          <p className="text-sm text-gray-600">
+                            <span className="font-medium">Bureau Exécutif MHM</span> - <span>27 octobre 2025</span>
+                          </p>
+                        </div>
+                      </a>
+
+                      <a href="#" className="flex gap-4 group hover:bg-gray-50 p-3 rounded-lg transition-colors">
+                        <img
+                          src="https://images.unsplash.com/photo-1590420338487-d32d2e8d9170?w=200&h=200&fit=crop"
+                          alt="Madagascar"
+                          className="w-24 h-24 object-cover rounded flex-shrink-0"
+                        />
+                        <div className="flex-1">
+                          <h4 className="font-bold text-gray-900 text-base mb-2 group-hover:text-teal-600 transition-colors leading-snug">
+                            DÉVELOPPEMENT DURABLE : PROTÉGER L'ENVIRONNEMENT MALAGASY
+                          </h4>
+                          <p className="text-sm text-gray-600">
+                            <span className="font-medium">Commission Environnement</span> - <span>25 octobre 2025</span>
+                          </p>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="relative">
@@ -151,6 +223,84 @@ export const Navbar = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
+
+            {/* Sous-menu Le projet */}
+            {openMenu === 'projet' && (
+              <div className="fixed left-0 right-0 top-[73px] w-full bg-white shadow-2xl border-t border-gray-200 z-40 animate-menu-slide">
+                {/* Barre bleue supérieure */}
+                <div className="bg-blue-900 text-white px-8 py-3">
+                  <div className="max-w-7xl mx-auto flex justify-between items-center">
+                    <span className="font-bold uppercase text-sm tracking-wide">PROGRAMME DU MHM</span>
+                    <span className="font-bold uppercase text-sm tracking-wide">MADAGASCAR HOAN'NY MALAGASY</span>
+                  </div>
+                </div>
+
+                <div className="max-w-7xl mx-auto grid grid-cols-2 gap-12 p-8">
+
+                  {/* Colonne 1: Programmes */}
+                  <div className="space-y-6">
+                    <a href="#" className="block group">
+                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-teal-600 transition-colors">
+                        SOUVERAINETÉ NATIONALE
+                      </h3>
+                      <p className="text-sm text-gray-600">Madagascar aux Malagasy</p>
+                    </a>
+
+                    <a href="#" className="block group">
+                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-teal-600 transition-colors">
+                        DÉVELOPPEMENT ÉCONOMIQUE
+                      </h3>
+                      <p className="text-sm text-gray-600">Croissance durable et inclusive</p>
+                    </a>
+
+                    <a href="#" className="block group">
+                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-teal-600 transition-colors">
+                        AGRICULTURE ET PÊCHE
+                      </h3>
+                      <p className="text-sm text-gray-600">Valorisation des producteurs locaux</p>
+                    </a>
+
+                    <a href="#" className="block group">
+                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-teal-600 transition-colors">
+                        ÉDUCATION ET CULTURE
+                      </h3>
+                      <p className="text-sm text-gray-600">Promotion de la langue et l'identité malagasy</p>
+                    </a>
+                  </div>
+
+                  {/* Colonne 2: Thématiques */}
+                  <div className="space-y-6">
+                    <a href="#" className="block group">
+                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-teal-600 transition-colors">
+                        ENVIRONNEMENT
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        Protection de la biodiversité et des ressources naturelles
+                      </p>
+                    </a>
+
+                    <a href="#" className="block group">
+                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-teal-600 transition-colors">
+                        SANTÉ ET SOCIAL
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        Accès aux soins pour tous les Malagasy
+                      </p>
+                    </a>
+
+                    <a href="#" className="block group">
+                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-teal-600 transition-colors">
+                        JUSTICE ET SÉCURITÉ
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        État de droit et protection des citoyens
+                      </p>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+            )}
           </div>
 
           <button className="text-teal-800 hover:text-teal-600">
@@ -192,14 +342,14 @@ export const Navbar = () => {
 
       {/* Menu Mobile */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed left-0 right-0 top-[72px] bg-white shadow-xl border-t border-gray-200 z-50 animate-menu-slide max-h-[calc(100vh-72px)] overflow-y-auto">
+        <div className="lg:hidden fixed left-0 right-0 top-[73px] bg-white shadow-xl border-t border-gray-200 z-40 animate-menu-slide max-h-[calc(100vh-73px)] overflow-y-auto">
           <div className="px-6 py-6 space-y-6">
             {/* LES FÉDÉRATIONS */}
             <div>
               <h2 className="text-lg font-black text-teal-800 mb-4">LES FÉDÉRATIONS</h2>
               <div className="space-y-2 pl-4">
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Les fédérations métropolitaines</a>
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Les fédérations d'Outre-mer</a>
+                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Les fédérations provinciales</a>
+                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Les fédérations régionales</a>
               </div>
             </div>
 
@@ -219,10 +369,47 @@ export const Navbar = () => {
             <div>
               <h2 className="text-lg font-black text-teal-800 mb-4">ACTUALITÉS</h2>
               <div className="space-y-2 pl-4">
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Communiqués</a>
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Tribunes libres</a>
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Lettre ouverte</a>
                 <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Vidéos</a>
+                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Communiqués</a>
+                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Vie parlementaire</a>
+                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Tribunes libres</a>
+                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Discours</a>
+                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Lettre ouverte</a>
+              </div>
+            </div>
+
+            {/* LE PROJET */}
+            <div>
+              <h2 className="text-lg font-black text-teal-800 mb-4">LE PROJET</h2>
+              <div className="space-y-3 pl-4">
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-1">Souveraineté nationale</h3>
+                  <p className="text-xs text-gray-600 mb-2">Madagascar aux Malagasy</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-1">Développement économique</h3>
+                  <p className="text-xs text-gray-600 mb-2">Croissance durable et inclusive</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-1">Agriculture et Pêche</h3>
+                  <p className="text-xs text-gray-600 mb-2">Valorisation des producteurs locaux</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-1">Éducation et Culture</h3>
+                  <p className="text-xs text-gray-600 mb-2">Promotion de la langue et l'identité malagasy</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-1">Environnement</h3>
+                  <p className="text-xs text-gray-600 mb-2">Protection de la biodiversité et des ressources naturelles</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-1">Santé et Social</h3>
+                  <p className="text-xs text-gray-600 mb-2">Accès aux soins pour tous les Malagasy</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-1">Justice et Sécurité</h3>
+                  <p className="text-xs text-gray-600 mb-2">État de droit et protection des citoyens</p>
+                </div>
               </div>
             </div>
           </div>
