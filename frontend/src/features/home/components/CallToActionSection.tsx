@@ -4,17 +4,17 @@ export const CallToActionSection = () => {
   return (
     <div className="w-full">
       {/* Newsletter et Support Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2">
+      <div className="grid grid-cols-2">
         {/* Section Teal - Newsletter */}
-        <div className="bg-gradient-to-r from-teal-600 to-teal-800 px-6 md:px-12 py-6 flex flex-col justify-center items-center">
-          <h2 className="text-white text-base md:text-lg font-bold mb-3 text-center">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-800 px-6 py-6 flex flex-col justify-center items-center">
+          <h2 className="text-white text-sm font-bold mb-3 text-center">
             Tout savoir de l'actualité du MHM et de VAL
           </h2>
           <div className="flex w-full max-w-md">
             <input
               type="email"
               placeholder="Votre adresse électronique"
-              className="flex-1 px-3 py-2 text-sm bg-transparent border-2 border-white text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50"
+              className="flex-1 px-3 py-2 text-xs bg-transparent border-2 border-white text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50"
             />
             <button className="bg-transparent border-2 border-white border-l-0 px-3 hover:bg-white/10 transition-colors">
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -25,8 +25,8 @@ export const CallToActionSection = () => {
         </div>
 
         {/* Section Rouge - Support */}
-        <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 md:px-12 py-6 flex flex-col justify-center items-center">
-          <h2 className="text-white text-base md:text-lg font-bold mb-3 text-center">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 py-6 flex flex-col justify-center items-center">
+          <h2 className="text-white text-sm font-bold mb-3 text-center">
             Je soutiens la première force de MHM !
           </h2>
           <div className="flex gap-3">
@@ -42,8 +42,8 @@ export const CallToActionSection = () => {
 
       {/* Section Réseaux Sociaux */}
       <div className="bg-white py-4 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-4">
-          <h3 className="text-gray-900 text-sm md:text-base font-bold uppercase">
+        <div className="max-w-7xl mx-auto flex flex-row items-center justify-center gap-4">
+          <h3 className="text-gray-900 text-sm font-bold uppercase">
             Suivez le Madagasikara hoan'ny Malagasy
           </h3>
           <div className="flex gap-3 items-center">
@@ -74,7 +74,7 @@ export const CallToActionSection = () => {
            {/* Linkedin */}
             <a href="#" className="text-gray-900 hover:text-gray-700 transition-colors">
               <FaLinkedin className='w-5 h-5' />
-            </a>            
+            </a>
           </div>
         </div>
       </div>

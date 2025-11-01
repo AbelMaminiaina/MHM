@@ -7,12 +7,12 @@ export const Footer = () => {
         {/* Top Section - Logo, Social, and Links */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
           {/* Left Column - Logo and Social */}
-          <div className="md:col-span-1">
+          <div className="md:col-span-1 text-center md:text-left flex flex-col items-center md:items-start">
             <div className="mb-6">
               <img
                 src="/mhm.svg"
                 alt="MHM Logo"
-                className="w-16 h-16 mb-3"
+                className="w-16 h-16 mb-3 mx-auto md:mx-0"
               />
               <div className="text-sm font-bold leading-tight">
                 <div>MADAGASIKARA</div>
@@ -26,7 +26,7 @@ export const Footer = () => {
             </div>
 
             {/* Social Media Icons */}
-            <div className="flex gap-4 mb-6">
+            <div className="flex gap-4 mb-6 justify-center md:justify-start">
               <a href="#" className="hover:text-teal-400 transition-colors">
                 <FaXTwitter className="w-5 h-5" />
               </a>
@@ -59,7 +59,7 @@ export const Footer = () => {
           </div>
 
           {/* FÉDÉRATIONS */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="font-bold text-sm uppercase mb-4">FÉDÉRATIONS</h3>
             <ul className="space-y-2 text-sm">
               <li><a href="#" className="hover:text-teal-400 transition-colors">Les fédérations provinciales</a></li>
@@ -69,7 +69,7 @@ export const Footer = () => {
           </div>
 
           {/* INSTANCES */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="font-bold text-sm uppercase mb-4">INSTANCES</h3>
             <ul className="space-y-2 text-sm">
               <li><a href="#" className="hover:text-teal-400 transition-colors">Bureau Exécutif</a></li>
@@ -82,7 +82,7 @@ export const Footer = () => {
           </div>
 
           {/* ACTUALITÉS */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="font-bold text-sm uppercase mb-4">ACTUALITÉS</h3>
             <ul className="space-y-2 text-sm">
               <li><a href="#" className="hover:text-teal-400 transition-colors">Communiqués</a></li>
@@ -93,7 +93,7 @@ export const Footer = () => {
           </div>
 
           {/* MILITER */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="font-bold text-sm uppercase mb-4">MILITER</h3>
             <ul className="space-y-2 text-sm">
               <li><a href="#" className="hover:text-teal-400 transition-colors">J'adhère au MHM</a></li>
