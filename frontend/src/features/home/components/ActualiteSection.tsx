@@ -1,4 +1,8 @@
+import { useState } from 'react';
+
 export const ActualiteSection = () => {
+  const [playingVideo, setPlayingVideo] = useState<number | null>(null);
+
   const newsItems = [
     {
       id: 1,
@@ -83,14 +87,50 @@ export const ActualiteSection = () => {
               <div className="relative overflow-hidden mb-3">
                 {item.type === 'video' ? (
                   <div className="relative">
-                    <iframe
-                      src={item.videoUrl?.replace('watch?v=', 'embed/')}
-                      title={item.title}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full aspect-video"
-                    ></iframe>
+                    {/* Desktop: toujours afficher l'iframe */}
+                    <div className="hidden md:block">
+                      <iframe
+                        src={item.videoUrl?.replace('watch?v=', 'embed/')}
+                        title={item.title}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full aspect-video"
+                      ></iframe>
+                    </div>
+
+                    {/* Mobile: thumbnail puis iframe au clic */}
+                    <div className="block md:hidden">
+                      {playingVideo === item.id ? (
+                        <iframe
+                          src={`${item.videoUrl?.replace('watch?v=', 'embed/')}?autoplay=1`}
+                          title={item.title}
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="w-full aspect-video"
+                        ></iframe>
+                      ) : (
+                        <button
+                          onClick={() => setPlayingVideo(item.id)}
+                          className="relative w-full block"
+                        >
+                          <img
+                            src={item.thumbnail}
+                            alt={item.title}
+                            className="w-full aspect-video object-cover"
+                          />
+                          {/* Play Button Overlay */}
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                            <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
+                              <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                              </svg>
+                            </div>
+                          </div>
+                        </button>
+                      )}
+                    </div>
                   </div>
                 ) : (
                   <img
