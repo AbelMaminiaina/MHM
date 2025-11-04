@@ -1,0 +1,71 @@
+# Auto-labeling configuration for Pull Requests
+
+# Backend changes
+backend:
+  - changed-files:
+      - any-glob-to-any-file: 'backend/**/*'
+
+# Frontend changes
+frontend:
+  - changed-files:
+      - any-glob-to-any-file: 'frontend/**/*'
+
+# Database/Models
+database:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'backend/src/models/**/*'
+          - 'backend/src/config/db.js'
+
+# API/Routes
+api:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'backend/src/routes/**/*'
+          - 'backend/src/controllers/**/*'
+
+# UI/Components
+ui:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'frontend/src/components/**/*'
+          - 'frontend/src/pages/**/*'
+
+# Documentation
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**/*.md'
+          - 'docs/**/*'
+
+# Tests
+tests:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**/*.test.{js,jsx,ts,tsx}'
+          - '**/*.spec.{js,jsx,ts,tsx}'
+          - '**/tests/**/*'
+          - '**/__tests__/**/*'
+
+# CI/CD
+cicd:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/**/*'
+          - '**/Dockerfile'
+          - '**/docker-compose*.yml'
+
+# Dependencies
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**/package.json'
+          - '**/package-lock.json'
+
+# Configuration
+config:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**/.env.example'
+          - '**/config/**/*'
+          - '**/*.config.{js,ts}'
