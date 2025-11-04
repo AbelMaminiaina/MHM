@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {FaXTwitter, FaFacebookF, FaYoutube, FaTelegram, FaInstagram, FaTiktok, FaLinkedin} from 'react-icons/fa6';
 
 export const Footer = () => {
@@ -77,7 +78,7 @@ export const Footer = () => {
               <li><a href="#" className="hover:text-teal-400 transition-colors">Commission Nationale d'Investiture</a></li>
               <li><a href="#" className="hover:text-teal-400 transition-colors">Commission des Conflits</a></li>
               <li><a href="#" className="hover:text-teal-400 transition-colors">Le Congrès</a></li>
-              <li><a href="#" className="hover:text-teal-400 transition-colors">Les adhérents</a></li>
+              <li><Link to="/members" className="hover:text-teal-400 transition-colors">Les adhérents</Link></li>
             </ul>
           </div>
 
@@ -96,7 +97,7 @@ export const Footer = () => {
           <div className="text-center md:text-left">
             <h3 className="font-bold text-sm uppercase mb-4">MILITER</h3>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-teal-400 transition-colors">J'adhère au MHM</a></li>
+              <li><Link to="/adherer" className="hover:text-teal-400 transition-colors">J'adhère au MHM</Link></li>
               <li><a href="#" className="hover:text-teal-400 transition-colors">Je donne au MHM</a></li>
               <li><a href="#" className="hover:text-teal-400 transition-colors">Je m'engage au MHM</a></li>
               <li><a href="#" className="hover:text-teal-400 transition-colors">Contacter le MHM</a></li>

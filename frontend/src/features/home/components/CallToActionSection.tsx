@@ -1,6 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import {FaXTwitter, FaFacebookF, FaLinkedin, FaTiktok, FaYoutube, FaInstagram, FaTelegram, FaTwitter} from 'react-icons/fa6'
 
 export const CallToActionSection = () => {
+  const navigate = useNavigate();
   return (
     <div className="w-full">
       {/* Newsletter et Support Section */}
@@ -30,7 +32,10 @@ export const CallToActionSection = () => {
             Je soutiens la première force de MHM !
           </h2>
           <div className="flex gap-3">
-            <button className="bg-red-800 text-white px-5 py-2 text-sm font-bold uppercase hover:bg-red-900 transition-colors shadow-lg">
+            <button
+              onClick={() => navigate('/adherer')}
+              className="bg-red-800 text-white px-5 py-2 text-sm font-bold uppercase hover:bg-red-900 transition-colors shadow-lg"
+            >
               J'adhère
             </button>
             <button className="bg-red-800 text-white px-5 py-2 text-sm font-bold uppercase hover:bg-red-900 transition-colors shadow-lg">

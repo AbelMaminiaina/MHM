@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { FaMap, FaGlobe, FaUsers, FaUserGroup, FaBuilding, FaCircleCheck, FaFileLines, FaVideo, FaMicrophone, FaEnvelope } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const navigate = useNavigate();
+  
   // Fermer les menus lors du scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -315,7 +317,9 @@ export const Navbar = () => {
           <button className="hidden md:block text-teal-800 font-semibold hover:text-teal-600">
             Militer
           </button>
-          <button className="bg-red-600 text-white px-4 md:px-6 py-2 text-sm md:text-base font-bold hover:bg-red-700 transition-colors">
+          <button
+            onClick={() => navigate('/adherer')} 
+            className="bg-red-600 text-white px-4 md:px-6 py-2 text-sm md:text-base font-bold hover:bg-red-700 transition-colors">
             Adhérer
           </button>
           <div className="hidden xl:flex flex-col text-right leading-tight ml-4">

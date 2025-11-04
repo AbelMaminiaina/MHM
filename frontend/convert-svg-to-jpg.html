@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertir SVG en JPG</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        #svgContainer {
+            border: 2px solid #ddd;
+            margin: 20px 0;
+            display: inline-block;
+        }
+        button {
+            background: #3B82F6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #2563EB;
+        }
+        .instructions {
+            background: #EFF6FF;
+            border-left: 4px solid #3B82F6;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .success {
+            background: #D1FAE5;
+            border-left: 4px solid #10B981;
+            padding: 15px;
+            margin: 20px 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 I-Tech Company Branding</h1>
+
+        <div class="instructions">
+            <h3>Instructions pour télécharger en JPG :</h3>
+            <ol>
+                <li>Cliquez sur le bouton "Télécharger en JPG" ci-dessous</li>
+                <li>L'image sera automatiquement téléchargée dans votre dossier Téléchargements</li>
+                <li>Vous pouvez également faire un clic droit sur l'image SVG et "Enregistrer l'image sous..."</li>
+            </ol>
+        </div>
+
+        <div id="svgContainer">
+            <!-- SVG Embarqué directement -->
+            <svg id="svgImage" width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#0F172A;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#1E293B;stop-opacity:1" />
+                </linearGradient>
+                <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              <rect width="1200" height="630" fill="url(#bgGradient)"/>
+              <circle cx="100" cy="100" r="150" fill="#1E293B" opacity="0.5"/>
+              <circle cx="1100" cy="530" r="180" fill="#1E293B" opacity="0.5"/>
+              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.5" opacity="0.3"/>
+              </pattern>
+              <rect width="1200" height="630" fill="url(#grid)"/>
+              <g transform="translate(100, 150)">
+                <path d="M 30 0 L 0 0 L 0 80 L 30 80" stroke="url(#accentGradient)" stroke-width="6" fill="none" stroke-linecap="round"/>
+                <path d="M 70 0 L 100 0 L 100 80 L 70 80" stroke="url(#accentGradient)" stroke-width="6" fill="none" stroke-linecap="round"/>
+                <line x1="35" y1="70" x2="65" y2="10" stroke="url(#accentGradient)" stroke-width="6" stroke-linecap="round"/>
+              </g>
+              <text x="230" y="210" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="#FFFFFF">
+                I-TECH COMPANY
+              </text>
+              <text x="230" y="260" font-family="Arial, sans-serif" font-size="28" font-weight="600" fill="url(#accentGradient)">
+                Experts en Développement Logiciel
+              </text>
+              <line x1="100" y1="300" x2="500" y2="300" stroke="url(#accentGradient)" stroke-width="3"/>
+              <text x="100" y="360" font-family="Arial, sans-serif" font-size="32" font-weight="300" fill="#E2E8F0" letter-spacing="0.5">
+                Accompagner les entreprises dans le
+              </text>
+              <text x="100" y="410" font-family="Arial, sans-serif" font-size="32" font-weight="300" fill="#E2E8F0" letter-spacing="0.5">
+                développement de logiciels, grâce à des
+              </text>
+              <text x="100" y="460" font-family="Arial, sans-serif" font-size="32" font-weight="300" fill="#E2E8F0" letter-spacing="0.5">
+                experts disponibles pour chaque mission
+              </text>
+              <g transform="translate(100, 500)">
+                <circle cx="30" cy="30" r="28" fill="#334155"/>
+                <text x="30" y="42" font-family="monospace" font-size="32" fill="#3B82F6" text-anchor="middle">&lt;/&gt;</text>
+                <circle cx="120" cy="30" r="28" fill="#334155"/>
+                <circle cx="113" cy="24" r="6" fill="#06B6D4"/>
+                <circle cx="127" cy="24" r="6" fill="#06B6D4"/>
+                <path d="M 105 36 Q 120 30 135 36" stroke="#06B6D4" stroke-width="2" fill="none"/>
+                <circle cx="210" cy="30" r="28" fill="#334155"/>
+                <path d="M 210 20 L 205 35 L 210 32 L 215 35 Z" fill="#3B82F6"/>
+                <circle cx="210" cy="26" r="3" fill="#06B6D4"/>
+                <circle cx="300" cy="30" r="28" fill="#334155"/>
+                <path d="M 300 18 L 305 28 L 315 30 L 307 38 L 309 48 L 300 43 L 291 48 L 293 38 L 285 30 L 295 28 Z" fill="#3B82F6"/>
+              </g>
+              <text x="100" y="580" font-family="Arial, sans-serif" font-size="14" fill="#94A3B8" text-anchor="middle">Code</text>
+              <text x="190" y="580" font-family="Arial, sans-serif" font-size="14" fill="#94A3B8" text-anchor="middle">Équipe</text>
+              <text x="280" y="580" font-family="Arial, sans-serif" font-size="14" fill="#94A3B8" text-anchor="middle">Innovation</text>
+              <text x="370" y="580" font-family="Arial, sans-serif" font-size="14" fill="#94A3B8" text-anchor="middle">Qualité</text>
+              <g transform="translate(1000, 50)">
+                <rect x="0" y="0" width="8" height="60" fill="url(#accentGradient)" opacity="0.8"/>
+                <rect x="15" y="0" width="8" height="80" fill="url(#accentGradient)" opacity="0.6"/>
+                <rect x="30" y="0" width="8" height="100" fill="url(#accentGradient)" opacity="0.4"/>
+              </g>
+            </svg>
+        </div>
+
+        <div>
+            <button onclick="downloadAsJPG()">📥 Télécharger en JPG (Haute Qualité)</button>
+            <button onclick="downloadSVG()">📥 Télécharger SVG Original</button>
+        </div>
+
+        <div class="success" id="successMessage">
+            ✅ Image téléchargée avec succès !
+        </div>
+    </div>
+
+    <script>
+        function downloadAsJPG() {
+            const svg = document.getElementById('svgImage');
+
+            // Créer un canvas
+            const canvas = document.createElement('canvas');
+            canvas.width = 1200;
+            canvas.height = 630;
+            const ctx = canvas.getContext('2d');
+
+            // Convertir le SVG en data URL
+            const svgData = new XMLSerializer().serializeToString(svg);
+            const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(svgBlob);
+
+            // Créer une nouvelle image pour charger le SVG
+            const tempImg = new Image();
+            tempImg.onload = function() {
+                // Remplir le fond en blanc
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Dessiner l'image SVG sur le canvas
+                ctx.drawImage(tempImg, 0, 0, 1200, 630);
+
+                // Convertir en JPG
+                canvas.toBlob(function(blob) {
+                    const jpgUrl = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = jpgUrl;
+                    a.download = 'i-tech-branding.jpg';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(jpgUrl);
+                    URL.revokeObjectURL(url);
+
+                    // Afficher le message de succès
+                    document.getElementById('successMessage').style.display = 'block';
+                    setTimeout(() => {
+                        document.getElementById('successMessage').style.display = 'none';
+                    }, 3000);
+                }, 'image/jpeg', 0.95);
+            };
+
+            tempImg.onerror = function() {
+                alert('Erreur lors du chargement du SVG');
+                URL.revokeObjectURL(url);
+            };
+
+            // Charger le SVG depuis le blob
+            tempImg.src = url;
+        }
+
+        function downloadSVG() {
+            const svg = document.getElementById('svgImage');
+            const svgData = new XMLSerializer().serializeToString(svg);
+            const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(svgBlob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'i-tech-branding.svg';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            document.getElementById('successMessage').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
