@@ -15,6 +15,10 @@ const validateEnv = () => {
     'JWT_SECRET',
     'JWT_EXPIRE',
     'FRONTEND_URL',
+  ];
+
+  // Optional SMTP variables (only needed for email features)
+  const optionalEnvVars = [
     'SMTP_HOST',
     'SMTP_PORT',
     'SMTP_USER',
@@ -44,6 +48,11 @@ const validateEnv = () => {
 
   if (process.env.NODE_ENV === 'production' && process.env.SMTP_HOST === 'smtp.ethereal.email') {
     warnings.push('⚠️  Using Ethereal Email in production. Please configure a real SMTP provider.');
+  }
+
+  // Warn if SMTP is not configured (email features will be disabled)
+  if (!process.env.SMTP_HOST) {
+    warnings.push('⚠️  SMTP not configured. Email features will be disabled.');
   }
 
   // Validate PORT is a number
