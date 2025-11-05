@@ -8,6 +8,11 @@ dotenv.config();
  * @throws {Error} If any required environment variable is missing
  */
 const validateEnv = () => {
+  // Skip validation in test environment if minimal test config is present
+  if (process.env.NODE_ENV === 'test' && process.env.MONGO_URI) {
+    return;
+  }
+
   const requiredEnvVars = [
     'NODE_ENV',
     'PORT',
@@ -105,22 +110,22 @@ const getConfig = () => ({
   port: parseInt(process.env.PORT, 10) || 5000,
   mongoUri: process.env.MONGO_URI,
   jwt: {
-    secret: process.env.JWT_SECRET,
+    secret: process.env.JWT_SECRET || 'test_secret_key_for_development_minimum_32_chars',
     expire: process.env.JWT_EXPIRE || '30d',
   },
   frontendUrl: process.env.FRONTEND_URL || 'http://localhost:5173',
   email: {
     smtp: {
-      host: process.env.SMTP_HOST,
+      host: process.env.SMTP_HOST || 'smtp.ethereal.email',
       port: parseInt(process.env.SMTP_PORT, 10) || 587,
       secure: process.env.SMTP_SECURE === 'true',
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        user: process.env.SMTP_USER || 'test@example.com',
+        pass: process.env.SMTP_PASS || 'testpassword',
       },
     },
-    from: process.env.EMAIL_FROM,
-    fromName: process.env.EMAIL_FROM_NAME,
+    from: process.env.EMAIL_FROM || 'noreply@test.com',
+    fromName: process.env.EMAIL_FROM_NAME || 'Test',
   },
 });
 
