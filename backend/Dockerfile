@@ -5,6 +5,17 @@ FROM node:20-alpine AS base
 FROM base AS deps
 WORKDIR /app
 
+# Install build dependencies for native modules (canvas, etc.)
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    cairo-dev \
+    jpeg-dev \
+    pango-dev \
+    giflib-dev \
+    pixman-dev
+
 # Copy package files
 COPY package*.json ./
 
@@ -15,6 +26,17 @@ RUN npm ci --only=production && \
 # Development stage
 FROM base AS dev
 WORKDIR /app
+
+# Install build dependencies for native modules
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    cairo-dev \
+    jpeg-dev \
+    pango-dev \
+    giflib-dev \
+    pixman-dev
 
 # Copy package files
 COPY package*.json ./
@@ -35,6 +57,17 @@ CMD ["npm", "run", "dev"]
 FROM base AS builder
 WORKDIR /app
 
+# Install build dependencies
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    cairo-dev \
+    jpeg-dev \
+    pango-dev \
+    giflib-dev \
+    pixman-dev
+
 COPY package*.json ./
 RUN npm ci
 
@@ -43,6 +76,14 @@ COPY . .
 # Production stage
 FROM base AS production
 WORKDIR /app
+
+# Install runtime dependencies for canvas
+RUN apk add --no-cache \
+    cairo \
+    jpeg \
+    pango \
+    giflib \
+    pixman
 
 # Create non-root user for security
 RUN addgroup -g 1001 -S nodejs && \
