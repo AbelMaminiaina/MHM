@@ -5,6 +5,18 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+# Install native dependencies for canvas and sharp
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    cairo-dev \
+    pango-dev \
+    jpeg-dev \
+    giflib-dev \
+    pixman-dev \
+    librsvg-dev
+
 # Copy package files
 COPY package*.json ./
 
@@ -53,6 +65,18 @@ CMD ["nginx", "-g", "daemon off;"]
 FROM node:20-alpine AS development
 
 WORKDIR /app
+
+# Install native dependencies for canvas and sharp
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    cairo-dev \
+    pango-dev \
+    jpeg-dev \
+    giflib-dev \
+    pixman-dev \
+    librsvg-dev
 
 # Copy package files
 COPY package*.json ./
