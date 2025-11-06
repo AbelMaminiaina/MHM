@@ -51,3 +51,8 @@ pids/
 # Uploads
 uploads/*
 !uploads/.gitkeep
+
+# Data imports (Excel/CSV files)
+data/*
+!data/.gitkeep
+!data/members_template.xlsx
