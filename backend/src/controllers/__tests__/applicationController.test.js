@@ -4,17 +4,36 @@ import mongoose from 'mongoose';
 import app from '../../app.js';
 import connectDB from '../../config/db.js';
 import Member from '../../models/Member.js';
+import User from '../../models/User.js';
 
 describe('Application Controller', () => {
+  let authToken;
+
   beforeAll(async () => {
     // Connect to test database
     process.env.MONGO_URI = process.env.MONGO_URI_TEST || 'mongodb://localhost:27017/mhm_test';
     await connectDB();
+
+    // Create test user and get auth token
+    await User.deleteMany({});
+    await User.create({
+      name: 'Test Admin',
+      email: 'admin@test.com',
+      password: 'Test123',
+    });
+
+    // Login to get token
+    const loginResponse = await request(app)
+      .post('/api/users/login')
+      .send({ email: 'admin@test.com', password: 'Test123' });
+
+    authToken = loginResponse.body.data.token;
   });
 
   afterAll(async () => {
     // Clean up and close connection
     await Member.deleteMany({});
+    await User.deleteMany({});
     await mongoose.connection.close();
   });
 
@@ -137,7 +156,10 @@ describe('Application Controller', () => {
         },
       ]);
 
-      const response = await request(app).get('/api/applications/stats').expect(200);
+      const response = await request(app)
+        .get('/api/applications/stats')
+        .set('Authorization', `Bearer ${authToken}`)
+        .expect(200);
 
       expect(response.body.success).toBe(true);
       expect(response.body.data.byStatus).toBeDefined();
