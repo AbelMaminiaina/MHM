@@ -31,8 +31,9 @@ export const AdminDashboard = () => {
       queryClient.invalidateQueries({ queryKey: ['application-stats'] });
       alert('Demande approuvée avec succès !');
     },
-    onError: (error: any) => {
-      alert(error?.response?.data?.message || 'Erreur lors de l\'approbation');
+    onError: (error) => {
+      const err = error as { response?: { data?: { message?: string } } };
+      alert(err?.response?.data?.message || 'Erreur lors de l\'approbation');
     },
   });
 
@@ -47,8 +48,9 @@ export const AdminDashboard = () => {
       setRejectionReason('');
       alert('Demande rejetée avec succès !');
     },
-    onError: (error: any) => {
-      alert(error?.response?.data?.message || 'Erreur lors du rejet');
+    onError: (error) => {
+      const err = error as { response?: { data?: { message?: string } } };
+      alert(err?.response?.data?.message || 'Erreur lors du rejet');
     },
   });
 

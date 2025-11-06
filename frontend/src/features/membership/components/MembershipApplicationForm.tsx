@@ -36,12 +36,13 @@ export const MembershipApplicationForm = () => {
       console.log('Application submitted successfully:', response);
       setCurrentStep(4); // Success step
     },
-    onError: (error: any) => {
+    onError: (error) => {
+      const err = error as { response?: { data?: { errors?: Array<{ field: string; message: string }> } } };
       console.error('Error submitting application:', error);
-      if (error.response?.data?.errors) {
+      if (err.response?.data?.errors) {
         const newErrors: Record<string, string> = {};
-        error.response.data.errors.forEach((err: any) => {
-          newErrors[err.field] = err.message;
+        err.response.data.errors.forEach((e) => {
+          newErrors[e.field] = e.message;
         });
         setErrors(newErrors);
       }
@@ -58,7 +59,7 @@ export const MembershipApplicationForm = () => {
       setFormData((prev) => ({
         ...prev,
         [parent]: {
-          ...(prev[parent as keyof MembershipApplicationData] as any),
+          ...(prev[parent as keyof MembershipApplicationData] as Record<string, unknown>),
           [child]: value,
         },
       }));
@@ -504,7 +505,7 @@ export const MembershipApplicationForm = () => {
             {submitMutation.isError && (
               <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
                 <p className="text-red-800">
-                  {(submitMutation.error as any)?.response?.data?.message ||
+                  {(submitMutation.error as { response?: { data?: { message?: string } } })?.response?.data?.message ||
                     'Une erreur est survenue. Veuillez réessayer.'}
                 </p>
               </div>

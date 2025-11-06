@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import {FaXTwitter, FaFacebookF, FaLinkedin, FaTiktok, FaYoutube, FaInstagram, FaTelegram, FaTwitter} from 'react-icons/fa6'
+import {FaXTwitter, FaFacebookF, FaLinkedin, FaTiktok, FaYoutube, FaInstagram, FaTelegram} from 'react-icons/fa6'
 
 export const CallToActionSection = () => {
   const navigate = useNavigate();

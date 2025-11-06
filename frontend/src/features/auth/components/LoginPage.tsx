@@ -17,9 +17,10 @@ export const LoginPage = () => {
     try {
       await login({ email, password });
       navigate('/admin/dashboard');
-    } catch (err: any) {
+    } catch (err) {
+      const error = err as { response?: { data?: { message?: string } } };
       setError(
-        err?.response?.data?.message ||
+        error?.response?.data?.message ||
           'Erreur de connexion. Veuillez vérifier vos identifiants.'
       );
     }
