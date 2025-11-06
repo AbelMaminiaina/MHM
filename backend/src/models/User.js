@@ -15,10 +15,7 @@ const userSchema = new mongoose.Schema(
       unique: true,
       lowercase: true,
       trim: true,
-      match: [
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-        'Please provide a valid email',
-      ],
+      match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Please provide a valid email'],
     },
     password: {
       type: String,
@@ -33,7 +30,7 @@ const userSchema = new mongoose.Schema(
 );
 
 // Hash password before saving to database
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function preSaveHash(next) {
   // Only hash the password if it has been modified (or is new)
   if (!this.isModified('password')) {
     return next();
@@ -49,12 +46,12 @@ userSchema.pre('save', async function (next) {
 });
 
 // Method to compare entered password with hashed password
-userSchema.methods.matchPassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
+userSchema.methods.matchPassword = async function matchPassword(enteredPassword) {
+  return bcrypt.compare(enteredPassword, this.password);
 };
 
 // Method to get user data without password
-userSchema.methods.toJSON = function () {
+userSchema.methods.toJSON = function toJSON() {
   const user = this.toObject();
   delete user.password;
   return user;

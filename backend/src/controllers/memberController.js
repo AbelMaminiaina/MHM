@@ -1,6 +1,17 @@
-import Member from '../models/Member.js';
 import xlsx from 'xlsx';
 import fs from 'fs';
+import Member from '../models/Member.js';
+
+/**
+ * Helper function to convert Excel date to JavaScript Date
+ */
+function excelDateToJSDate(excelDate) {
+  if (typeof excelDate === 'number') {
+    // Excel stores dates as number of days since 1900-01-01
+    return new Date((excelDate - 25569) * 86400 * 1000);
+  }
+  return excelDate;
+}
 
 /**
  * @desc    Get all members with pagination and filters
@@ -9,14 +20,14 @@ import fs from 'fs';
  */
 export const getMembers = async (req, res, next) => {
   try {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 10;
     const skip = (page - 1) * limit;
     const search = req.query.search || '';
-    const status = req.query.status;
+    const { status } = req.query;
 
     // Build query
-    let query = {};
+    const query = {};
 
     // Search in firstName and lastName
     if (search) {
@@ -66,10 +77,7 @@ export const getMembers = async (req, res, next) => {
  */
 export const getMember = async (req, res, next) => {
   try {
-    const member = await Member.findById(req.params.id).populate(
-      'createdBy',
-      'name email'
-    );
+    const member = await Member.findById(req.params.id).populate('createdBy', 'name email');
 
     if (!member) {
       return res.status(404).json({
@@ -127,14 +135,10 @@ export const updateMember = async (req, res, next) => {
       });
     }
 
-    const updatedMember = await Member.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+    const updatedMember = await Member.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
 
     res.json({
       success: true,
@@ -212,28 +216,30 @@ export const importMembers = async (req, res, next) => {
     };
 
     // Process each row
-    for (let i = 0; i < data.length; i++) {
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < data.length; i += 1) {
       const row = data[i];
 
       try {
         // Map Excel columns to database fields
         // Adjust these mappings based on your Excel column names
         const memberData = {
-          firstName: row['Prénom'] || row['Prenom'] || row['firstName'] || '',
-          lastName: row['Nom'] || row['lastName'] || '',
-          dateOfBirth: row['Date de naissance'] || row['dateOfBirth']
-            ? new Date(excelDateToJSDate(row['Date de naissance'] || row['dateOfBirth']))
-            : null,
+          firstName: row['Prénom'] || row.Prenom || row.firstName || '',
+          lastName: row.Nom || row.lastName || '',
+          dateOfBirth:
+            row['Date de naissance'] || row.dateOfBirth
+              ? new Date(excelDateToJSDate(row['Date de naissance'] || row.dateOfBirth))
+              : null,
           address: {
-            full: row['Adresse'] || row['address'] || '',
-            street: row['Rue'] || row['street'] || '',
-            city: row['Ville'] || row['city'] || '',
-            postalCode: row['Code postal'] || row['postalCode'] || '',
-            country: row['Pays'] || row['country'] || 'France',
+            full: row.Adresse || row.address || '',
+            street: row.Rue || row.street || '',
+            city: row.Ville || row.city || '',
+            postalCode: row['Code postal'] || row.postalCode || '',
+            country: row.Pays || row.country || 'France',
           },
-          phone: row['Téléphone'] || row['Telephone'] || row['phone'] || '',
-          email: row['Email'] || row['email'] || '',
-          notes: row['Notes'] || row['notes'] || '',
+          phone: row['Téléphone'] || row.Telephone || row.phone || '',
+          email: row.Email || row.email || '',
+          notes: row.Notes || row.notes || '',
           status: 'active',
           createdBy: req.user._id,
         };
@@ -245,19 +251,19 @@ export const importMembers = async (req, res, next) => {
             data: row,
             error: 'Prénom, nom et date de naissance sont requis',
           });
-          continue;
+        } else {
+          // Create member - sequential processing to avoid overwhelming the database
+          // eslint-disable-next-line no-await-in-loop
+          const member = await Member.create(memberData);
+          results.success.push({
+            row: i + 2,
+            member: {
+              firstName: member.firstName,
+              lastName: member.lastName,
+              email: member.email,
+            },
+          });
         }
-
-        // Create member
-        const member = await Member.create(memberData);
-        results.success.push({
-          row: i + 2,
-          member: {
-            firstName: member.firstName,
-            lastName: member.lastName,
-            email: member.email,
-          },
-        });
       } catch (error) {
         results.errors.push({
           row: i + 2,
@@ -308,7 +314,7 @@ export const exportMembers = async (req, res, next) => {
       Téléphone: member.phone || '',
       Email: member.email || '',
       Statut: member.status || '',
-      'Date d\'adhésion': member.membershipDate
+      "Date d'adhésion": member.membershipDate
         ? new Date(member.membershipDate).toLocaleDateString('fr-FR')
         : '',
       Notes: member.notes || '',
@@ -325,10 +331,7 @@ export const exportMembers = async (req, res, next) => {
     const buffer = xlsx.write(workbook, { type: 'buffer', bookType: 'xlsx' });
 
     // Set headers for file download
-    res.setHeader(
-      'Content-Disposition',
-      `attachment; filename=membres-mhm-${Date.now()}.xlsx`
-    );
+    res.setHeader('Content-Disposition', `attachment; filename=membres-mhm-${Date.now()}.xlsx`);
     res.setHeader(
       'Content-Type',
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
@@ -339,17 +342,6 @@ export const exportMembers = async (req, res, next) => {
     next(error);
   }
 };
-
-/**
- * Helper function to convert Excel date to JavaScript Date
- */
-function excelDateToJSDate(excelDate) {
-  if (typeof excelDate === 'number') {
-    // Excel stores dates as number of days since 1900-01-01
-    return new Date((excelDate - 25569) * 86400 * 1000);
-  }
-  return excelDate;
-}
 
 /**
  * @desc    Get member statistics
@@ -366,9 +358,8 @@ export const getMemberStats = async (req, res, next) => {
     // Get age distribution
     const members = await Member.find({}, 'dateOfBirth');
     const ages = members.map((m) => m.age).filter((age) => age !== null);
-    const avgAge = ages.length > 0
-      ? Math.round(ages.reduce((sum, age) => sum + age, 0) / ages.length)
-      : 0;
+    const avgAge =
+      ages.length > 0 ? Math.round(ages.reduce((sum, age) => sum + age, 0) / ages.length) : 0;
 
     res.json({
       success: true,

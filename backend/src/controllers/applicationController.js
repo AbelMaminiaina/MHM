@@ -32,7 +32,7 @@ export const submitApplication = async (req, res, next) => {
 
     res.status(201).json({
       success: true,
-      message: 'Demande d\'adhésion soumise avec succès. Vous recevrez une réponse prochainement.',
+      message: "Demande d'adhésion soumise avec succès. Vous recevrez une réponse prochainement.",
       data: {
         _id: member._id,
         fullName: member.fullName,
@@ -53,8 +53,8 @@ export const submitApplication = async (req, res, next) => {
  */
 export const getPendingApplications = async (req, res, next) => {
   try {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 10;
     const skip = (page - 1) * limit;
 
     const total = await Member.countDocuments({ status: 'pending' });
@@ -151,10 +151,7 @@ export const approveApplication = async (req, res, next) => {
     const qrCodeData = await generateMemberQRCode(member);
 
     // Save QR code to file system
-    const qrCodeImageUrl = await saveQRCodeToFile(
-      qrCodeData.buffer,
-      member._id
-    );
+    const qrCodeImageUrl = await saveQRCodeToFile(qrCodeData.buffer, member._id);
 
     // Update member with QR code information
     member.qrCode = {
@@ -174,10 +171,7 @@ export const approveApplication = async (req, res, next) => {
       // Continue even if email fails - the member is still approved
     }
 
-    const updatedMember = await Member.findById(member._id).populate(
-      'approvedBy',
-      'name email'
-    );
+    const updatedMember = await Member.findById(member._id).populate('approvedBy', 'name email');
 
     res.json({
       success: true,
@@ -220,8 +214,7 @@ export const rejectApplication = async (req, res, next) => {
 
     await member.save();
 
-    const updatedMember = await Member.findById(member._id)
-      .populate('rejectedBy', 'name email');
+    const updatedMember = await Member.findById(member._id).populate('rejectedBy', 'name email');
 
     res.json({
       success: true,
@@ -300,7 +293,7 @@ export const reactivateMember = async (req, res, next) => {
     if (member.status === 'pending') {
       return res.status(400).json({
         success: false,
-        message: 'Utilisez l\'endpoint d\'approbation pour les demandes en attente',
+        message: "Utilisez l'endpoint d'approbation pour les demandes en attente",
       });
     }
 

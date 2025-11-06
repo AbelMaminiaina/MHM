@@ -1,9 +1,9 @@
 import { describe, test, expect, beforeAll, afterAll, beforeEach } from '@jest/globals';
 import request from 'supertest';
+import mongoose from 'mongoose';
 import app from '../../app.js';
 import connectDB from '../../config/db.js';
 import Member from '../../models/Member.js';
-import mongoose from 'mongoose';
 
 describe('Application Controller', () => {
   beforeAll(async () => {

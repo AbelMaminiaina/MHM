@@ -37,11 +37,13 @@ describe('QR Code Generator Utils', () => {
         { count: 9999, expected: '10000' },
       ];
 
+      // eslint-disable-next-line no-restricted-syntax
       for (const testCase of testCases) {
         const MockMember = {
           countDocuments: jest.fn().mockResolvedValue(testCase.count),
         };
 
+        // eslint-disable-next-line no-await-in-loop
         const memberNumber = await generateMemberNumber(MockMember);
         const year = new Date().getFullYear();
 

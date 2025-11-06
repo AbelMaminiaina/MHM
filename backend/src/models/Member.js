@@ -49,10 +49,7 @@ const memberSchema = new mongoose.Schema(
       type: String,
       trim: true,
       lowercase: true,
-      match: [
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-        'Veuillez fournir un email valide',
-      ],
+      match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Veuillez fournir un email valide'],
     },
     membershipDate: {
       type: Date,
@@ -150,19 +147,19 @@ const memberSchema = new mongoose.Schema(
 );
 
 // Virtual for full name
-memberSchema.virtual('fullName').get(function () {
+memberSchema.virtual('fullName').get(function getFullName() {
   return `${this.firstName} ${this.lastName}`;
 });
 
 // Virtual for age
-memberSchema.virtual('age').get(function () {
+memberSchema.virtual('age').get(function getAge() {
   if (!this.dateOfBirth) return null;
   const today = new Date();
   const birthDate = new Date(this.dateOfBirth);
   let age = today.getFullYear() - birthDate.getFullYear();
   const monthDiff = today.getMonth() - birthDate.getMonth();
   if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-    age--;
+    age -= 1;
   }
   return age;
 });

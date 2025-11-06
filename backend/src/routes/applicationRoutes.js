@@ -167,11 +167,7 @@ const router = express.Router();
  *       500:
  *         $ref: '#/components/responses/ServerError'
  */
-router.post(
-  '/',
-  validate(membershipApplicationValidation),
-  submitApplication
-);
+router.post('/', validate(membershipApplicationValidation), submitApplication);
 
 /**
  * Protected Routes (require authentication)
@@ -342,12 +338,7 @@ router.get('/:id', protect, getApplication);
  *       500:
  *         $ref: '#/components/responses/ServerError'
  */
-router.put(
-  '/:id/approve',
-  protect,
-  validate(approveMembershipValidation),
-  approveApplication
-);
+router.put('/:id/approve', protect, validate(approveMembershipValidation), approveApplication);
 
 /**
  * @swagger
@@ -403,12 +394,7 @@ router.put(
  *       500:
  *         $ref: '#/components/responses/ServerError'
  */
-router.put(
-  '/:id/reject',
-  protect,
-  validate(rejectMembershipValidation),
-  rejectApplication
-);
+router.put('/:id/reject', protect, validate(rejectMembershipValidation), rejectApplication);
 
 /**
  * @swagger

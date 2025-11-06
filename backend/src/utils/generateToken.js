@@ -6,15 +6,10 @@ import config from '../config/env.js';
  * @param {string} userId - User ID to encode in token
  * @returns {string} JWT token
  */
-const generateToken = (userId) => {
-  return jwt.sign(
-    { id: userId },
-    config.jwt.secret,
-    {
-      expiresIn: config.jwt.expire,
-    }
-  );
-};
+const generateToken = (userId) =>
+  jwt.sign({ id: userId }, config.jwt.secret, {
+    expiresIn: config.jwt.expire,
+  });
 
 /**
  * Verify JWT token

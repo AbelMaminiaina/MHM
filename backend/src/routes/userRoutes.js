@@ -7,11 +7,7 @@ import {
 } from '../controllers/userController.js';
 import { protect } from '../middleware/authMiddleware.js';
 import { authLimiter } from '../middleware/rateLimit.js';
-import {
-  registerValidation,
-  loginValidation,
-  validate,
-} from '../validations/userValidation.js';
+import { registerValidation, loginValidation, validate } from '../validations/userValidation.js';
 
 const router = express.Router();
 
@@ -118,12 +114,7 @@ const router = express.Router();
  *       500:
  *         $ref: '#/components/responses/ServerError'
  */
-router.post(
-  '/register',
-  authLimiter,
-  validate(registerValidation),
-  registerUser
-);
+router.post('/register', authLimiter, validate(registerValidation), registerUser);
 
 /**
  * @swagger
@@ -177,12 +168,7 @@ router.post(
  *       500:
  *         $ref: '#/components/responses/ServerError'
  */
-router.post(
-  '/login',
-  authLimiter,
-  validate(loginValidation),
-  loginUser
-);
+router.post('/login', authLimiter, validate(loginValidation), loginUser);
 
 /**
  * Protected Routes (authentication required)

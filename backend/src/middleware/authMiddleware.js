@@ -11,13 +11,10 @@ export const protect = async (req, res, next) => {
   let token;
 
   // Check if Authorization header exists and starts with 'Bearer'
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
-  ) {
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     try {
       // Extract token from "Bearer <token>"
-      token = req.headers.authorization.split(' ')[1];
+      [, token] = req.headers.authorization.split(' ');
 
       // Verify token
       const decoded = jwt.verify(token, config.jwt.secret);
@@ -64,8 +61,9 @@ export const protect = async (req, res, next) => {
  * Middleware to check if user has specific role (for future use)
  * Usage: router.delete('/user/:id', protect, authorize('admin'), deleteUser)
  */
-export const authorize = (...roles) => {
-  return (req, res, next) => {
+export const authorize =
+  (...roles) =>
+  (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       return res.status(403).json({
         success: false,
@@ -74,4 +72,3 @@ export const authorize = (...roles) => {
     }
     next();
   };
-};

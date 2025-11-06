@@ -17,10 +17,10 @@ export const notFound = (req, res, next) => {
  * Global error handler middleware
  * This should be the last middleware in the chain
  */
-export const errorHandler = (err, req, res, next) => {
+export const errorHandler = (err, req, res, _next) => {
   // Set status code (if not already set)
   let statusCode = res.statusCode === 200 ? 500 : res.statusCode;
-  let message = err.message;
+  let { message } = err;
 
   // Handle specific Mongoose errors
   if (err.name === 'CastError' && err.kind === 'ObjectId') {

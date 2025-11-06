@@ -16,16 +16,15 @@ const createTransporter = () => {
       secure: config.email.smtp.secure, // true for 465, false for other ports
       auth: config.email.smtp.auth,
     });
-  } else {
-    // Development: Use Ethereal Email (fake SMTP service for testing)
-    // Or configure your own test SMTP
-    return nodemailer.createTransport({
-      host: config.email.smtp.host,
-      port: config.email.smtp.port,
-      secure: false,
-      auth: config.email.smtp.auth,
-    });
   }
+  // Development: Use Ethereal Email (fake SMTP service for testing)
+  // Or configure your own test SMTP
+  return nodemailer.createTransport({
+    host: config.email.smtp.host,
+    port: config.email.smtp.port,
+    secure: false,
+    auth: config.email.smtp.auth,
+  });
 };
 
 /**
@@ -73,6 +72,21 @@ export const sendEmail = async ({ to, subject, html, text, attachments = [] }) =
     console.error('Error sending email:', error);
     throw new Error(`Failed to send email: ${error.message}`);
   }
+};
+
+/**
+ * Get member type label in French
+ * @param {string} memberType
+ * @returns {string}
+ */
+const getMemberTypeLabel = (memberType) => {
+  const labels = {
+    regular: 'Membre Régulier',
+    student: 'Membre Étudiant',
+    honorary: 'Membre Honoraire',
+    family: 'Membre Familial',
+  };
+  return labels[memberType] || memberType;
 };
 
 /**
@@ -203,7 +217,9 @@ export const sendApprovalEmail = async (member, qrCodeData) => {
             <p><strong>Numéro de membre :</strong> ${member.memberNumber}</p>
             <p><strong>Nom complet :</strong> ${member.fullName}</p>
             <p><strong>Type d'adhésion :</strong> ${getMemberTypeLabel(member.memberType)}</p>
-            <p><strong>Date d'adhésion :</strong> ${new Date(member.membershipDate).toLocaleDateString('fr-FR', {
+            <p><strong>Date d'adhésion :</strong> ${new Date(
+              member.membershipDate
+            ).toLocaleDateString('fr-FR', {
               year: 'numeric',
               month: 'long',
               day: 'numeric',
@@ -261,27 +277,12 @@ export const sendApprovalEmail = async (member, qrCodeData) => {
     },
   ];
 
-  return await sendEmail({
+  return sendEmail({
     to: member.email,
     subject,
     html,
     attachments,
   });
-};
-
-/**
- * Get member type label in French
- * @param {string} memberType
- * @returns {string}
- */
-const getMemberTypeLabel = (memberType) => {
-  const labels = {
-    regular: 'Membre Régulier',
-    student: 'Membre Étudiant',
-    honorary: 'Membre Honoraire',
-    family: 'Membre Familial',
-  };
-  return labels[memberType] || memberType;
 };
 
 /**
@@ -352,7 +353,7 @@ export const sendRejectionEmail = async (member) => {
     </html>
   `;
 
-  return await sendEmail({
+  return sendEmail({
     to: member.email,
     subject,
     html,

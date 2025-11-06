@@ -22,16 +22,6 @@ const validateEnv = () => {
     'FRONTEND_URL',
   ];
 
-  // Optional SMTP variables (only needed for email features)
-  const optionalEnvVars = [
-    'SMTP_HOST',
-    'SMTP_PORT',
-    'SMTP_USER',
-    'SMTP_PASS',
-    'EMAIL_FROM',
-    'EMAIL_FROM_NAME',
-  ];
-
   const missingVars = [];
   const warnings = [];
 
@@ -61,12 +51,12 @@ const validateEnv = () => {
   }
 
   // Validate PORT is a number
-  if (process.env.PORT && isNaN(process.env.PORT)) {
+  if (process.env.PORT && Number.isNaN(Number(process.env.PORT))) {
     missingVars.push('PORT (must be a valid number)');
   }
 
   // Validate SMTP_PORT is a number
-  if (process.env.SMTP_PORT && isNaN(process.env.SMTP_PORT)) {
+  if (process.env.SMTP_PORT && Number.isNaN(Number(process.env.SMTP_PORT))) {
     missingVars.push('SMTP_PORT (must be a valid number)');
   }
 

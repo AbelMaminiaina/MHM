@@ -4,9 +4,9 @@ import DailyRotateFile from 'winston-daily-rotate-file';
 const { combine, timestamp, printf, colorize, errors } = winston.format;
 
 // Custom format
-const logFormat = printf(({ level, message, timestamp: ts, stack }) => {
-  return `${ts} [${level}]: ${stack || message}`;
-});
+const logFormat = printf(
+  ({ level, message, timestamp: ts, stack }) => `${ts} [${level}]: ${stack || message}`
+);
 
 // Console transport with colors
 const consoleTransport = new winston.transports.Console({

@@ -250,13 +250,7 @@ router.get('/export', protect, exportMembers);
  *       500:
  *         $ref: '#/components/responses/ServerError'
  */
-router.post(
-  '/import',
-  protect,
-  uploadExcel,
-  handleUploadError,
-  importMembers
-);
+router.post('/import', protect, uploadExcel, handleUploadError, importMembers);
 
 /**
  * @swagger
