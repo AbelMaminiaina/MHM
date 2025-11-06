@@ -8,6 +8,9 @@ dotenv.config();
 process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 process.env.PORT = process.env.PORT || '3000';
 
+// Force disable file logging in serverless environment (read-only filesystem)
+process.env.DISABLE_FILE_LOGGING = 'true';
+
 // MongoDB connection
 const MONGO_URI = process.env.MONGO_URI;
 let isConnected = false;

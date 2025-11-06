@@ -88,10 +88,28 @@ export const generateMemberQRCode = async (memberData) => {
  * Save QR code image to file system
  * @param {Buffer} qrCodeBuffer - QR code image buffer
  * @param {string} memberId - Member ID
- * @returns {string} File path
+ * @returns {string} File path or null if in serverless environment
  */
 export const saveQRCodeToFile = async (qrCodeBuffer, memberId) => {
   try {
+    // Determine if we're in a serverless/read-only environment
+    const isServerless =
+      process.env.VERCEL === '1' ||
+      process.env.VERCEL ||
+      process.env.AWS_LAMBDA_FUNCTION_NAME ||
+      process.env.FUNCTION_NAME ||
+      process.env.DISABLE_FILE_LOGGING === 'true' ||
+      process.env.NOW_REGION ||
+      process.env.LAMBDA_TASK_ROOT;
+
+    // In serverless environments, skip file saving (use cloud storage instead)
+    if (isServerless) {
+      console.warn(
+        'Skipping QR code file save in serverless environment. Consider using cloud storage (S3, Cloudinary, etc.)'
+      );
+      return null;
+    }
+
     // Create qrcodes directory if it doesn't exist
     const qrCodesDir = path.join(__dirname, '../../public/qrcodes');
 
@@ -109,7 +127,8 @@ export const saveQRCodeToFile = async (qrCodeBuffer, memberId) => {
     // Return relative URL
     return `/qrcodes/${filename}`;
   } catch (error) {
-    throw new Error(`Failed to save QR code: ${error.message}`);
+    console.error(`Failed to save QR code: ${error.message}`);
+    return null; // Return null instead of throwing to prevent crashes
   }
 };
 
