@@ -95,29 +95,35 @@ const validateEnv = () => {
 /**
  * Get configuration object with typed and validated values
  */
-const getConfig = () => ({
-  nodeEnv: process.env.NODE_ENV || 'development',
-  port: parseInt(process.env.PORT, 10) || 5000,
-  mongoUri: process.env.MONGO_URI,
-  jwt: {
-    secret: process.env.JWT_SECRET || 'test_secret_key_for_development_minimum_32_chars',
-    expire: process.env.JWT_EXPIRE || '30d',
-  },
-  frontendUrl: process.env.FRONTEND_URL || 'http://localhost:5173',
-  email: {
-    smtp: {
-      host: process.env.SMTP_HOST || 'smtp.ethereal.email',
-      port: parseInt(process.env.SMTP_PORT, 10) || 587,
-      secure: process.env.SMTP_SECURE === 'true',
-      auth: {
-        user: process.env.SMTP_USER || 'test@example.com',
-        pass: process.env.SMTP_PASS || 'testpassword',
-      },
+const getConfig = () => {
+  // Clean frontend URL by removing trailing slash to prevent CORS issues
+  const rawFrontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+  const frontendUrl = rawFrontendUrl.endsWith('/') ? rawFrontendUrl.slice(0, -1) : rawFrontendUrl;
+
+  return {
+    nodeEnv: process.env.NODE_ENV || 'development',
+    port: parseInt(process.env.PORT, 10) || 5000,
+    mongoUri: process.env.MONGO_URI,
+    jwt: {
+      secret: process.env.JWT_SECRET || 'test_secret_key_for_development_minimum_32_chars',
+      expire: process.env.JWT_EXPIRE || '30d',
     },
-    from: process.env.EMAIL_FROM || 'noreply@test.com',
-    fromName: process.env.EMAIL_FROM_NAME || 'Test',
-  },
-});
+    frontendUrl,
+    email: {
+      smtp: {
+        host: process.env.SMTP_HOST || 'smtp.ethereal.email',
+        port: parseInt(process.env.SMTP_PORT, 10) || 587,
+        secure: process.env.SMTP_SECURE === 'true',
+        auth: {
+          user: process.env.SMTP_USER || 'test@example.com',
+          pass: process.env.SMTP_PASS || 'testpassword',
+        },
+      },
+      from: process.env.EMAIL_FROM || 'noreply@test.com',
+      fromName: process.env.EMAIL_FROM_NAME || 'Test',
+    },
+  };
+};
 
 // Validate environment variables on import
 validateEnv();

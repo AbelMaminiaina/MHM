@@ -26,9 +26,27 @@ app.use(helmet());
 app.use(mongoSanitize());
 
 // Enable CORS with specific origin
+// Support both with and without trailing slash for robustness
+const allowedOrigins = [
+  config.frontendUrl,
+  `${config.frontendUrl}/`, // Support trailing slash variant
+];
+
 app.use(
   cors({
-    origin: config.frontendUrl,
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps, Postman, curl, etc.)
+      if (!origin) return callback(null, true);
+
+      // Check if origin is in allowed list (exact match or without trailing slash)
+      const normalizedOrigin = origin.endsWith('/') ? origin.slice(0, -1) : origin;
+      if (allowedOrigins.includes(origin) || allowedOrigins.includes(normalizedOrigin)) {
+        return callback(null, true);
+      }
+
+      logger.warn(`CORS blocked request from origin: ${origin}`);
+      return callback(new Error('Not allowed by CORS'));
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],

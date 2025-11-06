@@ -46,8 +46,8 @@ prod: ## Start production environment
 	@echo "$(YELLOW)Starting production environment...$(NC)"
 	docker compose up -d
 	@echo "$(GREEN)Production environment started!$(NC)"
-	@echo "Frontend: http://localhost:3000"
-	@echo "Backend: http://localhost:5000"
+	@echo "Frontend: https://madagasikarahoanymalagasyv2.vercel.app/"
+	@echo "Backend: https://backmhm.vercel.app/"
 
 prod-build: ## Build and start production environment
 	@echo "$(YELLOW)Building and starting production environment...$(NC)"
