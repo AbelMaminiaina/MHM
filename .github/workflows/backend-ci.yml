@@ -86,32 +86,7 @@ jobs:
         working-directory: ./backend
         run: npm ci
 
-      - name: Run tests
-        working-directory: ./backend
-        env:
-          NODE_ENV: test
-          MONGO_URI: mongodb://admin:password123@localhost:27017/mhm_test?authSource=admin
-          JWT_SECRET: test_secret_key_for_ci_minimum_32_characters
-          JWT_EXPIRE: 1d
-          FRONTEND_URL: http://localhost:5173
-          SMTP_HOST: smtp.ethereal.email
-          SMTP_PORT: 587
-          SMTP_USER: test@example.com
-          SMTP_PASS: testpassword
-          EMAIL_FROM: noreply@mhm.mg
-          EMAIL_FROM_NAME: MHM Test
-        run: npm test
-
-      - name: Upload coverage reports
-        uses: codecov/codecov-action@v4
-        if: always()
-        with:
-          files: ./backend/coverage/lcov.info
-          flags: backend
-          name: backend-coverage
-        continue-on-error: true
-
-      - name: Generate test coverage
+      - name: Run tests with coverage
         working-directory: ./backend
         env:
           NODE_ENV: test
@@ -126,13 +101,21 @@ jobs:
           EMAIL_FROM: noreply@mhm.mg
           EMAIL_FROM_NAME: MHM Test
         run: npm run test:coverage
+
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v4
+        if: always()
+        with:
+          files: ./backend/coverage/lcov.info
+          flags: backend
+          name: backend-coverage
         continue-on-error: true
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@v5
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io
         with:
           projectBaseDir: backend
 
