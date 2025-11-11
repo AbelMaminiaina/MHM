@@ -111,6 +111,31 @@ jobs:
           name: backend-coverage
         continue-on-error: true
 
+      - name: Generate test coverage
+        working-directory: ./backend
+        env:
+          NODE_ENV: test
+          MONGO_URI: mongodb://admin:password123@localhost:27017/mhm_test?authSource=admin
+          JWT_SECRET: test_secret_key_for_ci_minimum_32_characters
+          JWT_EXPIRE: 1d
+          FRONTEND_URL: http://localhost:5173
+          SMTP_HOST: smtp.ethereal.email
+          SMTP_PORT: 587
+          SMTP_USER: test@example.com
+          SMTP_PASS: testpassword
+          EMAIL_FROM: noreply@mhm.mg
+          EMAIL_FROM_NAME: MHM Test
+        run: npm run test:coverage
+        continue-on-error: true
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          projectBaseDir: backend
+
   build:
     name: Build Backend Docker Image
     runs-on: ubuntu-latest
