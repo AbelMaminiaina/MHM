@@ -35,10 +35,10 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: (origin, callback) => {
-      // In development, allow requests with no origin (Postman, curl, etc.)
+      // In development/test, allow requests with no origin (Postman, curl, tests)
       // In production, reject requests without origin for security
       if (!origin) {
-        if (config.nodeEnv === 'development') {
+        if (config.nodeEnv === 'development' || config.nodeEnv === 'test') {
           return callback(null, true);
         }
         logger.warn('CORS blocked request with no origin in production');
