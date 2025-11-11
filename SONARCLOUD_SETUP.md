@@ -145,9 +145,13 @@ Add SonarCloud badges to your README.md:
 - [SonarCloud Documentation](https://docs.sonarcloud.io/)
 - [SonarCloud GitHub Action](https://github.com/SonarSource/sonarcloud-github-action)
 - [JavaScript/TypeScript Analysis](https://docs.sonarcloud.io/enriching/languages/javascript-typescript-css/)
+- [Quality Gates](https://docs.sonarcloud.io/improving/quality-gates/)
 
 ## Support
 
 For issues or questions:
 - Check [SonarCloud Community](https://community.sonarsource.com/)
 - Review GitHub Actions logs for detailed error messages
+
+---
+*Last updated: 2025-11-12*
