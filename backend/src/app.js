@@ -35,8 +35,15 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps, Postman, curl, etc.)
-      if (!origin) return callback(null, true);
+      // In development, allow requests with no origin (Postman, curl, etc.)
+      // In production, reject requests without origin for security
+      if (!origin) {
+        if (config.nodeEnv === 'development') {
+          return callback(null, true);
+        }
+        logger.warn('CORS blocked request with no origin in production');
+        return callback(new Error('Not allowed by CORS'));
+      }
 
       // Check if origin is in allowed list (exact match or without trailing slash)
       const normalizedOrigin = origin.endsWith('/') ? origin.slice(0, -1) : origin;
