@@ -1,4 +1,4 @@
-# Scripts d'Import et Export de Données
+# Scripts d'Import, Export et Backup de Données
 
 Ce dossier contient les scripts utilitaires pour gérer les données de la base MongoDB.
 
@@ -183,6 +183,155 @@ status: active
 - Format ISO: `1990-05-15`
 - Format Excel: nombre de jours depuis 1900
 - Format texte: `15/05/1990` (sera parsé automatiquement)
+
+---
+
+## 💾 Backup et Restauration MongoDB
+
+### 4. **Backup de la Base de Données** (`backupMongoDB.js`)
+
+Crée une sauvegarde complète de la base de données MongoDB.
+
+**Prérequis:**
+- **MongoDB Database Tools** doit être installé
+- Télécharger: https://www.mongodb.com/try/download/database-tools
+
+**Installation MongoDB Database Tools:**
+```bash
+# Windows (avec chocolatey)
+choco install mongodb-database-tools
+
+# macOS (avec brew)
+brew install mongodb-database-tools
+
+# Linux (Ubuntu/Debian)
+wget https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2004-x86_64-100.9.4.deb
+sudo apt install ./mongodb-database-tools-*.deb
+```
+
+#### a) Créer un Backup
+
+```bash
+npm run backup
+```
+
+**Résultat:**
+- Crée un backup dans `backend/backups/backup_mhm_db_YYYY-MM-DDTHH-MM-SS/`
+- Affiche la taille du backup
+- Liste les 5 derniers backups disponibles
+
+**Exemple de sortie:**
+```
+======================================================================
+💾 BACKUP MONGODB - SAUVEGARDE DE LA BASE DE DONNÉES
+======================================================================
+
+📊 Informations de connexion:
+   • Base de données: mhm_db
+   • Type: MongoDB Atlas
+   • Destination: C:\...\backups\backup_mhm_db_2025-01-06T14-30-00
+
+🔄 Début du backup...
+
+======================================================================
+✅ BACKUP TERMINÉ AVEC SUCCÈS
+======================================================================
+📁 Emplacement: C:\...\backups\backup_mhm_db_2025-01-06T14-30-00
+📊 Taille: 2.45 MB
+🕐 Date: 06/01/2025 14:30:00
+======================================================================
+
+📋 Backups disponibles (3):
+   1. backup_mhm_db_2025-01-06T14-30-00 (06/01/2025 14:30:00)
+   2. backup_mhm_db_2025-01-05T10-15-00 (05/01/2025 10:15:00)
+   3. backup_mhm_db_2025-01-04T18-00-00 (04/01/2025 18:00:00)
+
+💡 Pour restaurer ce backup:
+   npm run backup:restore backup_mhm_db_2025-01-06T14-30-00
+```
+
+---
+
+#### b) Lister les Backups
+
+```bash
+npm run backup:list
+```
+
+Affiche tous les backups disponibles avec leur date et emplacement.
+
+---
+
+#### c) Restaurer un Backup
+
+**Restaurer le backup le plus récent:**
+```bash
+npm run backup:restore
+```
+
+**Restaurer un backup spécifique:**
+```bash
+npm run backup:restore backup_mhm_db_2025-01-06T14-30-00
+```
+
+⚠️ **ATTENTION:** La restauration **ÉCRASE** toutes les données actuelles de la base !
+
+---
+
+### 📅 Stratégie de Backup Recommandée
+
+**Production:**
+1. **Backup automatique quotidien** (via cron/scheduled task)
+2. **Backup manuel avant chaque import massif**
+3. **Conserver au moins 7 jours de backups**
+
+**Avant modifications importantes:**
+```bash
+# 1. Faire un backup
+npm run backup
+
+# 2. Effectuer l'opération (import, mise à jour, etc.)
+npm run import:members ./data/new_members.xlsx
+
+# 3. Si problème, restaurer le backup
+npm run backup:restore
+```
+
+**Automatiser les backups (Windows):**
+```powershell
+# Créer une tâche planifiée
+$action = New-ScheduledTaskAction -Execute "npm" -Argument "run backup" -WorkingDirectory "C:\path\to\backend"
+$trigger = New-ScheduledTaskTrigger -Daily -At 2AM
+Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "MHM_MongoDB_Backup"
+```
+
+**Automatiser les backups (Linux/macOS - Cron):**
+```bash
+# Éditer crontab
+crontab -e
+
+# Ajouter (backup quotidien à 2h du matin)
+0 2 * * * cd /path/to/backend && npm run backup >> /var/log/mhm_backup.log 2>&1
+```
+
+---
+
+### 🔐 Sécurité des Backups
+
+⚠️ **Important:**
+- Les backups contiennent toutes les données sensibles
+- Ne commitez **jamais** les backups sur Git (déjà dans `.gitignore`)
+- Stockez les backups dans un endroit sécurisé
+- Chiffrez les backups pour la production
+
+**Compresser et chiffrer un backup:**
+```bash
+# Compresser
+tar -czf backup_mhm_db_2025-01-06.tar.gz backups/backup_mhm_db_2025-01-06T14-30-00/
+
+# Chiffrer avec GPG
+gpg -c backup_mhm_db_2025-01-06.tar.gz
+```
 
 ---
 

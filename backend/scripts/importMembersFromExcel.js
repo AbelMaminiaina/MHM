@@ -71,39 +71,45 @@ function validateMemberData(row, rowIndex) {
   return errors;
 }
 
+// Fonction utilitaire pour convertir en string et trim
+function safeString(value) {
+  if (value === null || value === undefined) return '';
+  return String(value).trim();
+}
+
 // Fonction pour transformer une ligne Excel en objet Member
 function transformRowToMember(row) {
   const memberData = {
-    firstName: row.firstName?.trim(),
-    lastName: row.lastName?.trim(),
+    firstName: safeString(row.firstName),
+    lastName: safeString(row.lastName),
     dateOfBirth: parseDate(row.dateOfBirth),
-    email: row.email?.trim().toLowerCase(),
-    phone: row.phone?.trim(),
-    memberType: row.memberType?.trim() || 'regular',
-    status: row.status?.trim() || 'pending',
+    email: safeString(row.email).toLowerCase(),
+    phone: safeString(row.phone),
+    memberType: safeString(row.memberType) || 'regular',
+    status: safeString(row.status) || 'pending',
   };
 
   // Adresse
   if (row.street || row.city || row.postalCode || row.country) {
     memberData.address = {
-      street: row.street?.trim() || '',
-      city: row.city?.trim() || '',
-      postalCode: row.postalCode?.trim() || '',
-      country: row.country?.trim() || 'France',
+      street: safeString(row.street),
+      city: safeString(row.city),
+      postalCode: safeString(row.postalCode),
+      country: safeString(row.country) || 'France',
     };
   }
 
   // Champs optionnels
-  if (row.occupation) memberData.occupation = row.occupation.trim();
-  if (row.interests) memberData.interests = row.interests.trim();
-  if (row.notes) memberData.notes = row.notes.trim();
+  if (row.occupation) memberData.occupation = safeString(row.occupation);
+  if (row.interests) memberData.interests = safeString(row.interests);
+  if (row.notes) memberData.notes = safeString(row.notes);
 
   // Contact d'urgence
   if (row.emergencyContactName && row.emergencyContactPhone) {
     memberData.emergencyContact = {
-      name: row.emergencyContactName.trim(),
-      phone: row.emergencyContactPhone.trim(),
-      relationship: row.emergencyContactRelationship?.trim() || '',
+      name: safeString(row.emergencyContactName),
+      phone: safeString(row.emergencyContactPhone),
+      relationship: safeString(row.emergencyContactRelationship),
     };
   }
 
@@ -123,7 +129,18 @@ async function importMembers(filePath) {
 
     // Lire le fichier Excel
     const workbook = xlsx.readFile(absolutePath);
-    const sheetName = workbook.SheetNames[0];
+
+    // Chercher la feuille "Membres" ou utiliser la dernière feuille (pas la première qui est souvent "Instructions")
+    let sheetName;
+    if (workbook.SheetNames.includes('Membres')) {
+      sheetName = 'Membres';
+    } else if (workbook.SheetNames.includes('Members')) {
+      sheetName = 'Members';
+    } else {
+      // Si pas de feuille "Membres", utiliser la dernière feuille (qui n'est généralement pas les instructions)
+      sheetName = workbook.SheetNames[workbook.SheetNames.length - 1];
+    }
+
     const worksheet = workbook.Sheets[sheetName];
 
     console.log(`📊 Feuille sélectionnée: ${sheetName}`);

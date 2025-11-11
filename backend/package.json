@@ -16,7 +16,10 @@
     "format:check": "prettier --check \"src/**/*.js\"",
     "seed": "node scripts/seedMembersToMongoDB.js",
     "import:members": "node scripts/importMembersFromExcel.js",
-    "create:template": "node scripts/createExcelTemplate.js"
+    "create:template": "node scripts/createExcelTemplate.js",
+    "backup": "node scripts/backupMongoDB.js",
+    "backup:restore": "node scripts/backupMongoDB.js restore",
+    "backup:list": "node scripts/backupMongoDB.js list"
   },
   "keywords": [
     "express",

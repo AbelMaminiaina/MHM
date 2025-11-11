@@ -56,3 +56,7 @@ uploads/*
 data/*
 !data/.gitkeep
 !data/members_template.xlsx
+
+# Backups MongoDB
+backups/*
+!backups/.gitkeep
