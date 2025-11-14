@@ -97,8 +97,13 @@ const validateEnv = () => {
  */
 const getConfig = () => {
   // Clean frontend URL by removing trailing slash to prevent CORS issues
+  // Support multiple URLs separated by commas
   const rawFrontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
-  const frontendUrl = rawFrontendUrl.endsWith('/') ? rawFrontendUrl.slice(0, -1) : rawFrontendUrl;
+  const frontendUrls = rawFrontendUrl
+    .split(',')
+    .map((url) => url.trim())
+    .map((url) => (url.endsWith('/') ? url.slice(0, -1) : url))
+    .filter((url) => url.length > 0);
 
   return {
     nodeEnv: process.env.NODE_ENV || 'development',
@@ -108,7 +113,8 @@ const getConfig = () => {
       secret: process.env.JWT_SECRET || 'test_secret_key_for_development_minimum_32_chars',
       expire: process.env.JWT_EXPIRE || '30d',
     },
-    frontendUrl,
+    frontendUrl: frontendUrls[0], // Backward compatibility - keep first URL as main
+    frontendUrls, // Array of all allowed frontend URLs
     email: {
       smtp: {
         host: process.env.SMTP_HOST || 'smtp.ethereal.email',

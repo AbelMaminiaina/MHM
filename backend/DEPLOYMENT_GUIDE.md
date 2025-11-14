@@ -112,7 +112,7 @@ mongodb+srv://mhm_admin:VotreMo%24dePa$$e@mhm-cluster.xxxxx.mongodb.net/mhm_db?r
 | `MONGO_URI` | `mongodb+srv://...` | Votre chaîne de connexion MongoDB Atlas |
 | `JWT_SECRET` | (générer une clé forte) | Clé secrète pour JWT (min 32 caractères) |
 | `JWT_EXPIRE` | `30d` | Durée de validité du token |
-| `FRONTEND_URL` | `https://votre-frontend.vercel.app` | URL de votre frontend |
+| `FRONTEND_URL` | `https://votre-frontend.vercel.app` | URL(s) de votre frontend (séparées par des virgules si plusieurs) |
 | `PORT` | `3000` | Port (optionnel, géré par Vercel) |
 | `LOG_LEVEL` | `info` | Niveau de logs |
 
@@ -122,6 +122,12 @@ mongodb+srv://mhm_admin:VotreMo%24dePa$$e@mhm-cluster.xxxxx.mongodb.net/mhm_db?r
 openssl rand -base64 32
 
 # Ou utilisez un générateur en ligne (assurez-vous qu'il soit fiable)
+```
+
+**Pour autoriser plusieurs URLs frontend (CORS) :**
+Si vous avez plusieurs domaines (avec et sans www, ou plusieurs environnements), vous pouvez les séparer par des virgules :
+```
+FRONTEND_URL=https://madagasikarahoanymalagasy.org,https://www.madagasikarahoanymalagasy.org,https://frontend-preview.vercel.app
 ```
 
 3. Cliquez sur **"Deploy"**

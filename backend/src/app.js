@@ -25,12 +25,13 @@ app.use(helmet());
 // Sanitize data to prevent MongoDB injection attacks
 app.use(mongoSanitize());
 
-// Enable CORS with specific origin
+// Enable CORS with specific origins
 // Support both with and without trailing slash for robustness
-const allowedOrigins = [
-  config.frontendUrl,
-  `${config.frontendUrl}/`, // Support trailing slash variant
-];
+const allowedOrigins = [];
+config.frontendUrls.forEach((url) => {
+  allowedOrigins.push(url);
+  allowedOrigins.push(`${url}/`); // Support trailing slash variant
+});
 
 app.use(
   cors({
