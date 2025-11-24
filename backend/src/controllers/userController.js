@@ -35,8 +35,9 @@ export const registerUser = async (req, res, next) => {
           _id: user._id,
           name: user.name,
           email: user.email,
+          role: user.role,
           createdAt: user.createdAt,
-          token: generateToken(user._id),
+          token: generateToken(user._id, user.email, user.role),
         },
       });
     } else {
@@ -71,8 +72,9 @@ export const loginUser = async (req, res, next) => {
           _id: user._id,
           name: user.name,
           email: user.email,
+          role: user.role,
           createdAt: user.createdAt,
-          token: generateToken(user._id),
+          token: generateToken(user._id, user.email, user.role),
         },
       });
     } else {

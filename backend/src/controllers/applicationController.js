@@ -1,10 +1,8 @@
 import Member from '../models/Member.js';
-import {
-  generateMemberNumber,
-  generateMemberQRCode,
-  saveQRCodeToFile,
-} from '../utils/qrCodeGenerator.js';
-import { sendApprovalEmail } from '../utils/emailService.js';
+import { generateMemberNumber } from '../utils/qrCodeGenerator.js';
+import { generateAndSendQRCode } from '../utils/qrCodeService.js';
+import { sendApplicationConfirmationEmail, sendRejectionEmail } from '../utils/emailService.js';
+import logger from '../config/logger.js';
 
 /**
  * @desc    Submit a new membership application (Public)
@@ -29,6 +27,18 @@ export const submitApplication = async (req, res, next) => {
       status: 'pending',
       applicationDate: new Date(),
     });
+
+    // Send confirmation email to the applicant
+    try {
+      await sendApplicationConfirmationEmail(member);
+      logger.info(`✅ Email de confirmation envoyé à ${member.email}`, {
+        memberId: member._id,
+        email: member.email,
+      });
+    } catch (emailError) {
+      logger.error(`❌ Erreur lors de l'envoi de l'email de confirmation à ${member.email}:`, emailError);
+      // Continue - application is still created even if email fails
+    }
 
     res.status(201).json({
       success: true,
@@ -147,36 +157,45 @@ export const approveApplication = async (req, res, next) => {
 
     await member.save();
 
-    // Generate QR code for the member
-    const qrCodeData = await generateMemberQRCode(member);
-
-    // Save QR code to file system
-    const qrCodeImageUrl = await saveQRCodeToFile(qrCodeData.buffer, member._id);
-
-    // Update member with QR code information
-    member.qrCode = {
-      code: qrCodeData.code,
-      imageUrl: qrCodeImageUrl,
-      generatedAt: new Date(),
-    };
-
-    await member.save();
-
-    // Send approval email with QR code
+    // Generate and send QR code using the new service with email tracking
+    let qrCodeResult = null;
     try {
-      await sendApprovalEmail(member, qrCodeData);
-      console.log(`Approval email sent to ${member.email}`);
-    } catch (emailError) {
-      console.error('Error sending approval email:', emailError);
-      // Continue even if email fails - the member is still approved
+      const currentYear = new Date().getFullYear().toString();
+      qrCodeResult = await generateAndSendQRCode(member, currentYear);
+
+      logger.info(`✅ QR Code généré et envoyé pour ${member.fullName}`, {
+        memberId: member._id,
+        memberNumber: member.memberNumber,
+        emailSent: qrCodeResult.emailSent,
+      });
+    } catch (qrError) {
+      logger.error(`❌ Erreur lors de la génération du QR Code pour ${member.fullName}:`, qrError);
+      // Continue - member is approved even if QR code generation fails
     }
 
     const updatedMember = await Member.findById(member._id).populate('approvedBy', 'name email');
 
+    // Build response message based on QR code result
+    let message = `Adhésion de ${member.fullName} approuvée avec succès.`;
+    if (qrCodeResult?.emailSent) {
+      message += ' ✅ QR Code envoyé par email.';
+    } else if (qrCodeResult?.success) {
+      message += ' ⚠ QR Code généré mais email non envoyé.';
+    } else {
+      message += ' ❌ Erreur lors de la génération du QR Code.';
+    }
+
     res.json({
       success: true,
-      message: `Adhésion de ${member.fullName} approuvée avec succès. Un email de confirmation a été envoyé.`,
-      data: updatedMember,
+      message,
+      data: {
+        member: updatedMember,
+        qrCodeStatus: qrCodeResult ? {
+          generated: qrCodeResult.success,
+          emailSent: qrCodeResult.emailSent,
+          emailStatus: updatedMember.qrCode?.emailStatus,
+        } : null,
+      },
     });
   } catch (error) {
     next(error);
@@ -213,6 +232,19 @@ export const rejectApplication = async (req, res, next) => {
     member.rejectionReason = req.body.rejectionReason;
 
     await member.save();
+
+    // Send rejection email to the applicant
+    try {
+      await sendRejectionEmail(member);
+      logger.info(`✅ Email de rejet envoyé à ${member.email}`, {
+        memberId: member._id,
+        email: member.email,
+        reason: member.rejectionReason,
+      });
+    } catch (emailError) {
+      logger.error(`❌ Erreur lors de l'envoi de l'email de rejet à ${member.email}:`, emailError);
+      // Continue - rejection is still recorded even if email fails
+    }
 
     const updatedMember = await Member.findById(member._id).populate('rejectedBy', 'name email');
 

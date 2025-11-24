@@ -377,7 +377,7 @@ const options = {
       description: 'API REST pour Madagasikara Hoan\'ny Malagasy (MHM)',
       contact: {
         name: 'MHM Team',
-        email: 'contact@mhm.mg',
+        email: 'contact@madagasikarahoanymalagasy.org',
         url: 'https://mhm.mg'
       },
       license: {

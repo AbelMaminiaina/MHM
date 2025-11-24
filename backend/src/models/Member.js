@@ -130,6 +130,27 @@ const memberSchema = new mongoose.Schema(
       generatedAt: {
         type: Date,
       },
+      signature: {
+        type: String,
+      },
+      validity: {
+        type: String, // Year format: "2025"
+      },
+      emailStatus: {
+        type: String,
+        enum: ['sent', 'pending', 'failed', 'not-generated'],
+        default: 'not-generated',
+      },
+      emailSentAt: {
+        type: Date,
+      },
+      scanCount: {
+        type: Number,
+        default: 0,
+      },
+      lastScannedAt: {
+        type: Date,
+      },
     },
     memberNumber: {
       type: String,

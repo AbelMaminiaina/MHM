@@ -128,6 +128,9 @@ const getConfig = () => {
       from: process.env.EMAIL_FROM || 'noreply@test.com',
       fromName: process.env.EMAIL_FROM_NAME || 'Test',
     },
+    qrCodeSecretKey:
+      process.env.QR_CODE_SECRET_KEY ||
+      'default-qrcode-secret-key-please-change-in-production-for-security',
   };
 };
 

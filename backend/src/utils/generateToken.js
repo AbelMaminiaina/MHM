@@ -4,10 +4,12 @@ import config from '../config/env.js';
 /**
  * Generate JWT token for user authentication
  * @param {string} userId - User ID to encode in token
+ * @param {string} email - User email to encode in token
+ * @param {string} role - User role to encode in token
  * @returns {string} JWT token
  */
-const generateToken = (userId) =>
-  jwt.sign({ id: userId }, config.jwt.secret, {
+const generateToken = (userId, email, role) =>
+  jwt.sign({ id: userId, email, role }, config.jwt.secret, {
     expiresIn: config.jwt.expire,
   });
 

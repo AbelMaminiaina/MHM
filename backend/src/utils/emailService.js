@@ -253,7 +253,7 @@ export const sendApprovalEmail = async (member, qrCodeData) => {
 
         <div class="footer">
           <p><strong>Madagasikara Hoan'ny Malagasy (MHM)</strong></p>
-          <p>Email : contact@mhm.mg | Téléphone : +261 XX XX XXX XX</p>
+          <p>Email : contact@madagasikarahoanymalagasy.org | Téléphone : +261 XX XX XXX XX</p>
           <p>
             <a href="#">Site Web</a> |
             <a href="#">Facebook</a> |
@@ -282,6 +282,172 @@ export const sendApprovalEmail = async (member, qrCodeData) => {
     subject,
     html,
     attachments,
+  });
+};
+
+/**
+ * Send application confirmation email (when application is submitted)
+ * @param {Object} member - Member document
+ * @returns {Promise<Object>} Send result
+ */
+export const sendApplicationConfirmationEmail = async (member) => {
+  const subject = `MHM - Confirmation de votre demande d'adhésion`;
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          line-height: 1.6;
+          color: #333;
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 20px;
+          background-color: #f4f4f4;
+        }
+        .email-container {
+          background-color: #ffffff;
+          border-radius: 10px;
+          padding: 30px;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+          text-align: center;
+          padding-bottom: 20px;
+          border-bottom: 3px solid #2196F3;
+        }
+        .header h1 {
+          color: #2196F3;
+          margin: 0;
+          font-size: 24px;
+        }
+        .content {
+          padding: 30px 0;
+        }
+        .info-box {
+          background-color: #E3F2FD;
+          border-left: 4px solid #2196F3;
+          padding: 15px;
+          margin: 20px 0;
+        }
+        .info-box h3 {
+          margin-top: 0;
+          color: #1976D2;
+        }
+        .footer {
+          text-align: center;
+          padding-top: 20px;
+          border-top: 2px solid #e0e0e0;
+          color: #666;
+          font-size: 14px;
+        }
+        .footer a {
+          color: #2196F3;
+          text-decoration: none;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="email-container">
+        <div class="header">
+          <h1>✅ Demande d'adhésion reçue !</h1>
+        </div>
+
+        <div class="content">
+          <p>Bonjour ${member.firstName} ${member.lastName},</p>
+
+          <p>Nous avons bien reçu votre demande d'adhésion à <strong>Madagasikara Hoan'ny Malagasy (MHM)</strong>.</p>
+
+          <div class="info-box">
+            <h3>📋 Informations de votre demande</h3>
+            <p><strong>Nom complet :</strong> ${member.fullName}</p>
+            <p><strong>Email :</strong> ${member.email}</p>
+            <p><strong>Date de soumission :</strong> ${new Date(member.applicationDate).toLocaleDateString('fr-FR', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}</p>
+            <p><strong>Statut :</strong> <span style="color: #FF9800; font-weight: bold;">En attente de validation</span></p>
+          </div>
+
+          <h3>📌 Prochaines étapes</h3>
+          <ol>
+            <li>Notre équipe va examiner votre demande</li>
+            <li>Nous vérifierons les informations fournies</li>
+            <li>Vous recevrez une réponse par email sous 2-5 jours ouvrés</li>
+            <li>Si votre demande est approuvée, vous recevrez votre <strong>QR Code de membre</strong> par email</li>
+          </ol>
+
+          <div class="info-box">
+            <h3>💡 Bon à savoir</h3>
+            <p>Une fois votre adhésion approuvée, vous recevrez automatiquement :</p>
+            <ul>
+              <li>✅ Votre numéro de membre unique</li>
+              <li>✅ Votre QR Code personnel sécurisé</li>
+              <li>✅ Les instructions pour utiliser votre QR Code</li>
+            </ul>
+          </div>
+
+          <p>Si vous avez des questions, n'hésitez pas à nous contacter.</p>
+
+          <p>Cordialement,<br><strong>L'équipe Madagasikara Hoan'ny Malagasy</strong></p>
+        </div>
+
+        <div class="footer">
+          <p><strong>Madagasikara Hoan'ny Malagasy (MHM)</strong></p>
+          <p>Email : <a href="mailto:contact@madagasikarahoanymalagasy.org">contact@madagasikarahoanymalagasy.org</a></p>
+          <p style="margin-top: 20px; font-size: 12px; color: #999;">
+            Cet email a été envoyé automatiquement. Merci de ne pas y répondre.
+          </p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+
+  const text = `
+    Demande d'adhésion reçue !
+
+    Bonjour ${member.firstName} ${member.lastName},
+
+    Nous avons bien reçu votre demande d'adhésion à Madagasikara Hoan'ny Malagasy (MHM).
+
+    Informations de votre demande :
+    • Nom complet : ${member.fullName}
+    • Email : ${member.email}
+    • Date de soumission : ${new Date(member.applicationDate).toLocaleDateString('fr-FR')}
+    • Statut : En attente de validation
+
+    Prochaines étapes :
+    1. Notre équipe va examiner votre demande
+    2. Nous vérifierons les informations fournies
+    3. Vous recevrez une réponse par email sous 2-5 jours ouvrés
+    4. Si votre demande est approuvée, vous recevrez votre QR Code de membre par email
+
+    Une fois votre adhésion approuvée, vous recevrez automatiquement :
+    • Votre numéro de membre unique
+    • Votre QR Code personnel sécurisé
+    • Les instructions pour utiliser votre QR Code
+
+    Si vous avez des questions, n'hésitez pas à nous contacter.
+
+    Cordialement,
+    L'équipe Madagasikara Hoan'ny Malagasy
+
+    ---
+    Email : contact@madagasikarahoanymalagasy.org
+    Cet email a été envoyé automatiquement.
+  `;
+
+  return sendEmail({
+    to: member.email,
+    subject,
+    html,
+    text,
   });
 };
 
@@ -346,7 +512,7 @@ export const sendRejectionEmail = async (member) => {
         </div>
         <div class="footer">
           <p><strong>Madagasikara Hoan'ny Malagasy (MHM)</strong></p>
-          <p>Email : contact@mhm.mg</p>
+          <p>Email : contact@madagasikarahoanymalagasy.org</p>
         </div>
       </div>
     </body>

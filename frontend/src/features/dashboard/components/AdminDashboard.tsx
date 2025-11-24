@@ -26,10 +26,29 @@ export const AdminDashboard = () => {
   // Approve mutation
   const approveMutation = useMutation({
     mutationFn: (id: string) => applicationsService.approveApplication(id),
-    onSuccess: () => {
+    onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: ['pending-applications'] });
       queryClient.invalidateQueries({ queryKey: ['application-stats'] });
-      alert('Demande approuvée avec succès !');
+
+      // Extract member and QR status from response
+      const data = response.data as any;
+      const member = data.member || data;
+      const qrCodeStatus = data.qrCodeStatus;
+
+      // Build notification message with QR status
+      let message = response.message || 'Demande approuvée avec succès !';
+
+      if (qrCodeStatus) {
+        if (qrCodeStatus.emailSent) {
+          message += '\n✅ QR Code envoyé par email.';
+        } else if (qrCodeStatus.generated) {
+          message += '\n⚠️ QR Code généré mais email non envoyé.';
+        } else {
+          message += '\n❌ Erreur lors de la génération du QR Code.';
+        }
+      }
+
+      alert(message);
     },
     onError: (error) => {
       const err = error as { response?: { data?: { message?: string } } };
@@ -111,6 +130,12 @@ export const AdminDashboard = () => {
                 className="px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
               >
                 Voir tous les membres
+              </button>
+              <button
+                onClick={() => navigate('/admin/qrcodes')}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                📱 Gestion QR Codes
               </button>
               <button
                 onClick={handleLogout}

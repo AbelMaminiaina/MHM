@@ -7,6 +7,7 @@ import { MembersListPage } from './features/dashboard/components/MembersListPage
 import { MembershipApplicationForm } from './features/membership/components/MembershipApplicationForm';
 import { LoginPage } from './features/auth/components/LoginPage';
 import { AdminDashboard } from './features/dashboard/components/AdminDashboard';
+import { QRCodeManagementPage } from './features/qrcode/components/QRCodeManagementPage';
 import { ProtectedRoute } from './features/auth/components/ProtectedRoute';
 
 // Create a client
@@ -37,6 +38,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/qrcodes"
+            element={
+              <ProtectedRoute>
+                <QRCodeManagementPage />
               </ProtectedRoute>
             }
           />

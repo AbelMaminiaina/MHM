@@ -16,6 +16,12 @@ export interface QRCode {
   code?: string;
   imageUrl?: string;
   generatedAt?: string;
+  signature?: string;
+  validity?: string;
+  emailStatus?: 'sent' | 'pending' | 'failed' | 'not-generated';
+  emailSentAt?: string;
+  scanCount?: number;
+  lastScannedAt?: string;
 }
 
 export type MemberStatus = 'pending' | 'active' | 'inactive' | 'rejected' | 'suspended';
@@ -66,9 +72,18 @@ export interface MembersResponse {
   };
 }
 
+export interface QRCodeStatus {
+  generated: boolean;
+  emailSent: boolean;
+  emailStatus?: 'sent' | 'pending' | 'failed' | 'not-generated';
+}
+
 export interface MemberResponse {
   success: boolean;
-  data: Member;
+  data: Member | {
+    member: Member;
+    qrCodeStatus?: QRCodeStatus;
+  };
   message?: string;
 }
 

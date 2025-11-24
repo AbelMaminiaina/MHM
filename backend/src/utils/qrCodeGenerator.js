@@ -3,17 +3,30 @@ import crypto from 'crypto';
 import fs from 'fs';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import config from '../config/env.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 /**
+ * Generate SHA-256 signature for QR code anti-fraud
+ * @param {string} memberId - Member ID
+ * @param {string} validity - Year of validity (e.g., "2025")
+ * @returns {string} SHA-256 hash
+ */
+export const generateQRSignature = (memberId, validity) => {
+  const secretKey = config.qrCodeSecretKey || 'default-secret-key-change-in-production';
+  const dataToHash = `${memberId}${secretKey}${validity}`;
+  return crypto.createHash('sha256').update(dataToHash).digest('hex');
+};
+
+/**
  * Generate a unique member number
- * Format: MHM-YYYY-XXXXX (e.g., MHM-2024-00001)
+ * Format: M-YYYY-XXXX (e.g., M-2025-0142)
  */
 export const generateMemberNumber = async (Member) => {
   const year = new Date().getFullYear();
-  const prefix = `MHM-${year}-`;
+  const prefix = `M-${year}-`;
 
   // Get the count of members created this year
   const startOfYear = new Date(year, 0, 1);
@@ -21,36 +34,38 @@ export const generateMemberNumber = async (Member) => {
     createdAt: { $gte: startOfYear },
   });
 
-  // Generate sequential number with padding
-  const sequentialNumber = String(count + 1).padStart(5, '0');
+  // Generate sequential number with padding (4 digits)
+  const sequentialNumber = String(count + 1).padStart(4, '0');
 
   return `${prefix}${sequentialNumber}`;
 };
 
 /**
- * Generate a unique QR code for a member
+ * Generate a unique QR code for a member with secure signature
  * @param {Object} memberData - Member information
+ * @param {string} validity - Year of validity (optional, defaults to current year)
  * @returns {Object} QR code data (code, imageUrl, buffer)
  */
-export const generateMemberQRCode = async (memberData) => {
+export const generateMemberQRCode = async (memberData, validity = null) => {
   try {
-    // Create unique code for the member
-    const uniqueCode = crypto.randomBytes(16).toString('hex');
+    // Use provided validity year or default to current year
+    const validityYear = validity || new Date().getFullYear().toString();
 
-    // Prepare member data to encode in QR
+    // Generate SHA-256 signature for anti-fraud
+    const signature = generateQRSignature(memberData.memberNumber, validityYear);
+
+    // Prepare member data to encode in QR (following the exact structure requested)
     const qrData = {
-      id: memberData._id.toString(),
-      memberNumber: memberData.memberNumber,
-      firstName: memberData.firstName,
-      lastName: memberData.lastName,
+      memberId: memberData.memberNumber,
+      name: `${memberData.firstName} ${memberData.lastName}`,
       email: memberData.email,
-      memberType: memberData.memberType,
-      status: memberData.status,
-      code: uniqueCode,
-      generatedAt: new Date().toISOString(),
+      association: 'MHM',
+      validity: validityYear,
+      status: memberData.status === 'active' ? 'Membre actif' : memberData.status,
+      signature,
     };
 
-    // Convert to JSON string
+    // Convert to compact JSON string
     const qrContent = JSON.stringify(qrData);
 
     // Generate QR code as data URL
@@ -74,10 +89,12 @@ export const generateMemberQRCode = async (memberData) => {
     });
 
     return {
-      code: uniqueCode,
+      code: signature.substring(0, 16), // Use first 16 chars of signature as code
       dataURL: qrCodeDataURL,
       buffer: qrCodeBuffer,
       data: qrData,
+      signature,
+      validity: validityYear,
     };
   } catch (error) {
     throw new Error(`Failed to generate QR code: ${error.message}`);
@@ -87,7 +104,7 @@ export const generateMemberQRCode = async (memberData) => {
 /**
  * Save QR code image to file system
  * @param {Buffer} qrCodeBuffer - QR code image buffer
- * @param {string} memberId - Member ID
+ * @param {string} memberId - Member ID (member number)
  * @returns {string} File path or null if in serverless environment
  */
 export const saveQRCodeToFile = async (qrCodeBuffer, memberId) => {
@@ -117,8 +134,8 @@ export const saveQRCodeToFile = async (qrCodeBuffer, memberId) => {
       fs.mkdirSync(qrCodesDir, { recursive: true });
     }
 
-    // Generate filename
-    const filename = `qr-${memberId}.png`;
+    // Generate filename with format: qr_<memberId>.png
+    const filename = `qr_${memberId}.png`;
     const filePath = path.join(qrCodesDir, filename);
 
     // Save file
@@ -133,45 +150,126 @@ export const saveQRCodeToFile = async (qrCodeBuffer, memberId) => {
 };
 
 /**
- * Verify QR code data
+ * Verify QR code data with SHA-256 signature validation
  * @param {string} qrCodeData - QR code content (JSON string)
  * @param {Object} Member - Member model
- * @returns {Object} Verification result
+ * @param {Object} options - Additional options (incrementScan, trackScan)
+ * @returns {Object} Standardized verification result
  */
-export const verifyQRCode = async (qrCodeData, Member) => {
+export const verifyQRCode = async (qrCodeData, Member, options = {}) => {
+  const { incrementScan = false } = options;
+
   try {
     // Parse QR code data
     const data = JSON.parse(qrCodeData);
 
-    // Find member by ID and QR code
+    // Verify required fields (structure validation)
+    if (!data.memberId || !data.signature || !data.validity) {
+      return {
+        memberId: data.memberId || 'unknown',
+        name: data.name || 'Unknown',
+        emailStatus: 'not-found',
+        status: 'invalid',
+        message: '❌ Structure invalide : données obligatoires manquantes',
+        details: {
+          hasMemberId: !!data.memberId,
+          hasSignature: !!data.signature,
+          hasValidity: !!data.validity,
+        },
+      };
+    }
+
+    // Verify signature
+    const expectedSignature = generateQRSignature(data.memberId, data.validity);
+    if (data.signature !== expectedSignature) {
+      return {
+        memberId: data.memberId,
+        name: data.name || 'Unknown',
+        emailStatus: 'not-found',
+        status: 'forged',
+        message: '❌ QR falsifié : signature incorrecte (possible fraude)',
+        details: {
+          providedSignature: data.signature.substring(0, 16) + '...',
+          expectedSignature: expectedSignature.substring(0, 16) + '...',
+        },
+      };
+    }
+
+    // Find member by member number
     const member = await Member.findOne({
-      _id: data.id,
-      'qrCode.code': data.code,
+      memberNumber: data.memberId,
     });
 
     if (!member) {
       return {
-        valid: false,
-        message: 'QR code invalide ou membre non trouvé',
+        memberId: data.memberId,
+        name: data.name || 'Unknown',
+        emailStatus: 'not-found',
+        status: 'not-found',
+        message: '❌ QR Code non trouvé : membre non trouvé dans la base de données',
+      };
+    }
+
+    // Determine email status
+    const emailStatus = member.qrCode?.emailStatus || 'not-found';
+
+    // Check if QR code is still valid (check year)
+    const currentYear = new Date().getFullYear().toString();
+    if (data.validity !== currentYear) {
+      return {
+        memberId: member.memberNumber,
+        name: member.fullName,
+        emailStatus,
+        status: 'expired',
+        message: `❌ Adhésion expirée (valide pour ${data.validity}, année actuelle: ${currentYear})`,
+        member: {
+          _id: member._id,
+          fullName: member.fullName,
+          memberNumber: member.memberNumber,
+          memberType: member.memberType,
+          status: member.status,
+          validity: data.validity,
+        },
       };
     }
 
     // Check if member is active
     if (member.status !== 'active') {
       return {
-        valid: false,
-        message: `Membre non actif (statut: ${member.status})`,
+        memberId: member.memberNumber,
+        name: member.fullName,
+        emailStatus,
+        status: 'disabled',
+        message: `❌ Membre désactivé (statut: ${member.status})`,
         member: {
+          _id: member._id,
           fullName: member.fullName,
           memberNumber: member.memberNumber,
+          memberType: member.memberType,
           status: member.status,
         },
       };
     }
 
+    // Increment scan count if requested
+    if (incrementScan && member.qrCode) {
+      member.qrCode.scanCount = (member.qrCode.scanCount || 0) + 1;
+      member.qrCode.lastScannedAt = new Date();
+      await member.save();
+    }
+
+    // Check email status and provide appropriate message
+    let statusMessage = '✅ Membre valide';
+    if (emailStatus === 'pending' || emailStatus === 'not-generated') {
+      statusMessage = '✅ Valide mais email non confirmé';
+    }
+
     return {
-      valid: true,
-      message: 'QR code valide',
+      memberId: member.memberNumber,
+      name: member.fullName,
+      emailStatus,
+      status: 'valid',
+      message: statusMessage,
       member: {
         _id: member._id,
         fullName: member.fullName,
@@ -180,35 +278,47 @@ export const verifyQRCode = async (qrCodeData, Member) => {
         memberType: member.memberType,
         status: member.status,
         membershipDate: member.membershipDate,
-        photo: member.photo,
+        validity: data.validity,
+        qrCode: {
+          scanCount: member.qrCode?.scanCount || 0,
+          lastScannedAt: member.qrCode?.lastScannedAt,
+          emailStatus: member.qrCode?.emailStatus,
+          emailSentAt: member.qrCode?.emailSentAt,
+        },
       },
     };
   } catch (error) {
     return {
-      valid: false,
-      message: 'Format de QR code invalide',
+      memberId: 'unknown',
+      name: 'Unknown',
+      emailStatus: 'not-found',
+      status: 'invalid',
+      message: '❌ Structure invalide : format de QR code invalide',
       error: error.message,
     };
   }
 };
 
 /**
- * Regenerate QR code for a member
+ * Regenerate QR code for a member with validity year
  * @param {Object} member - Member document
+ * @param {string} validity - Year of validity (optional, defaults to current year)
  * @returns {Object} New QR code data
  */
-export const regenerateQRCode = async (member) => {
+export const regenerateQRCode = async (member, validity = null) => {
   try {
-    // Generate new QR code
-    const qrCodeData = await generateMemberQRCode(member);
+    // Generate new QR code with validity
+    const qrCodeData = await generateMemberQRCode(member, validity);
 
-    // Save to file
-    const imageUrl = await saveQRCodeToFile(qrCodeData.buffer, member._id);
+    // Save to file using member number
+    const imageUrl = await saveQRCodeToFile(qrCodeData.buffer, member.memberNumber);
 
     return {
       code: qrCodeData.code,
       imageUrl,
       generatedAt: new Date(),
+      signature: qrCodeData.signature,
+      validity: qrCodeData.validity,
     };
   } catch (error) {
     throw new Error(`Failed to regenerate QR code: ${error.message}`);

@@ -12,6 +12,7 @@ import { apiLimiter } from './middleware/rateLimit.js';
 import userRoutes from './routes/userRoutes.js';
 import memberRoutes from './routes/memberRoutes.js';
 import applicationRoutes from './routes/applicationRoutes.js';
+import qrCodeRoutes from './routes/qrCodeRoutes.js';
 
 const app = express();
 
@@ -135,6 +136,7 @@ app.get('/health', (req, res) => {
 app.use('/api/users', userRoutes);
 app.use('/api/members', memberRoutes);
 app.use('/api/applications', applicationRoutes);
+app.use('/api/qrcodes', qrCodeRoutes);
 
 // Welcome route
 app.get('/', (req, res) => {
@@ -148,6 +150,7 @@ app.get('/', (req, res) => {
       users: '/api/users',
       members: '/api/members',
       applications: '/api/applications',
+      qrcodes: '/api/qrcodes',
     },
   });
 });
