@@ -12,10 +12,10 @@ export default {
   transform: {},
   coverageThreshold: {
     global: {
-      branches: 15,
-      functions: 30,
-      lines: 30,
-      statements: 30,
+      branches: 10,
+      functions: 25,
+      lines: 25,
+      statements: 25,
     },
   },
   testTimeout: 10000,

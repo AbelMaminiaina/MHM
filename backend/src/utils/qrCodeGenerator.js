@@ -22,11 +22,11 @@ export const generateQRSignature = (memberId, validity) => {
 
 /**
  * Generate a unique member number
- * Format: M-YYYY-XXXX (e.g., M-2025-0142)
+ * Format: MHM-YYYY-XXXXX (e.g., MHM-2025-00142)
  */
 export const generateMemberNumber = async (Member) => {
   const year = new Date().getFullYear();
-  const prefix = `M-${year}-`;
+  const prefix = `MHM-${year}-`;
 
   // Get the count of members created this year
   const startOfYear = new Date(year, 0, 1);
@@ -34,8 +34,8 @@ export const generateMemberNumber = async (Member) => {
     createdAt: { $gte: startOfYear },
   });
 
-  // Generate sequential number with padding (4 digits)
-  const sequentialNumber = String(count + 1).padStart(4, '0');
+  // Generate sequential number with padding (5 digits)
+  const sequentialNumber = String(count + 1).padStart(5, '0');
 
   return `${prefix}${sequentialNumber}`;
 };
