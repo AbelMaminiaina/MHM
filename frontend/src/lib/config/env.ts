@@ -6,6 +6,7 @@ export const env = {
     audience: import.meta.env.VITE_AUTH0_AUDIENCE || '',
   },
   api: {
-    baseUrl: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
+    // Remove trailing slash to avoid double slashes in URLs
+    baseUrl: (import.meta.env.VITE_API_URL || 'http://localhost:3000/api').replace(/\/$/, ''),
   },
 } as const;
