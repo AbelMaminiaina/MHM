@@ -18,6 +18,11 @@
     "no-underscore-dangle": ["error", { "allow": ["_id", "__dirname", "__filename"] }],
     "prettier/prettier": "error",
     "consistent-return": "off",
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
+    "no-await-in-loop": "off",
+    "no-continue": "off",
+    "no-param-reassign": ["error", { "props": false }],
+    "no-use-before-define": "off"
   }
 }

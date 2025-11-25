@@ -189,8 +189,8 @@ export const verifyQRCode = async (qrCodeData, Member, options = {}) => {
         status: 'forged',
         message: '❌ QR falsifié : signature incorrecte (possible fraude)',
         details: {
-          providedSignature: data.signature.substring(0, 16) + '...',
-          expectedSignature: expectedSignature.substring(0, 16) + '...',
+          providedSignature: `${data.signature.substring(0, 16)}...`,
+          expectedSignature: `${expectedSignature.substring(0, 16)}...`,
         },
       };
     }

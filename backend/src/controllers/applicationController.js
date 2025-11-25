@@ -36,7 +36,10 @@ export const submitApplication = async (req, res, next) => {
         email: member.email,
       });
     } catch (emailError) {
-      logger.error(`❌ Erreur lors de l'envoi de l'email de confirmation à ${member.email}:`, emailError);
+      logger.error(
+        `❌ Erreur lors de l'envoi de l'email de confirmation à ${member.email}:`,
+        emailError
+      );
       // Continue - application is still created even if email fails
     }
 
@@ -190,11 +193,13 @@ export const approveApplication = async (req, res, next) => {
       message,
       data: {
         member: updatedMember,
-        qrCodeStatus: qrCodeResult ? {
-          generated: qrCodeResult.success,
-          emailSent: qrCodeResult.emailSent,
-          emailStatus: updatedMember.qrCode?.emailStatus,
-        } : null,
+        qrCodeStatus: qrCodeResult
+          ? {
+              generated: qrCodeResult.success,
+              emailSent: qrCodeResult.emailSent,
+              emailStatus: updatedMember.qrCode?.emailStatus,
+            }
+          : null,
       },
     });
   } catch (error) {

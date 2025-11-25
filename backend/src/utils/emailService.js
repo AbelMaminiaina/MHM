@@ -366,7 +366,9 @@ export const sendApplicationConfirmationEmail = async (member) => {
             <h3>📋 Informations de votre demande</h3>
             <p><strong>Nom complet :</strong> ${member.fullName}</p>
             <p><strong>Email :</strong> ${member.email}</p>
-            <p><strong>Date de soumission :</strong> ${new Date(member.applicationDate).toLocaleDateString('fr-FR', {
+            <p><strong>Date de soumission :</strong> ${new Date(
+              member.applicationDate
+            ).toLocaleDateString('fr-FR', {
               year: 'numeric',
               month: 'long',
               day: 'numeric',

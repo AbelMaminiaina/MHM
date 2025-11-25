@@ -440,7 +440,13 @@ router.get('/member/:memberId/scans', protect, getMemberScanHistory);
  *       500:
  *         description: Server error
  */
-router.post('/import-csv', protect, authorize('admin'), upload.single('file'), importCSVAndSendQRCodes);
+router.post(
+  '/import-csv',
+  protect,
+  authorize('admin'),
+  upload.single('file'),
+  importCSVAndSendQRCodes
+);
 
 /**
  * @swagger

@@ -1,3 +1,5 @@
+import csv from 'csv-parser';
+import fs from 'fs';
 import Member from '../models/Member.js';
 import QRCodeScan from '../models/QRCodeScan.js';
 import QRCodeBatch from '../models/QRCodeBatch.js';
@@ -8,9 +10,6 @@ import {
 } from '../utils/qrCodeService.js';
 import { verifyQRCode } from '../utils/qrCodeGenerator.js';
 import logger from '../config/logger.js';
-import csv from 'csv-parser';
-import fs from 'fs';
-import path from 'path';
 
 /**
  * Generate and send QR code for a single member
@@ -240,7 +239,9 @@ export const getMemberQRCode = async (req, res) => {
   try {
     const { memberId } = req.params;
 
-    const member = await Member.findById(memberId).select('qrCode memberNumber firstName lastName email status');
+    const member = await Member.findById(memberId).select(
+      'qrCode memberNumber firstName lastName email status'
+    );
 
     if (!member) {
       return res.status(404).json({
@@ -316,8 +317,8 @@ export const getScanHistory = async (req, res) => {
       .populate('member', 'firstName lastName memberNumber email status')
       .populate('scannedBy', 'firstName lastName email')
       .sort(sortBy)
-      .limit(parseInt(limit))
-      .skip(parseInt(skip));
+      .limit(parseInt(limit, 10))
+      .skip(parseInt(skip, 10));
 
     const totalScans = await QRCodeScan.countDocuments(query);
 
@@ -327,9 +328,9 @@ export const getScanHistory = async (req, res) => {
         scans,
         pagination: {
           total: totalScans,
-          limit: parseInt(limit),
-          skip: parseInt(skip),
-          hasMore: totalScans > parseInt(skip) + parseInt(limit),
+          limit: parseInt(limit, 10),
+          skip: parseInt(skip, 10),
+          hasMore: totalScans > parseInt(skip, 10) + parseInt(limit, 10),
         },
       },
     });
@@ -501,7 +502,7 @@ export const getMemberScanHistory = async (req, res) => {
 
     const scans = await QRCodeScan.find({ member: memberId })
       .sort('-scannedAt')
-      .limit(parseInt(limit));
+      .limit(parseInt(limit, 10));
 
     const scanStats = {
       totalScans: member.qrCode?.scanCount || 0,
@@ -623,10 +624,7 @@ export const importCSVAndSendQRCodes = async (req, res) => {
           try {
             // Find member by memberNumber or email
             let member = await Member.findOne({
-              $or: [
-                { memberNumber: memberData.memberNumber },
-                { email: memberData.email },
-              ],
+              $or: [{ memberNumber: memberData.memberNumber }, { email: memberData.email }],
             });
 
             // If member doesn't exist, CREATE IT
@@ -715,7 +713,9 @@ export const importCSVAndSendQRCodes = async (req, res) => {
         // Delete uploaded file
         fs.unlinkSync(req.file.path);
 
-        logger.info(`Batch ${batch._id} completed: ${batch.successfulSends} success, ${batch.failedSends} failed`);
+        logger.info(
+          `Batch ${batch._id} completed: ${batch.successfulSends} success, ${batch.failedSends} failed`
+        );
 
         res.status(200).json({
           success: true,
@@ -872,13 +872,7 @@ export const retryFailedSends = async (req, res) => {
  */
 export const getBatches = async (req, res) => {
   try {
-    const {
-      status,
-      batchType,
-      limit = 20,
-      skip = 0,
-      sortBy = '-createdAt',
-    } = req.query;
+    const { status, batchType, limit = 20, skip = 0, sortBy = '-createdAt' } = req.query;
 
     const query = {};
 
@@ -893,8 +887,8 @@ export const getBatches = async (req, res) => {
     const batches = await QRCodeBatch.find(query)
       .populate('createdBy', 'firstName lastName email')
       .sort(sortBy)
-      .limit(parseInt(limit))
-      .skip(parseInt(skip));
+      .limit(parseInt(limit, 10))
+      .skip(parseInt(skip, 10));
 
     const totalBatches = await QRCodeBatch.countDocuments(query);
 
@@ -904,9 +898,9 @@ export const getBatches = async (req, res) => {
         batches,
         pagination: {
           total: totalBatches,
-          limit: parseInt(limit),
-          skip: parseInt(skip),
-          hasMore: totalBatches > parseInt(skip) + parseInt(limit),
+          limit: parseInt(limit, 10),
+          skip: parseInt(skip, 10),
+          hasMore: totalBatches > parseInt(skip, 10) + parseInt(limit, 10),
         },
       },
     });
@@ -928,7 +922,10 @@ export const getBatchDetails = async (req, res) => {
   try {
     const { batchId } = req.params;
 
-    const batch = await QRCodeBatch.findById(batchId).populate('createdBy', 'firstName lastName email');
+    const batch = await QRCodeBatch.findById(batchId).populate(
+      'createdBy',
+      'firstName lastName email'
+    );
 
     if (!batch) {
       return res.status(404).json({
@@ -984,9 +981,10 @@ export const getBatchStats = async (req, res) => {
         totalSends: sendStats[0]?.totalSends || 0,
         totalFails: sendStats[0]?.totalFails || 0,
         totalProcessed: sendStats[0]?.totalProcessed || 0,
-        successRate: sendStats[0]?.totalProcessed > 0
-          ? ((sendStats[0].totalSends / sendStats[0].totalProcessed) * 100).toFixed(2)
-          : 0,
+        successRate:
+          sendStats[0]?.totalProcessed > 0
+            ? ((sendStats[0].totalSends / sendStats[0].totalProcessed) * 100).toFixed(2)
+            : 0,
       },
     });
   } catch (error) {
