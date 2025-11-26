@@ -356,7 +356,7 @@ export const Navbar = () => {
       {/* Menu Mobile */}
       {mobileMenuOpen && (
         <div className="lg:hidden fixed left-0 right-0 top-[73px] bg-white shadow-xl border-t border-gray-200 z-40 animate-menu-slide max-h-[calc(100vh-73px)] overflow-y-auto">
-          <div className="px-6 py-6 space-y-6">
+          <div className="px-6 py-6 pb-32 space-y-6">
             {/* LES FÉDÉRATIONS */}
             <div>
               <h2 className="text-lg font-black text-teal-800 mb-4">LES FÉDÉRATIONS</h2>
