@@ -31,7 +31,7 @@ ${batch.failedSends > 0 ? '⚠️ Vous pouvez relancer les échecs depuis le das
       alert(message);
       setFile(null);
     },
-    onError: (error: any) => {
+    onError: (error: { response?: { data?: { message?: string } } }) => {
       alert(error?.response?.data?.message || 'Erreur lors de l\'import CSV');
     },
   });

@@ -30,9 +30,8 @@ export const AdminDashboard = () => {
       queryClient.invalidateQueries({ queryKey: ['pending-applications'] });
       queryClient.invalidateQueries({ queryKey: ['application-stats'] });
 
-      // Extract member and QR status from response
-      const data = response.data as any;
-      const member = data.member || data;
+      // Extract QR status from response
+      const data = response.data as { qrCodeStatus?: { generated: boolean; emailSent: boolean } };
       const qrCodeStatus = data.qrCodeStatus;
 
       // Build notification message with QR status
