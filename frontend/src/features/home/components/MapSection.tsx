@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 export const MapSection = () => {
 
 
@@ -12,186 +14,191 @@ export const MapSection = () => {
     }
   ];
 
+  const federations = [
+    { name: 'Antananarivo', members: '2,500+', icon: '🏛️' },
+    { name: 'Toamasina', members: '1,800+', icon: '⚓' },
+    { name: 'Antsiranana', members: '1,500+', icon: '🏖️' },
+    { name: 'Mahajanga', members: '1,200+', icon: '🌊' },
+    { name: 'Fianarantsoa', members: '1,100+', icon: '⛰️' },
+    { name: 'Toliara', members: '950+', icon: '🌴' }
+  ];
+
   return (
-    <section className="bg-white py-16 px-8">
+    <section className="bg-gradient-to-b from-stone-50 to-white py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left - Map Section */}
-          <div>
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 uppercase text-center">
-              LES FÉDÉRATIONS DU<br />MADAGASIKARA HOAN'NY MALAGASY
-            </h2>
-            <p className="text-center text-gray-700 font-bold mb-8">
-              RETROUVEZ VOTRE FÉDÉRATION ET SES COORDONNÉES<br />
-              PRÈS DE CHEZ VOUS EN QUELQUES CLICS.
-            </p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
+          {/* Left - Federations Section */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.h2
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-stone-900 mb-4 sm:mb-6 uppercase leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Nos Fédérations à<br />
+              <span className="text-emerald-700">Madagascar</span>
+            </motion.h2>
 
-            {/* Madagascar Map Container */}
-            {/* <div className="relative bg-white p-8 flex items-center justify-center min-h-[700px]"> */}
-              {/* Interactive Madagascar SVG Map */}
-              {/* <div className="relative w-full max-w-md mx-auto">
-                <svg viewBox="0 0 400 700" className="w-full h-auto drop-shadow-lg"> */}
-                  {/* Background */}
-                  {/* <rect width="400" height="700" fill="#F3F4F6" opacity="0.3"/> */}
+            <motion.p
+              className="text-base sm:text-lg text-stone-600 mb-6 sm:mb-8 lg:mb-10 leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              Retrouvez votre fédération locale et connectez-vous avec des milliers de membres engagés pour Madagascar.
+            </motion.p>
 
-                  {/* Antsiranana - North */}
-                  {/* <path
-                    d="M200 30 L220 40 L235 55 L245 75 L250 95 L248 115 L240 130 L220 140 L200 145 L180 140 L160 130 L152 115 L150 95 L155 75 L165 55 L180 40 Z"
-                    fill={selectedProvince?.id === 'antsiranana' ? '#3B82F6' : '#FEF08A'}
-                    stroke="#6B7280"
-                    strokeWidth="2"
-                    className="cursor-pointer hover:fill-blue-300 transition-colors"
-                    onClick={() => setSelectedProvince(provinces.find(p => p.id === 'antsiranana') || null)}
-                  />
-                  <text x="200" y="95" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#1F2937" className="pointer-events-none">
-                    ANTSIRANANA
-                  </text> */}
+            {/* Federation Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+              {federations.map((fed, index) => (
+                <motion.div
+                  key={fed.name}
+                  className="bg-white p-5 sm:p-6 rounded-2xl border-2 border-stone-200 hover:border-emerald-500 hover:shadow-xl transition-all duration-300 cursor-pointer group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                >
+                  <div className="text-3xl sm:text-4xl mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">{fed.icon}</div>
+                  <h3 className="font-black text-base sm:text-lg text-stone-900 mb-1">{fed.name}</h3>
+                  <p className="text-xs sm:text-sm text-emerald-700 font-bold">{fed.members} membres</p>
+                </motion.div>
+              ))}
+            </div>
 
-                  {/* Mahajanga - Northwest */}
-                  {/* <path
-                    d="M152 115 L140 135 L125 155 L110 180 L95 210 L85 245 L80 280 L82 310 L90 330 L105 340 L125 345 L145 340 L160 330 L170 315 L175 295 L175 270 L170 245 L165 220 L160 195 L155 170 L150 145 L150 130 Z"
-                    fill={selectedProvince?.id === 'mahajanga' ? '#3B82F6' : '#FEF08A'}
-                    stroke="#6B7280"
-                    strokeWidth="2"
-                    className="cursor-pointer hover:fill-blue-300 transition-colors"
-                    onClick={() => setSelectedProvince(provinces.find(p => p.id === 'mahajanga') || null)}
-                  />
-                  <text x="130" y="240" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#1F2937" className="pointer-events-none">
-                    MAHAJANGA
-                  </text> */}
-
-                  {/* Toamasina - East */}
-                  {/* <path
-                    d="M248 115 L260 135 L275 160 L285 190 L295 225 L305 260 L312 295 L315 330 L312 360 L305 385 L295 405 L280 415 L260 420 L240 415 L220 405 L205 390 L195 370 L190 345 L190 320 L195 290 L200 260 L205 230 L215 200 L225 170 L235 145 L240 130 Z"
-                    fill={selectedProvince?.id === 'toamasina' ? '#3B82F6' : '#FEF08A'}
-                    stroke="#6B7280"
-                    strokeWidth="2"
-                    className="cursor-pointer hover:fill-blue-300 transition-colors"
-                    onClick={() => setSelectedProvince(provinces.find(p => p.id === 'toamasina') || null)}
-                  />
-                  <text x="250" y="290" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#1F2937" className="pointer-events-none">
-                    TOAMASINA
-                  </text> */}
-
-                  {/* Antananarivo - Center */}
-                  {/* <path
-                    d="M170 315 L180 295 L190 275 L195 250 L200 225 L205 250 L210 275 L215 300 L218 325 L218 350 L215 375 L210 395 L205 410 L195 420 L180 425 L165 423 L150 418 L138 408 L128 393 L122 373 L120 348 L122 328 L130 315 L145 308 Z"
-                    fill={selectedProvince?.id === 'antananarivo' ? '#3B82F6' : '#FEF08A'}
-                    stroke="#6B7280"
-                    strokeWidth="2"
-                    className="cursor-pointer hover:fill-blue-300 transition-colors"
-                    onClick={() => setSelectedProvince(provinces.find(p => p.id === 'antananarivo') || null)}
-                  />
-                  <text x="170" y="360" textAnchor="middle" fontSize="10" fontWeight="bold" fill="#1F2937" className="pointer-events-none">
-                    ANTANANARIVO
-                  </text> */}
-
-                  {/* Fianarantsoa - South Center */}
-                  {/* <path
-                    d="M195 420 L210 435 L220 455 L228 480 L233 510 L235 540 L233 570 L228 595 L220 615 L208 630 L192 640 L175 643 L158 640 L143 632 L130 618 L120 598 L113 573 L110 543 L110 513 L113 483 L120 458 L130 438 L143 425 L158 418 L178 418 Z"
-                    fill={selectedProvince?.id === 'fianarantsoa' ? '#3B82F6' : '#FEF08A'}
-                    stroke="#6B7280"
-                    strokeWidth="2"
-                    className="cursor-pointer hover:fill-blue-300 transition-colors"
-                    onClick={() => setSelectedProvince(provinces.find(p => p.id === 'fianarantsoa') || null)}
-                  />
-                  <text x="170" y="540" textAnchor="middle" fontSize="10" fontWeight="bold" fill="#1F2937" className="pointer-events-none">
-                    FIANARANTSOA
-                  </text> */}
-
-                  {/* Toliara - Southwest */}
-                  {/* <path
-                    d="M110 543 L105 573 L100 608 L95 643 L92 675 L95 700 L110 695 L128 685 L145 672 L160 655 L172 635 L180 615 L185 590 L188 565 L188 540 L185 515 L180 490 L172 470 L160 455 L145 445 L128 440 L115 443 L105 455 L100 475 L98 500 L100 525 Z"
-                    fill={selectedProvince?.id === 'toliara' ? '#3B82F6' : '#FEF08A'}
-                    stroke="#6B7280"
-                    strokeWidth="2"
-                    className="cursor-pointer hover:fill-blue-300 transition-colors"
-                    onClick={() => setSelectedProvince(provinces.find(p => p.id === 'toliara') || null)}
-                  />
-                  <text x="140" y="590" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#1F2937" className="pointer-events-none">
-                    TOLIARA
-                  </text> */}
-
-                  {/* MADAGASCAR text */}
-                  {/* <text x="200" y="40" textAnchor="middle" fill="#1F2937" fontSize="20" fontWeight="black">
-                    MADAGASCAR
-                  </text>
-                </svg> */}
-
-                {/* Province Info Panel */}
-                {/* {selectedProvince && (
-                  <div className="mt-6 bg-blue-50 border-2 border-blue-500 rounded-lg p-6 animate-fade-in">
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-2xl font-black text-gray-900">{selectedProvince.name}</h3>
-                      <button
-                        onClick={() => setSelectedProvince(null)}
-                        className="text-gray-500 hover:text-gray-700 text-2xl leading-none"
-                      >
-                        ×
-                      </button>
-                    </div>
-                    <div className="space-y-2 text-gray-700">
-                      <p><span className="font-bold">Capitale:</span> {selectedProvince.capital}</p>
-                      <p><span className="font-bold">Population:</span> {selectedProvince.population}</p>
-                      <p className="text-sm mt-3">{selectedProvince.description}</p>
-                    </div>
-                    <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded font-bold hover:bg-blue-700 transition-colors">
-                      En savoir plus →
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div> */}
-          </div>
+            {/* CTA Button */}
+            <motion.button
+              className="w-full bg-gradient-to-r from-emerald-700 to-emerald-900 text-white py-3 sm:py-4 px-4 sm:px-6 rounded-xl text-sm sm:text-base font-bold uppercase hover:from-emerald-800 hover:to-emerald-950 transition-all duration-300 shadow-lg hover:shadow-2xl"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Trouver ma fédération →
+            </motion.button>
+          </motion.div>
 
           {/* Right - Actions Section */}
-          <div>
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-8 uppercase">
-              NOS ACTIONS
-            </h2>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.h2
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-stone-900 mb-4 sm:mb-6 lg:mb-8 uppercase leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Nos <span className="text-emerald-700">Actions</span>
+            </motion.h2>
+
+            <motion.p
+              className="text-base sm:text-lg text-stone-600 mb-6 sm:mb-8 lg:mb-10 leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              Engagez-vous pour Madagascar et rejoignez un mouvement citoyen qui agit pour le développement et la souveraineté de notre nation.
+            </motion.p>
 
             {/* Action Card */}
             {actions.map((action) => (
-              <a
+              <motion.a
                 key={action.id}
                 href={action.link}
-                className="block relative overflow-hidden group cursor-pointer mb-6 h-[500px]"
+                className="block relative overflow-hidden rounded-xl sm:rounded-2xl cursor-pointer mb-4 sm:mb-6 shadow-2xl border-2 border-stone-200 hover:border-emerald-500"
                 style={{
                   backgroundImage: `url(${action.image})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
+                  height: '350px'
+                }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                whileHover={{
+                  scale: 1.02,
+                  boxShadow: "0 30px 60px rgba(0, 0, 0, 0.3)",
+                  transition: { duration: 0.3 }
                 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 via-blue-900/20 to-transparent flex flex-col items-center justify-end p-8 group-hover:scale-105 transition-transform duration-300">
-                  <div className="bg-red-600 text-white text-xs font-black px-4 py-2 mb-4 uppercase">
+                {/* Gradient Overlay */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-stone-900/40 to-transparent flex flex-col items-center justify-end p-4 sm:p-6 lg:p-8"
+                  whileHover={{ backgroundColor: "rgba(41, 37, 36, 0.85)" }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {/* Badge */}
+                  <motion.div
+                    className="bg-emerald-700 text-white text-xs font-black px-3 sm:px-4 py-1.5 sm:py-2 mb-3 sm:mb-4 uppercase rounded-full shadow-lg"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     {action.title}
-                  </div>
-                  <h3 className="text-white text-4xl md:text-5xl font-black text-center mb-2 uppercase italic">
+                  </motion.div>
+
+                  {/* Title */}
+                  <motion.h3
+                    className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-center mb-1 sm:mb-2 uppercase drop-shadow-2xl"
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     {action.subtitle}
-                  </h3>
-                  <h3 className="text-white text-4xl md:text-5xl font-black text-center uppercase italic">
+                  </motion.h3>
+
+                  <motion.h3
+                    className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-center uppercase drop-shadow-2xl"
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     {action.name}
-                  </h3>
-                  <div className="mt-6">
-                    <img src="/mhm.svg" alt="Logo MHM" className="h-12" />
-                  </div>
-                </div>
-              </a>
+                  </motion.h3>
+
+                  {/* Logo */}
+                  <motion.div
+                    className="mt-3 sm:mt-4 lg:mt-6"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <img src="/mhm.svg" alt="Logo MHM" className="h-8 sm:h-10 lg:h-12 drop-shadow-2xl" />
+                  </motion.div>
+                </motion.div>
+              </motion.a>
             ))}
 
-            {/* Link */}
-            <a
-              href="#"
-              className="text-gray-900 font-bold text-sm hover:text-blue-700 transition-colors inline-flex items-center gap-2"
+            {/* CTA Button */}
+            <motion.button
+              className="w-full bg-gradient-to-r from-stone-700 to-stone-900 text-white py-3 sm:py-4 px-4 sm:px-6 rounded-xl text-sm sm:text-base font-bold uppercase hover:from-stone-800 hover:to-stone-950 transition-all duration-300 shadow-lg hover:shadow-2xl inline-flex items-center justify-center gap-2"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               Toutes nos initiatives
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </a>
-          </div>
+            </motion.button>
+          </motion.div>
         </div>
       </div>
     </section>
