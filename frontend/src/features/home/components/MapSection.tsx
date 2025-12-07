@@ -7,13 +7,13 @@ export const MapSection = () => {
       title: 'ENGAGEZ-VOUS POUR MADAGASCAR',
       subtitle: 'REJOIGNEZ',
       name: 'LE MHM !',
-      image: 'https://images.unsplash.com/photo-1589139663095-034ec884b46c?w=800&h=600&fit=crop',
+      image: 'https://source.unsplash.com/800x600/?madagascar,people,crowd',
       link: '#'
     }
   ];
 
   return (
-    <section className="bg-gray-50 py-16 px-8">
+    <section className="bg-white py-16 px-8">
       <div className="max-w-7xl mx-auto">
         
         {/* Main Content Grid */}
@@ -157,14 +157,14 @@ export const MapSection = () => {
               <a
                 key={action.id}
                 href={action.link}
-                className="block relative overflow-hidden group cursor-pointer mb-6"
+                className="block relative overflow-hidden group cursor-pointer mb-6 h-[500px]"
+                style={{
+                  backgroundImage: `url(${action.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
               >
-                <img
-                  src={action.image}
-                  alt={action.title}
-                  className="w-full h-[500px] object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-900/50 to-transparent flex flex-col items-center justify-end p-8">
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 via-blue-900/20 to-transparent flex flex-col items-center justify-end p-8 group-hover:scale-105 transition-transform duration-300">
                   <div className="bg-red-600 text-white text-xs font-black px-4 py-2 mb-4 uppercase">
                     {action.title}
                   </div>

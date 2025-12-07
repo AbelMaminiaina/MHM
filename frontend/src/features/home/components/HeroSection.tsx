@@ -19,7 +19,7 @@ const slides: Slide[] = [
     ctaText: "PRÉCOMMANDEZ DÈS MAINTENANT",
     bookImage: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=600&fit=crop",
     showBook: true,
-    backgroundImage: "/images/allee-baobabs.jpg" // Allée des Baobabs Madagascar
+    backgroundImage: "/images/baobabs.jpg" // Allée des Baobabs Madagascar
   },
   {
     id: 3,
@@ -28,7 +28,7 @@ const slides: Slide[] = [
     ctaText: "J'ADHÈRE",
     bookImage: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&h=600&fit=crop",
     showBook: false,
-    backgroundImage: "/images/tsingy-bemaraha.jpg" // Tsingy de Bemaraha Madagascar
+    backgroundImage: "/images/rizieres.jpg" // Rizières Madagascar
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const slides: Slide[] = [
     ctaText: "JE PARTICIPE",
     bookImage: "https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=800&h=600&fit=crop",
     showBook: false,
-    backgroundImage: "/images/nosy-be.jpg" // Nosy Be - Plages paradisiaques Madagascar
+    backgroundImage: "/images/antananarivo.jpg" // Antananarivo Madagascar
   },
   {
     id: 5,
@@ -46,7 +46,7 @@ const slides: Slide[] = [
     ctaText: "EN SAVOIR PLUS",
     bookImage: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&h=600&fit=crop",
     showBook: false,
-    backgroundImage: "/images/rova-manjakamiadana.jpg" // Rova Manjakamiadana - Palais Royal Antananarivo
+    backgroundImage: "/images/tsingy.jpg" // Tsingy de Bemaraha
   },
   {
     id: 6,
@@ -55,7 +55,7 @@ const slides: Slide[] = [
     ctaText: "VOIR LE PROJET",
     bookImage: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&h=600&fit=crop",
     showBook: false,
-    backgroundImage: "/images/sud-madagascar.jpg" // Sud de Madagascar - Paysages arides
+    backgroundImage: "/images/nosy-be.jpg" // Nosy Be - Plages
   },
   {
     id: 7,
@@ -64,7 +64,7 @@ const slides: Slide[] = [
     ctaText: "JE SOUTIENS",
     bookImage: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&h=600&fit=crop",
     showBook: false,
-    backgroundImage: "/images/rizieres-madagascar.jpg" // Rizières en terrasses Madagascar
+    backgroundImage: "/images/sud-madagascar.jpg" // Sud de Madagascar
   },
 ];
 
@@ -119,8 +119,8 @@ export const HeroSection = () => {
         {/* Partie Droite - Zone avec Image de fond (En arrière-plan) */}
         <motion.div
           key={`background-${currentSlide}`}
-          className="absolute right-0 top-0 lg:top-2 bottom-0 md:bottom-10 lg:bottom-16 w-full md:w-[70%] lg:w-[90%] bg-cover bg-right flex items-center justify-center md:justify-end px-6 lg:px-8 transition-all duration-700"
-          style={{ backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url(${slide.backgroundImage})` }}
+          className="absolute right-0 top-0 lg:top-2 bottom-0 md:bottom-10 lg:bottom-16 w-full md:w-[70%] lg:w-[90%] bg-cover bg-center transition-all duration-700"
+          style={{ backgroundImage: `url(${slide.backgroundImage})` }}
           initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{
@@ -128,25 +128,6 @@ export const HeroSection = () => {
             ease: appleEase,
           }}
         >
-          {/* Image réelle pour tous les slides */}
-          <motion.div
-            key={`book-${currentSlide}`}
-            className="relative z-20 w-full h-full max-w-[200px] md:max-w-[280px] lg:max-w-[320px] flex items-center py-4 lg:py-6"
-            initial={{ scale: prefersReducedMotion ? 1 : 1.15, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{
-              duration: prefersReducedMotion ? 0.3 : 1,
-              ease: appleEase,
-            }}
-          >
-            <div className="aspect-[2/3] w-full max-h-full">
-              <img
-                src={slide.bookImage}
-                alt={slide.title}
-                className="w-full h-full rounded-lg shadow-2xl object-cover"
-              />
-            </div>
-          </motion.div>
         </motion.div>
 
         {/* Partie Gauche - Zone Teal avec Texte (Superposée) */}
