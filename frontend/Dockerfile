@@ -5,17 +5,11 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Install native dependencies for canvas and sharp
+# Install native dependencies for sharp only
 RUN apk add --no-cache \
     python3 \
     make \
-    g++ \
-    cairo-dev \
-    pango-dev \
-    jpeg-dev \
-    giflib-dev \
-    pixman-dev \
-    librsvg-dev
+    g++
 
 # Copy package files
 COPY package*.json ./
@@ -66,17 +60,11 @@ FROM node:20-alpine AS development
 
 WORKDIR /app
 
-# Install native dependencies for canvas and sharp
+# Install native dependencies for sharp only
 RUN apk add --no-cache \
     python3 \
     make \
-    g++ \
-    cairo-dev \
-    pango-dev \
-    jpeg-dev \
-    giflib-dev \
-    pixman-dev \
-    librsvg-dev
+    g++
 
 # Copy package files
 COPY package*.json ./
