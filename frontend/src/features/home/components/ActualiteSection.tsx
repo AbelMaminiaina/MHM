@@ -111,6 +111,19 @@ export const ActualiteSection = () => {
               {/* Image/Video Container */}
               <motion.div
                 className="relative overflow-hidden mb-3 rounded-lg shadow-lg"
+                initial={{ scale: 1.15, opacity: 0 }}
+                whileInView={{ scale: [1.15, 1.05, 1.15], opacity: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  opacity: { duration: 0.8, delay: index * 0.1 },
+                  scale: {
+                    duration: 5,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    delay: index * 0.1
+                  }
+                }}
                 whileHover={item.type === 'video' ? {
                   scale: 1.03,
                   boxShadow: "0 20px 40px rgba(153, 27, 27, 0.3)",
@@ -189,12 +202,10 @@ export const ActualiteSection = () => {
                     </div>
                   </div>
                 ) : (
-                  <motion.img
+                  <img
                     src={item.image}
                     alt={item.title}
                     className="w-full aspect-video object-cover"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.4 }}
                   />
                 )}
               </motion.div>

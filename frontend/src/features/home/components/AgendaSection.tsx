@@ -135,13 +135,23 @@ export const AgendaSection = () => {
                 {/* Details */}
                 <div className="flex gap-3 sm:gap-5 flex-1">
                   {event.imageUrl && (
-                    <motion.img
-                      src={event.imageUrl}
-                      alt={event.title}
-                      className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg flex-shrink-0 shadow-md"
-                      whileHover={{ scale: 1.1, rotate: -2 }}
-                      transition={{ duration: 0.3 }}
-                    />
+                    <div className="relative overflow-hidden rounded-lg flex-shrink-0 shadow-md w-20 h-20 sm:w-24 sm:h-24">
+                      <motion.img
+                        src={event.imageUrl}
+                        alt={event.title}
+                        className="w-full h-full object-cover"
+                        initial={{ scale: 1.15 }}
+                        animate={{ scale: [1.15, 1.05, 1.15] }}
+                        viewport={{ once: true }}
+                        transition={{
+                          duration: 4.5,
+                          ease: "easeInOut",
+                          repeat: Infinity,
+                          repeatType: "loop",
+                          delay: index * 0.15
+                        }}
+                      />
+                    </div>
                   )}
                   <div className="flex-1">
                     <h3 className="text-base sm:text-lg font-black text-gray-900 mb-2 uppercase group-hover:text-pink-700 transition-colors">
@@ -177,23 +187,32 @@ export const AgendaSection = () => {
                 key={action.id}
                 href={action.link}
                 className="relative h-56 sm:h-64 rounded-xl sm:rounded-2xl overflow-hidden group cursor-pointer shadow-2xl border-2 border-transparent hover:border-white"
-                style={{
-                  backgroundImage: `url(${action.imageUrl})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center'
-                }}
-                initial={{ opacity: 0, y: 30, rotateY: -15 }}
-                whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.15, type: "spring" }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
                 whileHover={{
-                  scale: 1.08,
-                  rotateY: 5,
+                  scale: 1.05,
                   boxShadow: "0 30px 60px rgba(0, 0, 0, 0.5)",
                   transition: { duration: 0.4 }
                 }}
                 whileTap={{ scale: 0.95 }}
               >
+                {/* Image de fond avec effet zoom */}
+                <motion.div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{ backgroundImage: `url(${action.imageUrl})` }}
+                  initial={{ scale: 1.15 }}
+                  animate={{ scale: [1.15, 1.05, 1.15] }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 5.5,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    delay: index * 0.15
+                  }}
+                />
                 {/* Gradient overlay avec couleur dynamique */}
                 <motion.div
                   className={`absolute inset-0 bg-gradient-to-br ${action.color} opacity-60 group-hover:opacity-80 transition-opacity duration-300`}

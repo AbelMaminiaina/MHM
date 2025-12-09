@@ -123,12 +123,7 @@ export const MapSection = () => {
                 key={action.id}
                 href={action.link}
                 className="block relative overflow-hidden rounded-xl sm:rounded-2xl cursor-pointer mb-4 sm:mb-6 shadow-2xl border-2 border-orange-200 hover:border-orange-500"
-                style={{
-                  backgroundImage: `url(${action.image})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  height: '350px'
-                }}
+                style={{ height: '350px' }}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -139,6 +134,20 @@ export const MapSection = () => {
                   transition: { duration: 0.3 }
                 }}
               >
+                {/* Image de fond avec effet zoom */}
+                <motion.div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{ backgroundImage: `url(${action.image})` }}
+                  initial={{ scale: 1.15 }}
+                  animate={{ scale: [1.15, 1.05, 1.15] }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 5.5,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatType: "loop"
+                  }}
+                />
                 {/* Gradient Overlay */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-stone-900/40 to-transparent flex flex-col items-center justify-end p-4 sm:p-6 lg:p-8"

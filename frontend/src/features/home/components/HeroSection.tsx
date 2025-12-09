@@ -121,11 +121,19 @@ export const HeroSection = () => {
           key={`background-${currentSlide}`}
           className="absolute right-0 top-0 lg:top-2 bottom-0 md:bottom-10 lg:bottom-16 w-full md:w-[70%] lg:w-[90%] bg-cover bg-center transition-all duration-700"
           style={{ backgroundImage: `url(${slide.backgroundImage})` }}
-          initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 50 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 1.15 }}
+          animate={{
+            opacity: 1,
+            scale: prefersReducedMotion ? 1 : [1.15, 1.05, 1.15]
+          }}
           transition={{
-            duration: prefersReducedMotion ? 0.3 : 0.8,
-            ease: appleEase,
+            opacity: { duration: 0.8, ease: appleEase },
+            scale: {
+              duration: prefersReducedMotion ? 0 : 6,
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatType: "loop"
+            }
           }}
         >
         </motion.div>
