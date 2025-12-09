@@ -130,10 +130,10 @@ export const HeroSection = () => {
         >
         </motion.div>
 
-        {/* Partie Gauche - Zone Teal avec Texte (Superposée) */}
+        {/* Partie Gauche - Zone Blanche avec Accents Rouge (Superposée) */}
         <motion.div
           key={`content-${currentSlide}`}
-          className="relative z-30 w-full lg:w-[50%] h-[450px] lg:h-[320px] bg-gradient-to-br from-[#115e59]/80 via-[#0f766e]/80 to-[#14b8a6]/80 lg:from-[#115e59] lg:via-[#0f766e] lg:to-[#14b8a6] flex flex-col px-6 md:px-12 lg:px-16 xl:px-20 pt-4 lg:pt-5 pb-24 lg:pb-20 my-0 lg:my-16"
+          className="relative z-30 w-full lg:w-[50%] h-[450px] lg:h-[320px] bg-white/95 lg:bg-white border-l-8 border-red-600 shadow-2xl flex flex-col px-6 md:px-12 lg:px-16 xl:px-20 pt-4 lg:pt-5 pb-24 lg:pb-20 my-0 lg:my-16"
           initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{
@@ -168,7 +168,7 @@ export const HeroSection = () => {
               delay: 0.2,
             }}
           >
-            <h1 className="text-white text-xl md:text-2xl lg:text-4xl xl:text-2xl font-black leading-tight uppercase text-center">
+            <h1 className="text-gray-900 text-xl md:text-2xl lg:text-4xl xl:text-2xl font-black leading-tight uppercase text-center">
               {slide.title}
             </h1>
           </motion.div>
@@ -184,7 +184,7 @@ export const HeroSection = () => {
               delay: 0.3,
             }}
           >
-            <button className="bg-white text-[#115e59] px-8 md:px-10 py-2 md:py-2.5 text-sm md:text-base lg:text-lg font-bold uppercase shadow-xl cursor-pointer hover:bg-[#115e59] hover:text-white transition-all duration-300 ease-in-out transform hover:scale-105">
+            <button className="bg-red-600 text-white px-8 md:px-10 py-2 md:py-2.5 text-sm md:text-base lg:text-lg font-bold uppercase shadow-xl cursor-pointer hover:bg-red-700 transition-all duration-300 ease-in-out transform hover:scale-105">
               {slide.ctaText}
             </button>
           </motion.div>
@@ -220,8 +220,8 @@ export const HeroSection = () => {
             key={index}
             className={`h-2 ${
               index === currentSlide
-                ? 'w-10 bg-[#115e59]'
-                : 'w-10 bg-teal-200 hover:bg-teal-300'
+                ? 'w-10 bg-red-600'
+                : 'w-10 bg-red-200 hover:bg-red-300'
             }`}
             onClick={() => goToSlide(index)}
             aria-label={`Aller au slide ${index + 1}`}

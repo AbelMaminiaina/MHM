@@ -31,8 +31,8 @@ export const Navbar = () => {
             className="w-10 h-10 md:w-12 md:h-12"
           />
           <div className="flex flex-col leading-tight">
-            <span className="text-teal-800 font-black text-base md:text-lg">MADAGASIKARA</span>
-            <span className="text-teal-800 font-black text-base md:text-lg">HOAN'NY MALAGASY</span>
+            <span className="text-red-700 font-black text-base md:text-lg">MADAGASIKARA</span>
+            <span className="text-red-700 font-black text-base md:text-lg">HOAN'NY MALAGASY</span>
           </div>
         </div>
 
@@ -41,7 +41,7 @@ export const Navbar = () => {
           <div className="relative">
             <button
               onClick={() => setOpenMenu(openMenu === 'organisation' ? null : 'organisation')}
-              className="flex items-center gap-2 text-teal-800 font-semibold hover:text-teal-600"
+              className="flex items-center gap-2 text-red-700 font-semibold hover:text-red-600"
             >
               Organisation
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,12 +58,12 @@ export const Navbar = () => {
                 <div>
                   <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">FÉDÉRATIONS</h3>
                   <div className="space-y-3">
-                    <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                      <FaMap className="w-5 h-5 text-gray-400" ></FaMap>
+                    <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors">
+                      <FaMap className="w-5 h-5 text-red-400" ></FaMap>
                       <span className="font-medium">Les fédérations provinciales</span>
                     </a>
-                    <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                      <FaGlobe className="w-5 h-5 text-gray-400" />
+                    <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors">
+                      <FaGlobe className="w-5 h-5 text-red-400" />
                       <span className="font-medium">Les fédérations régionales</span>
                     </a>
                   </div>
@@ -73,24 +73,24 @@ export const Navbar = () => {
                 <div>
                   <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">LES INSTANCES</h3>
                   <div className="space-y-3">
-                    <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                      <FaUsers className="w-5 h-5 text-gray-400" />
+                    <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors">
+                      <FaUsers className="w-5 h-5 text-red-400" />
                       <span className="font-medium">Bureau exécutif</span>
                     </a>
-                    <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                      <FaUserGroup className="w-5 h-5 text-gray-400" />
+                    <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors">
+                      <FaUserGroup className="w-5 h-5 text-red-400" />
                       <span className="font-medium">Bureau national</span>
                     </a>
-                    <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                      <FaCircleCheck className="w-5 h-5 text-gray-400" />
+                    <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors">
+                      <FaCircleCheck className="w-5 h-5 text-red-400" />
                       <span className="font-medium">Commission nationale d'investiture</span>
                     </a>
-                    <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                      <FaCircleCheck className="w-5 h-5 text-gray-400" />
+                    <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors">
+                      <FaCircleCheck className="w-5 h-5 text-red-400" />
                       <span className="font-medium">Commission des conflits</span>
                     </a>
-                    <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                      <FaMap className="w-5 h-5 text-gray-400" />
+                    <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors">
+                      <FaMap className="w-5 h-5 text-red-400" />
                       <span className="font-medium">Les Malagasy de la diaspora</span>
                     </a>
                   </div>
@@ -99,8 +99,8 @@ export const Navbar = () => {
                 {/* Colonne 3: Conseil national */}
                 <div>
                   <div className="space-y-3 mt-8">
-                    <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                      <FaBuilding className="w-5 h-5 text-gray-400" />
+                    <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors">
+                      <FaBuilding className="w-5 h-5 text-red-400" />
                       <span className="font-medium">Conseil national</span>
                     </a>
                   </div>
@@ -111,12 +111,12 @@ export const Navbar = () => {
               {/* Ligne du bas avec règlement et statuts */}
               <div className="border-t border-gray-200 px-8 py-6">
                 <div className="max-w-7xl mx-auto flex gap-8">
-                  <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                    <FaFileLines className="w-5 h-5 text-gray-400" />
+                  <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors">
+                    <FaFileLines className="w-5 h-5 text-red-400" />
                     <span className="font-medium">Le règlement intérieur</span>
                   </a>
-                  <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                    <FaFileLines className="w-5 h-5 text-gray-400" />
+                  <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors">
+                    <FaFileLines className="w-5 h-5 text-red-400" />
                     <span className="font-medium">Statuts du MADAGASIKARA HOAN'NY MALAGASY (MHM)</span>
                   </a>
                 </div>
@@ -128,7 +128,7 @@ export const Navbar = () => {
           <div className="relative">
             <button
               onClick={() => setOpenMenu(openMenu === 'actualites' ? null : 'actualites')}
-              className="flex items-center gap-2 text-teal-800 font-semibold hover:text-teal-600"
+              className="flex items-center gap-2 text-red-700 font-semibold hover:text-red-600"
             >
               Actualités
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -145,28 +145,28 @@ export const Navbar = () => {
                   <div>
                     <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">ACTUALITÉ</h3>
                     <div className="space-y-3">
-                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                        <FaVideo className="w-5 h-5 text-gray-400" />
+                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors">
+                        <FaVideo className="w-5 h-5 text-red-400" />
                         <span className="font-medium">Vidéos</span>
                       </a>
-                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                        <FaMicrophone className="w-5 h-5 text-gray-400" />
+                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors">
+                        <FaMicrophone className="w-5 h-5 text-red-400" />
                         <span className="font-medium">Communiqués</span>
                       </a>
-                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                        <FaUserGroup className="w-5 h-5 text-gray-400" />
+                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors">
+                        <FaUserGroup className="w-5 h-5 text-red-400" />
                         <span className="font-medium">Vie parlementaire</span>
                       </a>
-                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                        <FaFileLines className="w-5 h-5 text-gray-400" />
+                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors">
+                        <FaFileLines className="w-5 h-5 text-red-400" />
                         <span className="font-medium">Tribunes libres</span>
                       </a>
-                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                        <FaMicrophone className="w-5 h-5 text-gray-400" />
+                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors">
+                        <FaMicrophone className="w-5 h-5 text-red-400" />
                         <span className="font-medium">Discours</span>
                       </a>
-                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-teal-600 transition-colors">
-                        <FaEnvelope className="w-5 h-5 text-gray-400" />
+                      <a href="#" className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors">
+                        <FaEnvelope className="w-5 h-5 text-red-400" />
                         <span className="font-medium">Lettre ouverte</span>
                       </a>
                     </div>
@@ -183,7 +183,7 @@ export const Navbar = () => {
                           className="w-24 h-24 object-cover rounded flex-shrink-0"
                         />
                         <div className="flex-1">
-                          <h4 className="font-bold text-gray-900 text-base mb-2 group-hover:text-teal-600 transition-colors leading-snug">
+                          <h4 className="font-bold text-gray-900 text-base mb-2 group-hover:text-red-600 transition-colors leading-snug">
                             MADAGASCAR : LE MHM APPELLE À LA SOUVERAINETÉ NATIONALE
                           </h4>
                           <p className="text-sm text-gray-600">
@@ -199,7 +199,7 @@ export const Navbar = () => {
                           className="w-24 h-24 object-cover rounded flex-shrink-0"
                         />
                         <div className="flex-1">
-                          <h4 className="font-bold text-gray-900 text-base mb-2 group-hover:text-teal-600 transition-colors leading-snug">
+                          <h4 className="font-bold text-gray-900 text-base mb-2 group-hover:text-red-600 transition-colors leading-snug">
                             DÉVELOPPEMENT DURABLE : PROTÉGER L'ENVIRONNEMENT MALAGASY
                           </h4>
                           <p className="text-sm text-gray-600">
@@ -218,7 +218,7 @@ export const Navbar = () => {
           <div className="relative">
             <button
               onClick={() => setOpenMenu(openMenu === 'projet' ? null : 'projet')}
-              className="flex items-center gap-2 text-teal-800 font-semibold hover:text-teal-600"
+              className="flex items-center gap-2 text-red-700 font-semibold hover:text-red-600"
             >
               Le projet
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -229,8 +229,8 @@ export const Navbar = () => {
             {/* Sous-menu Le projet */}
             {openMenu === 'projet' && (
               <div className="fixed left-0 right-0 top-[73px] w-full bg-white shadow-2xl border-t border-gray-200 z-40 animate-menu-slide">
-                {/* Barre bleue supérieure */}
-                <div className="bg-blue-900 text-white px-8 py-3">
+                {/* Barre rouge supérieure */}
+                <div className="bg-red-800 text-white px-8 py-3">
                   <div className="max-w-7xl mx-auto flex justify-between items-center">
                     <span className="font-bold uppercase text-sm tracking-wide">PROGRAMME DU MHM</span>
                     <span className="font-bold uppercase text-sm tracking-wide">MADAGASCAR HOAN'NY MALAGASY</span>
@@ -242,28 +242,28 @@ export const Navbar = () => {
                   {/* Colonne 1: Programmes */}
                   <div className="space-y-6">
                     <a href="#" className="block group">
-                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-teal-600 transition-colors">
+                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-red-600 transition-colors">
                         SOUVERAINETÉ NATIONALE
                       </h3>
                       <p className="text-sm text-gray-600">Madagascar aux Malagasy</p>
                     </a>
 
                     <a href="#" className="block group">
-                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-teal-600 transition-colors">
+                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-red-600 transition-colors">
                         DÉVELOPPEMENT ÉCONOMIQUE
                       </h3>
                       <p className="text-sm text-gray-600">Croissance durable et inclusive</p>
                     </a>
 
                     <a href="#" className="block group">
-                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-teal-600 transition-colors">
+                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-red-600 transition-colors">
                         AGRICULTURE ET PÊCHE
                       </h3>
                       <p className="text-sm text-gray-600">Valorisation des producteurs locaux</p>
                     </a>
 
                     <a href="#" className="block group">
-                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-teal-600 transition-colors">
+                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-red-600 transition-colors">
                         ÉDUCATION ET CULTURE
                       </h3>
                       <p className="text-sm text-gray-600">Promotion de la langue et l'identité malagasy</p>
@@ -273,7 +273,7 @@ export const Navbar = () => {
                   {/* Colonne 2: Thématiques */}
                   <div className="space-y-6">
                     <a href="#" className="block group">
-                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-teal-600 transition-colors">
+                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-red-600 transition-colors">
                         ENVIRONNEMENT
                       </h3>
                       <p className="text-sm text-gray-600">
@@ -282,7 +282,7 @@ export const Navbar = () => {
                     </a>
 
                     <a href="#" className="block group">
-                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-teal-600 transition-colors">
+                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-red-600 transition-colors">
                         SANTÉ ET SOCIAL
                       </h3>
                       <p className="text-sm text-gray-600">
@@ -291,7 +291,7 @@ export const Navbar = () => {
                     </a>
 
                     <a href="#" className="block group">
-                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-teal-600 transition-colors">
+                      <h3 className="text-2xl font-black text-gray-900 uppercase mb-1 group-hover:text-red-600 transition-colors">
                         JUSTICE ET SÉCURITÉ
                       </h3>
                       <p className="text-sm text-gray-600">
@@ -305,7 +305,7 @@ export const Navbar = () => {
             )}
           </div>
 
-          <button className="text-teal-800 hover:text-teal-600">
+          <button className="text-red-700 hover:text-red-600">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
@@ -314,7 +314,7 @@ export const Navbar = () => {
 
         {/* Right side buttons - Adaptés pour mobile */}
         <div className="flex items-center gap-2 md:gap-4">
-          <button className="hidden md:block text-teal-800 font-semibold hover:text-teal-600">
+          <button className="hidden md:block text-red-700 font-semibold hover:text-red-600">
             Militer
           </button>
           <button
@@ -324,7 +324,7 @@ export const Navbar = () => {
           </button>
           <button
             onClick={() => navigate('/login')}
-            className="hidden md:block text-teal-800 font-semibold hover:text-teal-600 flex items-center gap-2"
+            className="hidden md:block text-red-700 font-semibold hover:text-red-600 flex items-center gap-2"
             title="Connexion Administrateur">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -338,7 +338,7 @@ export const Navbar = () => {
 
           {/* Bouton menu hamburger - Visible sur mobile */}
           <button
-            className="lg:hidden ml-2 text-teal-800"
+            className="lg:hidden ml-2 text-red-700"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -359,41 +359,41 @@ export const Navbar = () => {
           <div className="px-6 py-6 pb-32 space-y-6">
             {/* LES FÉDÉRATIONS */}
             <div>
-              <h2 className="text-lg font-black text-teal-800 mb-4">LES FÉDÉRATIONS</h2>
+              <h2 className="text-lg font-black text-red-700 mb-4">LES FÉDÉRATIONS</h2>
               <div className="space-y-2 pl-4">
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Les fédérations provinciales</a>
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Les fédérations régionales</a>
+                <a href="#" className="block text-gray-700 hover:text-red-600 py-1">Les fédérations provinciales</a>
+                <a href="#" className="block text-gray-700 hover:text-red-600 py-1">Les fédérations régionales</a>
               </div>
             </div>
 
             {/* INSTANCES */}
             <div>
-              <h2 className="text-lg font-black text-teal-800 mb-4">INSTANCES</h2>
+              <h2 className="text-lg font-black text-red-700 mb-4">INSTANCES</h2>
               <div className="space-y-2 pl-4">
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Bureau Exécutif</a>
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Bureau National</a>
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Commission Nationale d'Investiture</a>
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Commission des Conflits</a>
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Conseil national</a>
+                <a href="#" className="block text-gray-700 hover:text-red-600 py-1">Bureau Exécutif</a>
+                <a href="#" className="block text-gray-700 hover:text-red-600 py-1">Bureau National</a>
+                <a href="#" className="block text-gray-700 hover:text-red-600 py-1">Commission Nationale d'Investiture</a>
+                <a href="#" className="block text-gray-700 hover:text-red-600 py-1">Commission des Conflits</a>
+                <a href="#" className="block text-gray-700 hover:text-red-600 py-1">Conseil national</a>
               </div>
             </div>
 
             {/* ACTUALITÉS */}
             <div>
-              <h2 className="text-lg font-black text-teal-800 mb-4">ACTUALITÉS</h2>
+              <h2 className="text-lg font-black text-red-700 mb-4">ACTUALITÉS</h2>
               <div className="space-y-2 pl-4">
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Vidéos</a>
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Communiqués</a>
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Vie parlementaire</a>
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Tribunes libres</a>
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Discours</a>
-                <a href="#" className="block text-gray-700 hover:text-teal-600 py-1">Lettre ouverte</a>
+                <a href="#" className="block text-gray-700 hover:text-red-600 py-1">Vidéos</a>
+                <a href="#" className="block text-gray-700 hover:text-red-600 py-1">Communiqués</a>
+                <a href="#" className="block text-gray-700 hover:text-red-600 py-1">Vie parlementaire</a>
+                <a href="#" className="block text-gray-700 hover:text-red-600 py-1">Tribunes libres</a>
+                <a href="#" className="block text-gray-700 hover:text-red-600 py-1">Discours</a>
+                <a href="#" className="block text-gray-700 hover:text-red-600 py-1">Lettre ouverte</a>
               </div>
             </div>
 
             {/* LE PROJET */}
             <div>
-              <h2 className="text-lg font-black text-teal-800 mb-4">LE PROJET</h2>
+              <h2 className="text-lg font-black text-red-700 mb-4">LE PROJET</h2>
               <div className="space-y-3 pl-4">
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1">Souveraineté nationale</h3>
@@ -433,7 +433,7 @@ export const Navbar = () => {
                   navigate('/login');
                   setMobileMenuOpen(false);
                 }}
-                className="w-full bg-teal-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors flex items-center justify-center gap-3 shadow-md"
+                className="w-full bg-red-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-800 transition-colors flex items-center justify-center gap-3 shadow-md"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />

@@ -89,10 +89,10 @@ export const ActualiteSection = () => {
   ];
 
   return (
-    <section className="bg-white py-8 sm:py-10 lg:py-12 px-4 sm:px-6 lg:px-8">
+    <section className="bg-gradient-to-b from-red-50 to-white py-8 sm:py-10 lg:py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase mb-6 sm:mb-8 lg:mb-12 text-gray-900">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase mb-6 sm:mb-8 lg:mb-12 text-red-900">
           ACTUALITÉ
         </h2>
 
@@ -113,11 +113,11 @@ export const ActualiteSection = () => {
                 className="relative overflow-hidden mb-3 rounded-lg shadow-lg"
                 whileHover={item.type === 'video' ? {
                   scale: 1.03,
-                  boxShadow: "0 20px 40px rgba(120, 53, 15, 0.3)",
+                  boxShadow: "0 20px 40px rgba(153, 27, 27, 0.3)",
                   transition: { duration: 0.3 }
                 } : {
                   scale: 1.02,
-                  boxShadow: "0 15px 30px rgba(87, 83, 78, 0.2)",
+                  boxShadow: "0 15px 30px rgba(220, 38, 38, 0.2)",
                   transition: { duration: 0.3 }
                 }}
               >
@@ -139,7 +139,7 @@ export const ActualiteSection = () => {
                       ></iframe>
                       {/* Animation pulse sur vidéo au hover */}
                       <motion.div
-                        className="absolute top-2 right-2 bg-amber-700 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg"
+                        className="absolute top-2 right-2 bg-red-700 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg"
                         initial={{ scale: 1 }}
                         whileHover={{ scale: 1.1 }}
                         animate={{ scale: [1, 1.05, 1] }}
@@ -175,7 +175,7 @@ export const ActualiteSection = () => {
                           {/* Play Button Overlay */}
                           <div className="absolute inset-0 flex items-center justify-center bg-black/20">
                             <motion.div
-                              className="w-16 h-16 bg-amber-700 rounded-full flex items-center justify-center shadow-lg"
+                              className="w-16 h-16 bg-red-700 rounded-full flex items-center justify-center shadow-lg"
                               animate={{ scale: [1, 1.1, 1] }}
                               transition={{ duration: 1.5, repeat: Infinity }}
                             >
@@ -207,19 +207,19 @@ export const ActualiteSection = () => {
               >
                 {/* Category Badge */}
                 <div className="flex items-center gap-1.5 mb-1.5">
-                  <div className="w-1.5 h-1.5 bg-gray-900 rounded-full"></div>
-                  <span className="text-xs font-bold uppercase text-gray-900">
+                  <div className="w-1.5 h-1.5 bg-red-600 rounded-full"></div>
+                  <span className="text-xs font-bold uppercase text-red-900">
                     {item.category}
                   </span>
                   {item.type === 'video' && (
-                    <span className="ml-auto text-xs font-semibold text-amber-700">
+                    <span className="ml-auto text-xs font-semibold text-red-700">
                       ⏱ {item.duration}
                     </span>
                   )}
                 </div>
 
                 {/* Title */}
-                <h3 className="text-sm font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-stone-700 transition-colors">
+                <h3 className="text-sm font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-red-700 transition-colors">
                   {item.title}
                 </h3>
 
@@ -249,8 +249,8 @@ export const ActualiteSection = () => {
           transition={{ duration: 0.6 }}
         >
           <motion.button
-            className="bg-stone-800 text-white px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-bold uppercase hover:bg-stone-900 transition-colors"
-            whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(87, 83, 78, 0.4)" }}
+            className="bg-red-800 text-white px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-bold uppercase hover:bg-red-900 transition-colors rounded-lg"
+            whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(153, 27, 27, 0.4)" }}
             whileTap={{ scale: 0.95 }}
           >
             Voir plus d'actualités

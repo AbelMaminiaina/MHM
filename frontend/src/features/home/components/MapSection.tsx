@@ -24,7 +24,7 @@ export const MapSection = () => {
   ];
 
   return (
-    <section className="bg-gradient-to-b from-stone-50 to-white py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
+    <section className="bg-gradient-to-b from-orange-50 to-white py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
 
         {/* Main Content Grid */}
@@ -37,18 +37,18 @@ export const MapSection = () => {
             transition={{ duration: 0.8 }}
           >
             <motion.h2
-              className="text-2xl sm:text-3xl md:text-4xl font-black text-stone-900 mb-4 sm:mb-6 uppercase leading-tight"
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4 sm:mb-6 uppercase leading-tight"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               Nos Fédérations à<br />
-              <span className="text-emerald-700">Madagascar</span>
+              <span className="text-orange-600">Madagascar</span>
             </motion.h2>
 
             <motion.p
-              className="text-base sm:text-lg text-stone-600 mb-6 sm:mb-8 lg:mb-10 leading-relaxed"
+              className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8 lg:mb-10 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -62,7 +62,7 @@ export const MapSection = () => {
               {federations.map((fed, index) => (
                 <motion.div
                   key={fed.name}
-                  className="bg-white p-5 sm:p-6 rounded-2xl border-2 border-stone-200 hover:border-emerald-500 hover:shadow-xl transition-all duration-300 cursor-pointer group"
+                  className="bg-white p-5 sm:p-6 rounded-2xl border-2 border-orange-200 hover:border-orange-500 hover:shadow-xl transition-all duration-300 cursor-pointer group"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -70,15 +70,15 @@ export const MapSection = () => {
                   whileHover={{ y: -5, scale: 1.02 }}
                 >
                   <div className="text-3xl sm:text-4xl mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">{fed.icon}</div>
-                  <h3 className="font-black text-base sm:text-lg text-stone-900 mb-1">{fed.name}</h3>
-                  <p className="text-xs sm:text-sm text-emerald-700 font-bold">{fed.members} membres</p>
+                  <h3 className="font-black text-base sm:text-lg text-gray-900 mb-1">{fed.name}</h3>
+                  <p className="text-xs sm:text-sm text-orange-600 font-bold">{fed.members} membres</p>
                 </motion.div>
               ))}
             </div>
 
             {/* CTA Button */}
             <motion.button
-              className="w-full bg-gradient-to-r from-emerald-700 to-emerald-900 text-white py-3 sm:py-4 px-4 sm:px-6 rounded-xl text-sm sm:text-base font-bold uppercase hover:from-emerald-800 hover:to-emerald-950 transition-all duration-300 shadow-lg hover:shadow-2xl"
+              className="w-full bg-gradient-to-r from-orange-600 to-orange-800 text-white py-3 sm:py-4 px-4 sm:px-6 rounded-xl text-sm sm:text-base font-bold uppercase hover:from-orange-700 hover:to-orange-900 transition-all duration-300 shadow-lg hover:shadow-2xl"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -98,17 +98,17 @@ export const MapSection = () => {
             transition={{ duration: 0.8 }}
           >
             <motion.h2
-              className="text-2xl sm:text-3xl md:text-4xl font-black text-stone-900 mb-4 sm:mb-6 lg:mb-8 uppercase leading-tight"
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4 sm:mb-6 lg:mb-8 uppercase leading-tight"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Nos <span className="text-emerald-700">Actions</span>
+              Nos <span className="text-orange-600">Actions</span>
             </motion.h2>
 
             <motion.p
-              className="text-base sm:text-lg text-stone-600 mb-6 sm:mb-8 lg:mb-10 leading-relaxed"
+              className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8 lg:mb-10 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -122,7 +122,7 @@ export const MapSection = () => {
               <motion.a
                 key={action.id}
                 href={action.link}
-                className="block relative overflow-hidden rounded-xl sm:rounded-2xl cursor-pointer mb-4 sm:mb-6 shadow-2xl border-2 border-stone-200 hover:border-emerald-500"
+                className="block relative overflow-hidden rounded-xl sm:rounded-2xl cursor-pointer mb-4 sm:mb-6 shadow-2xl border-2 border-orange-200 hover:border-orange-500"
                 style={{
                   backgroundImage: `url(${action.image})`,
                   backgroundSize: 'cover',
@@ -147,7 +147,7 @@ export const MapSection = () => {
                 >
                   {/* Badge */}
                   <motion.div
-                    className="bg-emerald-700 text-white text-xs font-black px-3 sm:px-4 py-1.5 sm:py-2 mb-3 sm:mb-4 uppercase rounded-full shadow-lg"
+                    className="bg-orange-600 text-white text-xs font-black px-3 sm:px-4 py-1.5 sm:py-2 mb-3 sm:mb-4 uppercase rounded-full shadow-lg"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -185,7 +185,7 @@ export const MapSection = () => {
 
             {/* CTA Button */}
             <motion.button
-              className="w-full bg-gradient-to-r from-stone-700 to-stone-900 text-white py-3 sm:py-4 px-4 sm:px-6 rounded-xl text-sm sm:text-base font-bold uppercase hover:from-stone-800 hover:to-stone-950 transition-all duration-300 shadow-lg hover:shadow-2xl inline-flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-red-700 to-red-900 text-white py-3 sm:py-4 px-4 sm:px-6 rounded-xl text-sm sm:text-base font-bold uppercase hover:from-red-800 hover:to-red-950 transition-all duration-300 shadow-lg hover:shadow-2xl inline-flex items-center justify-center gap-2"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

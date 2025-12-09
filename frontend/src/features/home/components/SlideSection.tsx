@@ -82,7 +82,7 @@ export const SlideSection = () => {
   };
 
   return (
-    <section className="bg-gray-50 py-16 px-4 md:px-8">
+    <section className="bg-gradient-to-b from-white to-red-50 py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="relative group">
           {/* Bouton gauche */}

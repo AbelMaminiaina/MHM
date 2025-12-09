@@ -12,9 +12,9 @@ interface AgendaEvent {
 }
 
 const categoryColors = {
-  'Medias': 'bg-amber-700',
-  'Evenements': 'bg-emerald-700',
-  'Deplacements': 'bg-stone-700'
+  'Medias': 'bg-pink-600',
+  'Evenements': 'bg-red-600',
+  'Deplacements': 'bg-pink-700'
 };
 
 const agendaData: AgendaEvent[] = [
@@ -65,7 +65,7 @@ const actionItems = [
     id: '1',
     title: 'MILITER',
     description: 'Rejoignez le mouvement',
-    color: 'from-red-700 to-red-900',
+    color: 'from-red-600 to-red-800',
     imageUrl: 'https://source.unsplash.com/800x600/?protest,activism',
     link: '#'
   },
@@ -73,7 +73,7 @@ const actionItems = [
     id: '2',
     title: 'FAIRE UN DON',
     description: 'Soutenez nos actions',
-    color: 'from-emerald-700 to-emerald-900',
+    color: 'from-pink-600 to-pink-800',
     imageUrl: 'https://source.unsplash.com/800x600/?donation,charity',
     link: '#'
   },
@@ -81,7 +81,7 @@ const actionItems = [
     id: '3',
     title: 'ADHÉRER',
     description: 'Devenez membre MHM',
-    color: 'from-rose-700 to-rose-900',
+    color: 'from-rose-600 to-rose-800',
     imageUrl: 'https://source.unsplash.com/800x600/?handshake,team',
     link: '#'
   },
@@ -89,7 +89,7 @@ const actionItems = [
     id: '4',
     title: 'PROJET',
     description: 'Découvrez notre vision',
-    color: 'from-teal-700 to-teal-900',
+    color: 'from-red-700 to-red-900',
     imageUrl: 'https://source.unsplash.com/800x600/?future,vision',
     link: '#'
   }
@@ -97,18 +97,18 @@ const actionItems = [
 
 export const AgendaSection = () => {
   return (
-    <section className="bg-white py-8 sm:py-10 lg:py-12 px-4 sm:px-6 lg:px-10">
+    <section className="bg-gradient-to-b from-pink-50 to-white py-8 sm:py-10 lg:py-12 px-4 sm:px-6 lg:px-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
         {/* Left - Agenda */}
         <div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-6 sm:mb-8 lg:mb-10 uppercase">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-pink-900 mb-6 sm:mb-8 lg:mb-10 uppercase">
             AGENDA
           </h2>
           <div className="space-y-3 sm:space-y-4">
             {agendaData.map((event, index) => (
               <motion.div
                 key={event.id}
-                className="flex flex-col sm:flex-row gap-3 sm:gap-5 p-4 sm:p-5 rounded-xl border-2 border-gray-100 hover:border-stone-400 bg-white hover:bg-gradient-to-r hover:from-stone-50 hover:to-white transition-all duration-300 shadow-sm hover:shadow-xl cursor-pointer"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-5 p-4 sm:p-5 rounded-xl border-2 border-pink-100 hover:border-pink-400 bg-white hover:bg-gradient-to-r hover:from-pink-50 hover:to-white transition-all duration-300 shadow-sm hover:shadow-xl cursor-pointer"
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -117,7 +117,7 @@ export const AgendaSection = () => {
               >
                 {/* Date */}
                 <motion.div
-                  className="flex-shrink-0 text-center w-full sm:min-w-[100px] sm:w-auto bg-gradient-to-br from-stone-700 to-stone-900 text-white rounded-lg p-3 sm:p-4 shadow-md"
+                  className="flex-shrink-0 text-center w-full sm:min-w-[100px] sm:w-auto bg-gradient-to-br from-pink-600 to-pink-800 text-white rounded-lg p-3 sm:p-4 shadow-md"
                   whileHover={{ scale: 1.05, rotate: 2 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -144,7 +144,7 @@ export const AgendaSection = () => {
                     />
                   )}
                   <div className="flex-1">
-                    <h3 className="text-base sm:text-lg font-black text-gray-900 mb-2 uppercase group-hover:text-stone-700 transition-colors">
+                    <h3 className="text-base sm:text-lg font-black text-gray-900 mb-2 uppercase group-hover:text-pink-700 transition-colors">
                       {event.title}
                     </h3>
                     <motion.span

@@ -9,6 +9,25 @@
 @import "@fontsource/poppins/900.css";
 
 @theme {
+  /* Palette principale Rouge et Blanc */
+  --color-primary-red: #DC2626;
+  --color-primary-dark: #991B1B;
+  --color-primary-light: #EF4444;
+
+  /* Couleurs complémentaires pour les sections */
+  --color-coral-orange: #F97316;
+  --color-coral-light: #FB923C;
+  --color-pink-vibrant: #EC4899;
+  --color-pink-light: #F472B6;
+  --color-burgundy: #7F1D1D;
+
+  /* Neutres chauds */
+  --color-warm-gray: #78716C;
+  --color-warm-gray-light: #A8A29E;
+  --color-cream: #FEF3C7;
+  --color-white: #FFFFFF;
+
+  /* Anciennes couleurs (deprecated) */
   --color-rn-blue: #2563eb;
   --color-rn-blue-dark: #1e3a8a;
   --color-rn-blue-light: #3b82f6;
