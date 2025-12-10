@@ -4,14 +4,14 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'MHM API Documentation',
+      title: 'HFM API Documentation',
       version: '1.0.0',
       description:
-        "API REST pour Madagasikara Hoan'ny Malagasy (MHM) - Documentation complète des endpoints",
+        "API REST pour Madagasikara Hoan'ny Malagasy (HFM) - Documentation complète des endpoints",
       contact: {
-        name: 'MHM Team',
+        name: 'HFM Team',
         email: 'contact@madagasikarahoanymalagasy.org',
-        url: 'https://mhm.mg',
+        url: 'https://HFM.mg',
       },
       license: {
         name: 'MIT',
@@ -24,7 +24,7 @@ const options = {
         description: 'Development server',
       },
       {
-        url: 'https://api.mhm.mg',
+        url: 'https://api.HFM.mg',
         description: 'Production server',
       },
     ],

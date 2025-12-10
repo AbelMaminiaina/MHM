@@ -6,13 +6,13 @@
 
 **Test 1 : Backend Health ✅**
 ```bash
-curl https://backmhm.vercel.app/health
+curl https://backHFM.vercel.app/health
 ```
 **Résultat :** Backend opérationnel
 ```json
 {
   "success": true,
-  "message": "MHM Backend API is running",
+  "message": "HFM Backend API is running",
   "timestamp": "2025-11-25T02:27:38.260Z"
 }
 ```
@@ -21,9 +21,9 @@ curl https://backmhm.vercel.app/health
 
 **Test 2 : Login AVANT la correction ❌**
 ```bash
-curl -X POST https://backmhm.vercel.app/api/users/login \
+curl -X POST https://backHFM.vercel.app/api/users/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"admin@mhm.mg","password":"Admin123!"}'
+  -d '{"email":"admin@HFM.mg","password":"Admin123!"}'
 ```
 **Résultat :** Erreur 401
 ```json
@@ -49,9 +49,9 @@ node scripts/create-admin-production.js
 ```
 📋 Informations de connexion :
 
-  📧 Email       : admin@mhm.mg
+  📧 Email       : admin@HFM.mg
   🔑 Mot de passe: Admin123!
-  👤 Nom         : Admin MHM
+  👤 Nom         : Admin HFM
   🆔 ID          : 692514f27f11669a1c7102e1
   🔐 Rôle        : admin
   📅 Créé le     : 2025-11-25T02:31:14.561Z
@@ -63,9 +63,9 @@ node scripts/create-admin-production.js
 
 **Test 3 : Login APRÈS la correction ✅**
 ```bash
-curl -X POST https://backmhm.vercel.app/api/users/login \
+curl -X POST https://backHFM.vercel.app/api/users/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"admin@mhm.mg","password":"Admin123!"}'
+  -d '{"email":"admin@HFM.mg","password":"Admin123!"}'
 ```
 
 **Résultat :** Succès 200
@@ -75,7 +75,7 @@ curl -X POST https://backmhm.vercel.app/api/users/login \
   "message": "Login successful",
   "data": {
     "_id": "692514f27f11669a1c7102e1",
-    "email": "admin@mhm.mg",
+    "email": "admin@HFM.mg",
     "role": "admin",
     "createdAt": "2025-11-25T02:31:14.561Z",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
@@ -104,12 +104,12 @@ access-control-allow-origin: https://www.madagasikarahoanymalagasy.org
 
 ## État Final de la Production
 
-### ✅ Backend (https://backmhm.vercel.app)
+### ✅ Backend (https://backHFM.vercel.app)
 
 - **Statut :** Opérationnel
 - **Health Check :** ✅ Réussit
 - **MongoDB Atlas :** ✅ Connecté
-- **Admin créé :** ✅ `admin@mhm.mg` existe avec rôle `admin`
+- **Admin créé :** ✅ `admin@HFM.mg` existe avec rôle `admin`
 - **CORS :** ✅ Configuré pour `www.madagasikarahoanymalagasy.org`
 
 ### ✅ Frontend (https://www.madagasikarahoanymalagasy.org)
@@ -124,7 +124,7 @@ access-control-allow-origin: https://www.madagasikarahoanymalagasy.org
 
 ### Admin Principal
 ```
-Email       : admin@mhm.mg
+Email       : admin@HFM.mg
 Mot de passe: Admin123!
 Rôle        : admin
 ```
@@ -145,7 +145,7 @@ Health   : https://backmhm.vercel.app/health
 
 1. **Allez sur :** https://www.madagasikarahoanymalagasy.org/login
 2. **Connectez-vous avec :**
-   - Email : `admin@mhm.mg`
+   - Email : `admin@HFM.mg`
    - Password : `Admin123!`
 3. **Vous devriez être redirigé vers :** `/admin/dashboard`
 
@@ -177,7 +177,7 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=a.maminiaina@gmail.com
 SMTP_PASS=kktc enrc crvn ykqt
-EMAIL_FROM=noreply@mhm.mg
+EMAIL_FROM=noreply@HFM.mg
 EMAIL_FROM_NAME=Madagasikara Hoan'ny Malagasy
 QR_CODE_SECRET_KEY=your_production_qrcode_secret_key
 NODE_ENV=production
@@ -185,7 +185,7 @@ NODE_ENV=production
 
 ### Frontend Environment Variables (Vercel)
 ```env
-VITE_API_URL=https://backmhm.vercel.app/api
+VITE_API_URL=https://backHFM.vercel.app/api
 ```
 
 **Important :** Pas de slash final dans `VITE_API_URL`
@@ -209,7 +209,7 @@ fetch('https://backmhm.vercel.app/api/users/login', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
-    email: 'admin@mhm.mg',
+    email: 'admin@HFM.mg',
     password: 'Admin123!'
   })
 })
@@ -218,7 +218,7 @@ fetch('https://backmhm.vercel.app/api/users/login', {
 ```
 
 **Résultats attendus :**
-- Test 1 : `{ success: true, message: "MHM Backend API is running" }`
+- Test 1 : `{ success: true, message: "HFM Backend API is running" }`
 - Test 2 : `{ success: true, data: { role: "admin", token: "..." } }`
 
 ---
@@ -254,13 +254,13 @@ Si vous rencontrez des problèmes :
 
 2. **Vérifiez MongoDB Atlas :**
    - Collections → `mhm_db` → `users`
-   - Cherchez `admin@mhm.mg`
+   - Cherchez `admin@HFM.mg`
 
 3. **Testez l'API directement :**
    ```bash
    curl -X POST https://backmhm.vercel.app/api/users/login \
      -H "Content-Type: application/json" \
-     -d '{"email":"admin@mhm.mg","password":"Admin123!"}'
+     -d '{"email":"admin@HFM.mg","password":"Admin123!"}'
    ```
 
 ---

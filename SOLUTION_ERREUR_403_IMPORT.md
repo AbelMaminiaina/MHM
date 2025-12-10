@@ -34,7 +34,7 @@ L'erreur 403 signifie que **vous n'avez pas l'autorisation** d'accéder à cette
 {
   "state": {
     "user": {
-      "email": "admin@mhm.mg",
+      "email": "admin@HFM.mg",
       "role": "admin",
       ...
     },
@@ -68,7 +68,7 @@ Si vous n'êtes pas correctement connecté :
 
 4. **Se reconnecter :**
    - Allez sur : http://localhost:5173/login
-   - Email : `admin@mhm.mg`
+   - Email : `admin@HFM.mg`
    - Mot de passe : `Admin123!`
    - Cliquez sur "Se connecter"
 
@@ -103,7 +103,7 @@ Assurez-vous que le backend est bien démarré et connecté à MongoDB :
 curl http://localhost:5000/health
 
 # Résultat attendu :
-# {"success":true,"message":"MHM Backend API is running","timestamp":"..."}
+# {"success":true,"message":"HFM Backend API is running","timestamp":"..."}
 ```
 
 ---
@@ -121,7 +121,7 @@ sessionStorage.clear()
 ### 2. Se Reconnecter
 
 1. http://localhost:5173/login
-2. admin@mhm.mg / Admin123!
+2. admin@HFM.mg / Admin123!
 3. Attendre la redirection vers `/admin/dashboard`
 
 ### 3. Vérifier le LocalStorage
@@ -269,7 +269,7 @@ Pour tester si le problème est résolu :
 
 2. **Se connecter :**
    - http://localhost:5173/login
-   - admin@mhm.mg / Admin123!
+   - admin@HFM.mg / Admin123!
 
 3. **Aller sur :**
    - http://localhost:5173/admin/qrcodes
@@ -318,7 +318,7 @@ Pour vérifier le token, allez sur https://jwt.io et collez le token.
 ```json
 {
   "id": "692461335b10b3a6c47559e1",
-  "email": "admin@mhm.mg",
+  "email": "admin@HFM.mg",
   "role": "admin",
   "iat": ...,
   "exp": ...
@@ -343,7 +343,7 @@ Import terminé !
 ⚠️ Vous pouvez relancer les échecs depuis le dashboard.
 ```
 
-**Les 76 échecs sont normaux** car ce sont les membres avec emails temporaires `@mhm.mg`.
+**Les 76 échecs sont normaux** car ce sont les membres avec emails temporaires `@HFM.mg`.
 
 ---
 

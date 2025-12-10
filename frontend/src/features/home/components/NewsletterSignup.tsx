@@ -22,7 +22,7 @@ export const NewsletterSignup = () => {
               Inscrivez-vous pour rester informé
             </h2>
             <p className="text-base sm:text-lg md:text-xl leading-relaxed text-justify">
-              Pour recevoir toute l'actualité du Madagasikara hoan'ny Malagasy et connaître les
+              Pour recevoir toute l'actualité du ho an'ny fahafahan'i Madagasikara et connaître les
               événements organisés près de chez vous, inscrivez-vous.
             </p>
           </div>
@@ -57,7 +57,7 @@ export const NewsletterSignup = () => {
                   required
                 />
                 <label htmlFor="newsletter-consent" className="text-gray-700 text-xs sm:text-sm leading-relaxed cursor-pointer text-justify">
-                  J'accepte de recevoir les newsletters du Madagasikara Hoan'ny Malagasy. Je pourrai
+                  J'accepte de recevoir les newsletters du ho an'ny fahafahan'i Madagasikara. Je pourrai
                   toujours me désinscrire en cliquant sur le lien présent en bas de page de la
                   newsletter.{' '}
                   <a href="#" className="underline hover:text-red-600">

@@ -10,7 +10,7 @@ const server = app.listen(config.port, () => {
   console.log(`
 ╔════════════════════════════════════════════════════════╗
 ║                                                        ║
-║        🚀 MHM Backend API Server Started               ║
+║        🚀 HFM Backend API Server Started               ║
 ║                                                        ║
 ║        Environment: ${config.nodeEnv}                           ║
 ║        Port: ${config.port}                                      ║

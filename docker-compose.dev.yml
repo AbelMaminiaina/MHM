@@ -16,7 +16,7 @@ services:
       - mongodb_data_dev:/data/db
       - mongodb_config_dev:/data/configdb
     networks:
-      - mhm-network-dev
+      - HFM-network-dev
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
       interval: 10s
@@ -44,7 +44,7 @@ services:
       SMTP_SECURE: ${SMTP_SECURE:-false}
       SMTP_USER: ${SMTP_USER}
       SMTP_PASS: ${SMTP_PASS}
-      EMAIL_FROM: ${EMAIL_FROM:-noreply@mhm.mg}
+      EMAIL_FROM: ${EMAIL_FROM:-noreply@HFM.mg}
       EMAIL_FROM_NAME: ${EMAIL_FROM_NAME:-Madagasikara Hoan'ny Malagasy}
       LOG_LEVEL: ${LOG_LEVEL:-debug}
     ports:
@@ -58,7 +58,7 @@ services:
       mongodb:
         condition: service_healthy
     networks:
-      - mhm-network-dev
+      - HFM-network-dev
     stdin_open: true
     tty: true
 
@@ -68,7 +68,7 @@ services:
       context: ./frontend
       target: development
       dockerfile: Dockerfile
-    container_name: mhm-frontend-dev
+    container_name: HFM-frontend-dev
     restart: unless-stopped
     environment:
       VITE_API_URL: ${VITE_API_URL:-http://localhost:5000}
@@ -81,7 +81,7 @@ services:
     depends_on:
       - backend
     networks:
-      - mhm-network-dev
+      - HFM-network-dev
     stdin_open: true
     tty: true
 
@@ -96,5 +96,5 @@ volumes:
 
 # Networks
 networks:
-  mhm-network-dev:
+  HFM-network-dev:
     driver: bridge

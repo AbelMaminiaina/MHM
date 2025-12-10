@@ -105,7 +105,7 @@ dataLines.forEach((line, index) => {
   // Utiliser l'email s'il existe, sinon générer un email temporaire
   let finalEmail = email;
   if (!email || email === '') {
-    finalEmail = `membre${memberNumber}@mhm.mg`;
+    finalEmail = `membre${memberNumber}@HFM.mg`;
     withoutEmailCount++;
   } else {
     withEmailCount++;
@@ -204,7 +204,7 @@ console.log('');
 if (withoutEmailCount > 0) {
   console.log('⚠️  ATTENTION - Emails manquants :\n');
   console.log(`   ${withoutEmailCount} membres n'ont pas d'adresse email`);
-  console.log('   Des emails temporaires ont été générés (membreXXXX@mhm.mg)');
+  console.log('   Des emails temporaires ont été générés (membreXXXX@HFM.mg)');
   console.log('   Vous devez les compléter avant l\'import\n');
 }
 

@@ -9,6 +9,7 @@ import { LoginPage } from './features/auth/components/LoginPage';
 import { AdminDashboard } from './features/dashboard/components/AdminDashboard';
 import { QRCodeManagementPage } from './features/qrcode/components/QRCodeManagementPage';
 import { ProtectedRoute } from './features/auth/components/ProtectedRoute';
+import { ScrollToTop } from './components/ScrollToTop';
 
 // Create a client
 const queryClient = new QueryClient({
@@ -50,8 +51,9 @@ function App() {
             }
           />
         </Routes>
+        <ScrollToTop />
       </BrowserRouter>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
     </QueryClientProvider>
   );
 }

@@ -1,6 +1,6 @@
-# MHM Backend API
+# HFM Backend API
 
-Backend REST API for the MHM project. Built with Node.js, Express, MongoDB, and JWT authentication.
+Backend REST API for the HFM project. Built with Node.js, Express, MongoDB, and JWT authentication.
 
 ## Features
 
@@ -483,7 +483,7 @@ MIT
 
 ## Author
 
-MHM Team
+HFM Team
 
 ## Support
 

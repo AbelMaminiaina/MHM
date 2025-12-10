@@ -331,7 +331,7 @@ export const exportMembers = async (req, res, next) => {
     const buffer = xlsx.write(workbook, { type: 'buffer', bookType: 'xlsx' });
 
     // Set headers for file download
-    res.setHeader('Content-Disposition', `attachment; filename=membres-mhm-${Date.now()}.xlsx`);
+    res.setHeader('Content-Disposition', `attachment; filename=membres-HFM-${Date.now()}.xlsx`);
     res.setHeader(
       'Content-Type',
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'

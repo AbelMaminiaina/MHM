@@ -50,7 +50,7 @@ export const LoginPage = () => {
             Connexion Administrateur
           </h2>
           <p className="mt-2 text-gray-600">
-            Madagasikara Hoan'ny Malagasy
+            ho an'ny fahafahan'i Madagasikara
           </p>
         </div>
 
@@ -94,7 +94,7 @@ export const LoginPage = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="admin@mhm.mg"
+                placeholder="admin@HFM.mg"
               />
             </div>
 

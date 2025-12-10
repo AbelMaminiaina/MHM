@@ -44,7 +44,7 @@ async function createAdmin() {
     console.log('✅ Connecté à MongoDB\n');
 
     // Vérifier si l'admin existe déjà
-    const existingAdmin = await User.findOne({ email: 'admin@mhm.mg' });
+    const existingAdmin = await User.findOne({ email: 'admin@HFM.mg' });
 
     if (existingAdmin) {
       console.log('⚠️  L\'admin existe déjà !\n');
@@ -83,8 +83,8 @@ async function createAdmin() {
     console.log('👤 Création de l\'utilisateur admin...\n');
     const admin = await User.create({
       firstName: 'Admin',
-      lastName: 'MHM',
-      email: 'admin@mhm.mg',
+      lastName: 'HFM',
+      email: 'admin@HFM.mg',
       password: hashedPassword,
       role: 'admin',
     });
@@ -92,9 +92,9 @@ async function createAdmin() {
     console.log('✅ Admin créé avec succès !\n');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
     console.log('📋 Informations de connexion :\n');
-    console.log('  📧 Email       : admin@mhm.mg');
+    console.log('  📧 Email       : admin@HFM.mg');
     console.log('  🔑 Mot de passe: Admin123!');
-    console.log('  👤 Nom         : Admin MHM');
+    console.log('  👤 Nom         : Admin HFM');
     console.log('  🆔 ID          :', admin._id);
     console.log('  🔐 Rôle        : admin');
     console.log('  📅 Créé le     :', admin.createdAt);

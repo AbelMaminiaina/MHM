@@ -1,4 +1,4 @@
-# Guide d'importation des membres MHM
+# Guide d'importation des membres HFM
 
 Ce guide vous explique comment importer votre liste de membres depuis un fichier Excel.
 
@@ -138,7 +138,7 @@ Vous pouvez également exporter tous les membres vers Excel :
 ```bash
 curl -X GET http://localhost:5000/api/members/export \
   -H "Authorization: Bearer VOTRE_TOKEN_ICI" \
-  --output membres-mhm.xlsx
+  --output membres-HFM.xlsx
 ```
 
 Cela créera un fichier Excel avec tous les membres actuels de la base de données.

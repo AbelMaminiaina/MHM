@@ -216,7 +216,7 @@ npm run backup
 ```
 
 **Résultat:**
-- Crée un backup dans `backend/backups/backup_mhm_db_YYYY-MM-DDTHH-MM-SS/`
+- Crée un backup dans `backend/backups/backup_HFM_db_YYYY-MM-DDTHH-MM-SS/`
 - Affiche la taille du backup
 - Liste les 5 derniers backups disponibles
 
@@ -227,7 +227,7 @@ npm run backup
 ======================================================================
 
 📊 Informations de connexion:
-   • Base de données: mhm_db
+   • Base de données: HFM_db
    • Type: MongoDB Atlas
    • Destination: C:\...\backups\backup_mhm_db_2025-01-06T14-30-00
 
@@ -236,18 +236,18 @@ npm run backup
 ======================================================================
 ✅ BACKUP TERMINÉ AVEC SUCCÈS
 ======================================================================
-📁 Emplacement: C:\...\backups\backup_mhm_db_2025-01-06T14-30-00
+📁 Emplacement: C:\...\backups\backup_HFM_db_2025-01-06T14-30-00
 📊 Taille: 2.45 MB
 🕐 Date: 06/01/2025 14:30:00
 ======================================================================
 
 📋 Backups disponibles (3):
-   1. backup_mhm_db_2025-01-06T14-30-00 (06/01/2025 14:30:00)
-   2. backup_mhm_db_2025-01-05T10-15-00 (05/01/2025 10:15:00)
-   3. backup_mhm_db_2025-01-04T18-00-00 (04/01/2025 18:00:00)
+   1. backup_HFM_db_2025-01-06T14-30-00 (06/01/2025 14:30:00)
+   2. backup_HFM_db_2025-01-05T10-15-00 (05/01/2025 10:15:00)
+   3. backup_HFM_db_2025-01-04T18-00-00 (04/01/2025 18:00:00)
 
 💡 Pour restaurer ce backup:
-   npm run backup:restore backup_mhm_db_2025-01-06T14-30-00
+   npm run backup:restore backup_HFM_db_2025-01-06T14-30-00
 ```
 
 ---
@@ -271,7 +271,7 @@ npm run backup:restore
 
 **Restaurer un backup spécifique:**
 ```bash
-npm run backup:restore backup_mhm_db_2025-01-06T14-30-00
+npm run backup:restore backup_HFM_db_2025-01-06T14-30-00
 ```
 
 ⚠️ **ATTENTION:** La restauration **ÉCRASE** toutes les données actuelles de la base !
@@ -302,7 +302,7 @@ npm run backup:restore
 # Créer une tâche planifiée
 $action = New-ScheduledTaskAction -Execute "npm" -Argument "run backup" -WorkingDirectory "C:\path\to\backend"
 $trigger = New-ScheduledTaskTrigger -Daily -At 2AM
-Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "MHM_MongoDB_Backup"
+Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "HFM_MongoDB_Backup"
 ```
 
 **Automatiser les backups (Linux/macOS - Cron):**
@@ -311,7 +311,7 @@ Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "MHM_MongoDB_
 crontab -e
 
 # Ajouter (backup quotidien à 2h du matin)
-0 2 * * * cd /path/to/backend && npm run backup >> /var/log/mhm_backup.log 2>&1
+0 2 * * * cd /path/to/backend && npm run backup >> /var/log/HFM_backup.log 2>&1
 ```
 
 ---
@@ -327,10 +327,10 @@ crontab -e
 **Compresser et chiffrer un backup:**
 ```bash
 # Compresser
-tar -czf backup_mhm_db_2025-01-06.tar.gz backups/backup_mhm_db_2025-01-06T14-30-00/
+tar -czf backup_HFM_db_2025-01-06.tar.gz backups/backup_HFM_db_2025-01-06T14-30-00/
 
 # Chiffrer avec GPG
-gpg -c backup_mhm_db_2025-01-06.tar.gz
+gpg -c backup_HFM_db_2025-01-06.tar.gz
 ```
 
 ---

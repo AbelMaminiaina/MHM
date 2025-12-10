@@ -1,4 +1,4 @@
-# Makefile for MHM Project Docker Commands
+# Makefile for HFM Project Docker Commands
 
 .PHONY: help dev prod up down logs build clean restart test
 
@@ -12,7 +12,7 @@ NC := \033[0m # No Color
 .DEFAULT_GOAL := help
 
 help: ## Show this help message
-	@echo "$(GREEN)MHM Project - Docker Commands$(NC)"
+	@echo "$(GREEN)HFM Project - Docker Commands$(NC)"
 	@echo ""
 	@echo "$(YELLOW)Usage:$(NC)"
 	@echo "  make [command]"
@@ -47,7 +47,7 @@ prod: ## Start production environment
 	docker compose up -d
 	@echo "$(GREEN)Production environment started!$(NC)"
 	@echo "Frontend: https://madagasikarahoanymalagasyv2.vercel.app/"
-	@echo "Backend: https://backmhm.vercel.app/"
+	@echo "Backend: https://backHFM.vercel.app/"
 
 prod-build: ## Build and start production environment
 	@echo "$(YELLOW)Building and starting production environment...$(NC)"
@@ -128,7 +128,7 @@ lint-frontend: ## Run frontend linter
 db-backup: ## Backup MongoDB database
 	@echo "$(YELLOW)Backing up MongoDB...$(NC)"
 	docker compose exec mongodb mongodump --out /backup
-	docker cp mhm-mongodb:/backup ./mongodb-backup-$$(date +%Y%m%d_%H%M%S)
+	docker cp HFM-mongodb:/backup ./mongodb-backup-$$(date +%Y%m%d_%H%M%S)
 	@echo "$(GREEN)Backup completed!$(NC)"
 
 db-restore: ## Restore MongoDB database (requires BACKUP_DIR variable)
@@ -138,7 +138,7 @@ db-restore: ## Restore MongoDB database (requires BACKUP_DIR variable)
 		exit 1; \
 	fi
 	@echo "$(YELLOW)Restoring MongoDB from $(BACKUP_DIR)...$(NC)"
-	docker cp $(BACKUP_DIR) mhm-mongodb:/backup
+	docker cp $(BACKUP_DIR) HFM-mongodb:/backup
 	docker compose exec mongodb mongorestore /backup
 	@echo "$(GREEN)Restore completed!$(NC)"
 

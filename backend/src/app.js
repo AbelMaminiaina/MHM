@@ -94,7 +94,7 @@ app.use(
   swaggerUi.serve,
   swaggerUi.setup(swaggerSpec, {
     customCss: '.swagger-ui .topbar { display: none }',
-    customSiteTitle: 'MHM API Documentation',
+    customSiteTitle: 'HFM API Documentation',
   })
 );
 
@@ -118,7 +118,7 @@ app.use(
  *                   example: true
  *                 message:
  *                   type: string
- *                   example: MHM Backend API is running
+ *                   example: HFM Backend API is running
  *                 timestamp:
  *                   type: string
  *                   format: date-time
@@ -127,7 +127,7 @@ app.use(
 app.get('/health', (req, res) => {
   res.status(200).json({
     success: true,
-    message: 'MHM Backend API is running',
+    message: 'HFM Backend API is running',
     timestamp: new Date().toISOString(),
   });
 });
@@ -142,7 +142,7 @@ app.use('/api/qrcodes', qrCodeRoutes);
 app.get('/', (req, res) => {
   res.json({
     success: true,
-    message: 'Welcome to MHM Backend API',
+    message: 'Welcome to HFM Backend API',
     version: '1.0.0',
     documentation: '/api-docs',
     endpoints: {

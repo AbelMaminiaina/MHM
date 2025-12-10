@@ -29,7 +29,7 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=a.maminiaina@gmail.com
 SMTP_PASS=kktc enrc crvn ykqt
-EMAIL_FROM=noreply@mhm.mg
+EMAIL_FROM=noreply@HFM.mg
 EMAIL_FROM_NAME=Madagasikara Hoan'ny Malagasy
 
 # QR Code
@@ -58,7 +58,7 @@ VITE_API_URL=https://backmhm.vercel.app/api
 
 **⚠️ IMPORTANT :**
 - **NE PAS** mettre de slash final : ~~`https://backmhm.vercel.app/api/`~~ ❌
-- **CORRECT :** `https://backmhm.vercel.app/api` ✅
+- **CORRECT :** `https://backHFM.vercel.app/api` ✅
 
 ---
 
@@ -166,14 +166,14 @@ fetch('https://backmhm.vercel.app/health')
 ```json
 {
   "success": true,
-  "message": "MHM Backend API is running"
+  "message": "HFM Backend API is running"
 }
 ```
 
 ### 2. Test Login
 
 1. Allez sur https://www.madagasikarahoanymalagasy.org/login
-2. Connectez-vous avec `admin@mhm.mg` / `Admin123!`
+2. Connectez-vous avec `admin@HFM.mg` / `Admin123!`
 3. Vérifiez dans **Network** (F12) :
    - URL : `https://backmhm.vercel.app/api/users/login` (1 seul slash)
    - Status : `200 OK`

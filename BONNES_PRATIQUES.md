@@ -1,6 +1,6 @@
-# Bonnes Pratiques à Implémenter - Projet MHM
+# Bonnes Pratiques à Implémenter - Projet HFM
 
-Ce document liste les bonnes pratiques recommandées pour améliorer la qualité, la sécurité, la maintenabilité et la performance du projet MHM.
+Ce document liste les bonnes pratiques recommandées pour améliorer la qualité, la sécurité, la maintenabilité et la performance du projet HFM.
 
 ## 📋 Table des matières
 
@@ -79,7 +79,7 @@ describe('User Controller', () => {
     test('should register a new user', async () => {
       const userData = {
         name: 'Test User',
-        email: 'test@mhm.mg',
+        email: 'test@HFM.mg',
         password: 'Password123'
       };
 
@@ -98,7 +98,7 @@ describe('User Controller', () => {
         .post('/api/users/register')
         .send({
           name: 'Test User 2',
-          email: 'test@mhm.mg',
+          email: 'test@HFM.mg',
           password: 'Password123'
         })
         .expect(400);
@@ -291,27 +291,27 @@ services:
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: mhm_admin
+      MONGO_INITDB_ROOT_USERNAME: HFM_admin
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:-changeme}
       MONGO_INITDB_DATABASE: mhm_db
     volumes:
       - mongodb_data:/data/db
       - ./backend/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
-      - mhm-network
+      - HFM-network
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: mhm-backend
+    container_name: HFM-backend
     restart: unless-stopped
     ports:
       - "5000:5000"
     environment:
       NODE_ENV: ${NODE_ENV:-development}
       PORT: 5000
-      MONGO_URI: mongodb://mhm_admin:${MONGO_ROOT_PASSWORD:-changeme}@mongodb:27017/mhm_db?authSource=admin
+      MONGO_URI: mongodb://mhm_admin:${MONGO_ROOT_PASSWORD:-changeme}@mongodb:27017/HFM_db?authSource=admin
       JWT_SECRET: ${JWT_SECRET}
       JWT_EXPIRE: ${JWT_EXPIRE:-30d}
       FRONTEND_URL: http://localhost:5173
@@ -327,13 +327,13 @@ services:
       - ./backend/uploads:/usr/src/app/uploads
       - ./backend/public/qrcodes:/usr/src/app/public/qrcodes
     networks:
-      - mhm-network
+      - HFM-network
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: mhm-frontend
+    container_name: HFM-frontend
     restart: unless-stopped
     ports:
       - "5173:5173"
@@ -342,14 +342,14 @@ services:
     depends_on:
       - backend
     networks:
-      - mhm-network
+      - HFM-network
 
 volumes:
   mongodb_data:
     driver: local
 
 networks:
-  mhm-network:
+  HFM-network:
     driver: bridge
 ```
 
@@ -372,13 +372,13 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'MHM API Documentation',
+      title: 'HFM API Documentation',
       version: '1.0.0',
-      description: 'API REST pour Madagasikara Hoan\'ny Malagasy (MHM)',
+      description: 'API REST pour Madagasikara Hoan\'ny Malagasy (HFM)',
       contact: {
-        name: 'MHM Team',
+        name: 'HFM Team',
         email: 'contact@madagasikarahoanymalagasy.org',
-        url: 'https://mhm.mg'
+        url: 'https://HFM.mg'
       },
       license: {
         name: 'MIT',
@@ -391,7 +391,7 @@ const options = {
         description: 'Development server'
       },
       {
-        url: 'https://api.mhm.mg',
+        url: 'https://api.HFM.mg',
         description: 'Production server'
       }
     ],
@@ -562,7 +562,7 @@ npm install -g pm2
 ```javascript
 module.exports = {
   apps: [{
-    name: 'mhm-backend',
+    name: 'HFM-backend',
     script: 'src/server.js',
     instances: 'max',
     exec_mode: 'cluster',
@@ -588,7 +588,7 @@ module.exports = {
 pm2 start ecosystem.config.js --env production
 pm2 monit
 pm2 logs
-pm2 restart mhm-backend
+pm2 restart HFM-backend
 ```
 
 ---
@@ -1042,14 +1042,14 @@ const seedUsers = async () => {
 
   const users = [
     {
-      name: 'Admin MHM',
-      email: 'admin@mhm.mg',
+      name: 'Admin HFM',
+      email: 'admin@HFM.mg',
       password: 'Admin123',
       role: 'admin'
     },
     {
       name: 'Test User',
-      email: 'user@mhm.mg',
+      email: 'user@HFM.mg',
       password: 'User123',
       role: 'user'
     }
@@ -1216,5 +1216,5 @@ export const errorHandler = (err, req, res, next) => {
 ---
 
 **Document créé le:** 4 Novembre 2024
-**Projet:** Madagasikara Hoan'ny Malagasy (MHM)
+**Projet:** Madagasikara Hoan'ny Malagasy (HFM)
 **Version:** 1.0.0

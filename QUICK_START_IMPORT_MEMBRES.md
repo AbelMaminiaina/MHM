@@ -17,7 +17,7 @@ Ce guide vous permet d'importer les 118 membres et d'envoyer automatiquement les
 2. **Générer un mot de passe d'application :**
    - Allez sur : https://myaccount.google.com/apppasswords
    - Sélectionnez "Autre (nom personnalisé)"
-   - Tapez : `MHM Application`
+   - Tapez : `HFM Application`
    - Cliquez sur "Générer"
    - **Copiez le mot de passe** (format : xxxx xxxx xxxx xxxx)
 
@@ -60,7 +60,7 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=nom.prenom@ethereal.email
 SMTP_PASS=le-mot-de-passe-fourni
-EMAIL_FROM=noreply@mhm.mg
+EMAIL_FROM=noreply@HFM.mg
 EMAIL_FROM_NAME=Madagasikara Hoan'ny Malagasy
 ```
 
@@ -80,13 +80,13 @@ node scripts/create-admin.js
 ✅ COMPTE ADMINISTRATEUR CRÉÉ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📧 Email      : admin@mhm.mg
+📧 Email      : admin@HFM.mg
 🔐 Mot de passe : Admin123!
 👤 Rôle       : admin
 ```
 
 **Identifiants de connexion :**
-- **Email :** `admin@mhm.mg`
+- **Email :** `admin@HFM.mg`
 - **Mot de passe :** `Admin123!`
 
 ---
@@ -126,7 +126,7 @@ npm run dev
 
 1. **Se connecter :**
    - Allez sur : http://localhost:5173/login
-   - Email : `admin@mhm.mg`
+   - Email : `admin@HFM.mg`
    - Mot de passe : `Admin123!`
    - Cliquez sur "Se connecter"
 
@@ -168,7 +168,7 @@ Import terminé !
 1. ✅ **118 membres créés** dans MongoDB
 2. ✅ **118 QR Codes générés** avec signature sécurisée
 3. ✅ **42 emails envoyés** aux membres avec emails réels
-4. ⚠️ **76 emails en attente** (emails temporaires `@mhm.mg`)
+4. ⚠️ **76 emails en attente** (emails temporaires `@HFM.mg`)
 
 ---
 
@@ -189,9 +189,9 @@ nakarombamichaelgorbatchev@gmail.com
 
 Ces membres ont des emails temporaires et n'ont PAS reçu d'email :
 ```
-membre0005@mhm.mg
-membre0012@mhm.mg
-membre0013@mhm.mg
+membre0005@HFM.mg
+membre0012@HFM.mg
+membre0013@HFM.mg
 ...
 ```
 
@@ -246,7 +246,7 @@ db.members.find().limit(5).pretty()
 
 **Solution :**
 1. Vérifiez que l'admin a été créé : `node scripts/create-admin.js`
-2. Email : `admin@mhm.mg`
+2. Email : `admin@HFM.mg`
 3. Mot de passe : `Admin123!` (sensible à la casse)
 
 ---
@@ -294,18 +294,18 @@ db.members.find().limit(5).pretty()
 
 **Option A - Manuellement via l'interface :**
 1. Allez sur http://localhost:5173/admin/members
-2. Cliquez sur un membre avec `@mhm.mg`
+2. Cliquez sur un membre avec `@HFM.mg`
 3. Modifiez l'email
 4. Cliquez sur "Régénérer QR Code"
 
 **Option B - En masse via CSV :**
 1. Ouvrez le CSV dans Excel
-2. Remplacez les emails `@mhm.mg` par les vrais
+2. Remplacez les emails `@HFM.mg` par les vrais
 3. Réimportez (les membres existants seront mis à jour)
 
 ### 2. Changer le Mot de Passe Admin
 
-1. Connectez-vous avec `admin@mhm.mg` / `Admin123!`
+1. Connectez-vous avec `admin@HFM.mg` / `Admin123!`
 2. Allez dans **Profil**
 3. Changez le mot de passe
 

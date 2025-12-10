@@ -36,8 +36,8 @@ RAFALISOA,Samson Alexandre,210011038945.00
 **Exemple :**
 ```csv
 memberId,name,email,status,validity,cin,lastName,firstName
-M-2022-0001,"Herilaza RANDRIANARISON",membre0001@mhm.mg,active,2022,103171006562.00,"RANDRIANARISON","Herilaza"
-M-2022-0002,"Jaurice Nelda RAZANAMINO",membre0002@mhm.mg,active,2022,520012014238.00,"RAZANAMINO","Jaurice Nelda"
+M-2022-0001,"Herilaza RANDRIANARISON",membre0001@HFM.mg,active,2022,103171006562.00,"RANDRIANARISON","Herilaza"
+M-2022-0002,"Jaurice Nelda RAZANAMINO",membre0002@HFM.mg,active,2022,520012014238.00,"RAZANAMINO","Jaurice Nelda"
 ```
 
 ---
@@ -77,7 +77,7 @@ memberId, name, email, status, validity, cin, lastName, firstName
 - `Jaurice Nelda RAZANAMINO`
 
 ### 4. Génération d'Emails Temporaires
-**Format :** `membre{XXXX}@mhm.mg`
+**Format :** `membre{XXXX}@HFM.mg`
 
 **⚠️ ATTENTION** : Ces emails sont **fictifs** et doivent être remplacés !
 
@@ -94,10 +94,10 @@ memberId, name, email, status, validity, cin, lastName, firstName
 
 **Problème :**
 ```csv
-M-2022-0001,"Herilaza RANDRIANARISON",membre0001@mhm.mg,active,2022,...
+M-2022-0001,"Herilaza RANDRIANARISON",membre0001@HFM.mg,active,2022,...
 ```
 
-Les emails `membre0001@mhm.mg` sont **fictifs**.
+Les emails `membre0001@HFM.mg` sont **fictifs**.
 
 **Solution :**
 1. Ouvrir le fichier CSV dans Excel/LibreOffice
@@ -107,7 +107,7 @@ Les emails `membre0001@mhm.mg` sont **fictifs**.
 **Exemple de remplacement :**
 ```csv
 # AVANT
-M-2022-0001,"Herilaza RANDRIANARISON",membre0001@mhm.mg,active,2022,...
+M-2022-0001,"Herilaza RANDRIANARISON",membre0001@HFM.mg,active,2022,...
 
 # APRÈS
 M-2022-0001,"Herilaza RANDRIANARISON",herilaza.randrianarison@gmail.com,active,2022,...
@@ -255,7 +255,7 @@ head -n 10 backend/templates/ekipa-filoha-tantsoroka-import-qrcode.csv
 wc -l backend/templates/ekipa-filoha-tantsoroka-import-qrcode.csv
 
 # Vérifier les emails fictifs restants
-grep "membre.*@mhm.mg" backend/templates/ekipa-filoha-tantsoroka-import-qrcode.csv | wc -l
+grep "membre.*@HFM.mg" backend/templates/ekipa-filoha-tantsoroka-import-qrcode.csv | wc -l
 ```
 
 ---
@@ -303,8 +303,8 @@ node scripts/prepare-qrcode-import.js
 **Fichier original :** `ekipa-filoha-tantsoroka-import-qrcode.csv`
 ```csv
 memberId,name,email,status,validity,cin,lastName,firstName
-M-2022-0001,"Herilaza RANDRIANARISON",membre0001@mhm.mg,active,2022,103171006562.00,"RANDRIANARISON","Herilaza"
-M-2022-0002,"Jaurice Nelda RAZANAMINO",membre0002@mhm.mg,active,2022,520012014238.00,"RAZANAMINO","Jaurice Nelda"
+M-2022-0001,"Herilaza RANDRIANARISON",membre0001@HFM.mg,active,2022,103171006562.00,"RANDRIANARISON","Herilaza"
+M-2022-0002,"Jaurice Nelda RAZANAMINO",membre0002@HFM.mg,active,2022,520012014238.00,"RAZANAMINO","Jaurice Nelda"
 ```
 
 ### Après Modifications
@@ -343,7 +343,7 @@ M-2025-0002,"Jaurice Nelda RAZANAMINO",jaurice.razanamino@yahoo.fr,active,2025,5
 **Solution :**
 ```csv
 # ❌ MAUVAIS
-membre0001@mhm.mg
+membre0001@HFM.mg
 
 # ✅ BON
 herilaza.randrianarison@gmail.com

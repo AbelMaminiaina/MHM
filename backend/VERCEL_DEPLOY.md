@@ -68,7 +68,7 @@ Pour que le backend fonctionne sur Vercel, vous devez configurer les variables d
 
 12. **EMAIL_FROM**
     ```
-    noreply@mhm.mg
+    noreply@HFM.mg
     ```
 
 13. **EMAIL_FROM_NAME**

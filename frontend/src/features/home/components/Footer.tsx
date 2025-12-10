@@ -11,8 +11,8 @@ export const Footer = () => {
           <div className="md:col-span-1 text-center md:text-left flex flex-col items-center md:items-start">
             <div className="mb-6">
               <img
-                src="/mhm.svg"
-                alt="MHM Logo"
+                src="/hfm.jpg"
+                alt="HFM Logo"
                 className="w-16 h-16 mb-3 mx-auto md:mx-0"
               />
               <div className="text-sm font-bold leading-tight">
@@ -23,7 +23,7 @@ export const Footer = () => {
 
             {/* Madagascar Badge */}
             <div className="bg-white rounded p-3 mb-6 inline-block">
-              <div className="text-red-700 font-black text-xs">MHM.MG</div>
+              <div className="text-red-700 font-black text-xs">HFM.MG</div>
             </div>
 
             {/* Social Media Icons */}
@@ -97,10 +97,10 @@ export const Footer = () => {
           <div className="text-center md:text-left">
             <h3 className="font-bold text-sm uppercase mb-4">MILITER</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/adherer" className="hover:text-red-400 transition-colors">J'adhère au MHM</Link></li>
-              <li><a href="#" className="hover:text-red-400 transition-colors">Je donne au MHM</a></li>
-              <li><a href="#" className="hover:text-red-400 transition-colors">Je m'engage au MHM</a></li>
-              <li><a href="#" className="hover:text-red-400 transition-colors">Contacter le MHM</a></li>
+              <li><Link to="/adherer" className="hover:text-red-400 transition-colors">J'adhère au HFM</Link></li>
+              <li><a href="#" className="hover:text-red-400 transition-colors">Je donne au HFM</a></li>
+              <li><a href="#" className="hover:text-red-400 transition-colors">Je m'engage au HFM</a></li>
+              <li><a href="#" className="hover:text-red-400 transition-colors">Contacter le HFM</a></li>
             </ul>
           </div>
         </div>
@@ -110,7 +110,7 @@ export const Footer = () => {
 
         {/* Bottom Section */}
         <div className="text-center text-sm">
-          <div className="font-bold mb-3">MADAGASIKARA HOAN'NY MALAGASY</div>
+          <div className="font-bold mb-3">HO AN'NY FAHAFAHAN'I MADAGASIKARA</div>
           <div className="mb-4 text-gray-400">
             Lot IVA 45 Ambohidahy - Antananarivo 101 - +261 34 00 000 00
           </div>

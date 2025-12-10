@@ -1,8 +1,8 @@
-# Guide d'utilisation de Swagger - API MHM
+# Guide d'utilisation de Swagger - API HFM
 
 ## Vue d'ensemble
 
-La documentation Swagger/OpenAPI a été implémentée avec succès pour l'API MHM. Elle fournit une interface interactive pour explorer et tester tous les endpoints de l'API.
+La documentation Swagger/OpenAPI a été implémentée avec succès pour l'API HFM. Elle fournit une interface interactive pour explorer et tester tous les endpoints de l'API.
 
 ## Accès à la documentation
 
@@ -22,7 +22,7 @@ http://localhost:5000/api-docs
 ### En production
 
 ```
-https://api.mhm.mg/api-docs
+https://api.HFM.mg/api-docs
 ```
 
 ## Fonctionnalités implémentées
@@ -92,7 +92,7 @@ La documentation inclut la configuration de l'authentification Bearer Token (JWT
 ```json
 {
   "name": "Jean Dupont",
-  "email": "jean.dupont@mhm.mg",
+  "email": "jean.dupont@HFM.mg",
   "password": "Password123"
 }
 ```
@@ -175,7 +175,7 @@ Les annotations Swagger sont dans:
 ```javascript
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
   customCss: '.swagger-ui .topbar { display: none }',
-  customSiteTitle: 'MHM API Documentation',
+  customSiteTitle: 'HFM API Documentation',
   customfavIcon: '/assets/favicon.ico'
 }));
 ```

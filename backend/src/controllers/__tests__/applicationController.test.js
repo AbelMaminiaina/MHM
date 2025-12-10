@@ -11,7 +11,7 @@ describe('Application Controller', () => {
 
   beforeAll(async () => {
     // Connect to test database
-    process.env.MONGO_URI = process.env.MONGO_URI_TEST || 'mongodb://localhost:27017/mhm_test';
+    process.env.MONGO_URI = process.env.MONGO_URI_TEST || 'mongodb://localhost:27017/HFM_test';
     await connectDB();
 
     // Create test user and get auth token

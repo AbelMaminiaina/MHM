@@ -26,7 +26,7 @@ curl http://localhost:5000/health
 ```json
 {
   "success": true,
-  "message": "MHM Backend API is running",
+  "message": "HFM Backend API is running",
   "timestamp": "2025-11-24T13:38:07.886Z"
 }
 ```
@@ -40,13 +40,13 @@ curl http://localhost:5000/health
 **Fichier :** `backend/.env`
 
 ```env
-MONGO_URI=mongodb://localhost:27017/mhm_db
+MONGO_URI=mongodb://localhost:27017/HFM_db
 ```
 
 **Détails :**
 - **Host :** localhost
 - **Port :** 27017 (port par défaut)
-- **Base de données :** mhm_db
+- **Base de données :** HFM_db
 
 **Statut :** ✅ **CORRECT**
 
@@ -72,7 +72,7 @@ Status: LISTENING on 0.0.0.0:5000
 | **MongoDB Service** | ✅ EN MARCHE | Service Windows actif |
 | **Backend API** | ✅ FONCTIONNEL | Répond sur port 5000 |
 | **Configuration** | ✅ CORRECTE | Connecté à localhost:27017 |
-| **Base de données** | ✅ ACCESSIBLE | Base `mhm_db` disponible |
+| **Base de données** | ✅ ACCESSIBLE | Base `HFM_db` disponible |
 
 ---
 
@@ -106,7 +106,7 @@ Vous pouvez maintenant :
 
 3. **Se connecter**
    - URL : http://localhost:5173/login
-   - Email : admin@mhm.mg
+   - Email : admin@HFM.mg
    - Mot de passe : Admin123!
 
 4. **Importer les membres**
@@ -164,7 +164,7 @@ Vous devriez voir :
 
 2. **Vérifier la configuration**
    - Ouvrir `backend/.env`
-   - Vérifier que `MONGO_URI=mongodb://localhost:27017/mhm_db`
+   - Vérifier que `MONGO_URI=mongodb://localhost:27017/HFM_db`
 
 3. **Redémarrer MongoDB**
    ```bash

@@ -18,7 +18,7 @@ Pour que le système puisse envoyer les QR Codes par email, vous devez configure
 
 1. Allez sur https://myaccount.google.com/apppasswords
 2. Dans "Sélectionner l'application", choisissez **"Autre (nom personnalisé)"**
-3. Tapez : `MHM Application`
+3. Tapez : `HFM Application`
 4. Cliquez sur **"Générer"**
 5. **Copiez le mot de passe** (format : xxxx xxxx xxxx xxxx)
 
@@ -74,7 +74,7 @@ User: votre-email@gmail.com
 
 Message ID: <xxxxx@gmail.com>
 To: votre-email@gmail.com
-Subject: Test Email - MHM Application
+Subject: Test Email - HFM Application
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -103,7 +103,7 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=bernadette.ruecker@ethereal.email
 SMTP_PASS=jGmAx7K9HvF2kP3qR8
-EMAIL_FROM=noreply@mhm.mg
+EMAIL_FROM=noreply@HFM.mg
 EMAIL_FROM_NAME=Madagasikara Hoan'ny Malagasy
 ```
 
@@ -132,7 +132,7 @@ Vous recevrez un lien pour les visualiser dans les logs du serveur.
 
 1. Allez dans **Settings** → **API Keys**
 2. Cliquez sur **"Create API Key"**
-3. Donnez un nom : `MHM Application`
+3. Donnez un nom : `HFM Application`
 4. Sélectionnez **"Full Access"**
 5. Cliquez sur **"Create & View"**
 6. **Copiez la clé API** (format : SG.xxxxxxxxxx)
@@ -185,8 +185,8 @@ curl -X POST http://localhost:5000/api/users/register \
   -H "Content-Type: application/json" \
   -d '{
     "firstName": "Admin",
-    "lastName": "MHM",
-    "email": "admin@mhm.mg",
+    "lastName": "HFM",
+    "email": "admin@HFM.mg",
     "password": "Admin123!",
     "role": "admin"
   }'
@@ -201,8 +201,8 @@ curl -X POST http://localhost:5000/api/users/register \
     "user": {
       "_id": "...",
       "firstName": "Admin",
-      "lastName": "MHM",
-      "email": "admin@mhm.mg",
+      "lastName": "HFM",
+      "email": "admin@HFM.mg",
       "role": "admin"
     },
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
@@ -214,7 +214,7 @@ curl -X POST http://localhost:5000/api/users/register \
 
 **Via l'interface web :**
 1. Allez sur http://localhost:5173/login
-2. Email : `admin@mhm.mg`
+2. Email : `admin@HFM.mg`
 3. Mot de passe : `Admin123!`
 4. Cliquez sur **"Se connecter"**
 
@@ -245,8 +245,8 @@ use mhm_db
 // Le mot de passe ici est "Admin123!" hashé avec bcrypt (10 rounds)
 db.users.insertOne({
   firstName: "Admin",
-  lastName: "MHM",
-  email: "admin@mhm.mg",
+  lastName: "HFM",
+  email: "admin@HFM.mg",
   password: "$2a$10$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW", // Admin123!
   role: "admin",
   createdAt: new Date(),
@@ -291,7 +291,7 @@ async function createAdmin() {
     await mongoose.connect(process.env.MONGO_URI);
     console.log('✅ Connected to MongoDB');
 
-    const email = 'admin@mhm.mg';
+    const email = 'admin@HFM.mg';
     const password = 'Admin123!';
 
     // Vérifier si l'admin existe déjà
@@ -308,7 +308,7 @@ async function createAdmin() {
     // Créer l'admin
     const admin = await User.create({
       firstName: 'Admin',
-      lastName: 'MHM',
+      lastName: 'HFM',
       email: email,
       password: hashedPassword,
       role: 'admin',
@@ -347,7 +347,7 @@ node scripts/create-admin.js
 
 | Champ | Valeur |
 |-------|--------|
-| **Email** | `admin@mhm.mg` |
+| **Email** | `admin@HFM.mg` |
 | **Mot de passe** | `Admin123!` |
 | **Rôle** | `admin` |
 
@@ -379,7 +379,7 @@ curl http://localhost:5000/health
 
 **Se connecter via l'interface :**
 1. http://localhost:5173/login
-2. Email : `admin@mhm.mg`
+2. Email : `admin@HFM.mg`
 3. Mot de passe : `Admin123!`
 
 **Résultat attendu :**
@@ -447,7 +447,7 @@ Une fois SMTP configuré et l'admin créé :
 
 **Solution :**
 1. Vérifiez que l'admin a été créé (Méthode 1, 2 ou 3)
-2. Vérifiez que l'email est `admin@mhm.mg`
+2. Vérifiez que l'email est `admin@HFM.mg`
 3. Vérifiez que le mot de passe est `Admin123!`
 4. Re-créez l'admin si nécessaire
 
@@ -468,12 +468,12 @@ Une fois SMTP configuré et l'admin créé :
 
 ```javascript
 // Dans mongosh
-use mhm_db
+use HFM_db
 
 // Générer un nouveau hash avec bcrypt (utilisez un script Node.js)
 // Puis mettre à jour :
 db.users.updateOne(
-  { email: "admin@mhm.mg" },
+  { email: "admin@HFM.mg" },
   { $set: { password: "NOUVEAU_HASH_BCRYPT" } }
 )
 ```

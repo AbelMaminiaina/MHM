@@ -6,7 +6,7 @@ export const FederationsSection = () => {
         <div>
           <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-5 uppercase">
             LES FÉDÉRATIONS DU<br />
-            Madagasikara Hoan'ny Malagasy
+            ho an'ny fahafahan'i Madagasikara
           </h2>
           <p className="text-base font-bold text-gray-900 leading-relaxed mb-10">
             RETROUVEZ VOTRE FÉDÉRATION ET SES COORDONNÉES<br />

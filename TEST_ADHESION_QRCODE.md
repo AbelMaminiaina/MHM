@@ -97,7 +97,7 @@ Pour que l'email soit envoyé, vous **DEVEZ** configurer le fichier `backend/.en
    - Compte Google → Sécurité
    - "Mots de passe des applications"
    - Sélectionner "Autre (nom personnalisé)"
-   - Nommer "MHM Backend"
+   - Nommer "HFM Backend"
    - Copier le mot de passe généré (16 caractères)
 
 3. **Configurer `backend/.env`**
@@ -224,12 +224,12 @@ Content-Type: application/json
 **Contenu de l'email :**
 ```
 🎉 Félicitations Jean !
-Votre adhésion à MHM a été approuvée
+Votre adhésion à HFM a été approuvée
 
 Cher(e) Jean Dupont,
 
 Nous sommes ravis de vous informer que votre demande d'adhésion
-à Madagasikara Hoan'ny Malagasy (MHM) a été approuvée avec succès !
+à Madagasikara Hoan'ny Malagasy (HFM) a été approuvée avec succès !
 
 📋 Vos informations d'adhérent
 • Numéro de membre : M-2025-0142
@@ -244,7 +244,7 @@ Code unique : a3f5b2c8d9e1f4a7...
 
 📱 Comment utiliser votre QR code ?
 • Sauvegardez ce QR code sur votre téléphone
-• Présentez-le lors de votre arrivée aux événements MHM
+• Présentez-le lors de votre arrivée aux événements HFM
 • Il peut être scanné directement depuis votre écran
 • Gardez une copie imprimée en cas de besoin
 ```
@@ -434,7 +434,7 @@ info: Preview URL: https://ethereal.email/message/abc123...
    ```bash
    mongosh
    show dbs
-   use mhm_db
+   use HFM_db
    db.members.countDocuments()
    ```
 

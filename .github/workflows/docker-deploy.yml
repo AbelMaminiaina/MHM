@@ -78,7 +78,7 @@ jobs:
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'staging'
     environment:
       name: staging
-      url: https://staging.mhm.mg
+      url: https://staging.HFM.mg
 
     steps:
       - name: Checkout code
@@ -92,7 +92,7 @@ jobs:
           key: ${{ secrets.STAGING_SSH_KEY }}
           port: ${{ secrets.STAGING_PORT || 22 }}
           script: |
-            cd /opt/mhm
+            cd /opt/HFM
             docker compose -f docker-compose.yml pull
             docker compose -f docker-compose.yml up -d
             docker system prune -af --volumes
@@ -100,7 +100,7 @@ jobs:
       - name: Verify deployment
         run: |
           sleep 30
-          curl -f https://staging.mhm.mg/health || exit 1
+          curl -f https://staging.HFM.mg/health || exit 1
 
   deploy-production:
     name: Deploy to Production
@@ -109,7 +109,7 @@ jobs:
     if: github.event.inputs.environment == 'production'
     environment:
       name: production
-      url: https://mhm.mg
+      url: https://HFM.mg
 
     steps:
       - name: Checkout code
@@ -123,7 +123,7 @@ jobs:
           key: ${{ secrets.PROD_SSH_KEY }}
           port: ${{ secrets.PROD_PORT || 22 }}
           script: |
-            cd /opt/mhm
+            cd /opt/HFM
             docker compose -f docker-compose.yml pull
             docker compose -f docker-compose.yml up -d --no-deps --build
             docker system prune -af --volumes
@@ -131,7 +131,7 @@ jobs:
       - name: Verify deployment
         run: |
           sleep 30
-          curl -f https://mhm.mg/health || exit 1
+          curl -f https://HFM.mg/health || exit 1
 
       - name: Rollback on failure
         if: failure()
@@ -142,7 +142,7 @@ jobs:
           key: ${{ secrets.PROD_SSH_KEY }}
           port: ${{ secrets.PROD_PORT || 22 }}
           script: |
-            cd /opt/mhm
+            cd /opt/HFM
             docker compose -f docker-compose.yml down
             docker compose -f docker-compose.yml up -d
 

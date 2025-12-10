@@ -86,7 +86,7 @@ sed -i 's/2022/2025/g' ekipa-filoha-tantsoroka-feuil1-import-qrcode.csv
 
 **Option C - Compléter les emails manquants :**
 1. Ouvrir le CSV dans Excel
-2. Rechercher `@mhm.mg` pour trouver les emails temporaires
+2. Rechercher `@HFM.mg` pour trouver les emails temporaires
 3. Remplacer par les vrais emails
 4. Sauvegarder
 
@@ -233,7 +233,7 @@ Si certains emails ont échoué :
 
 ### Membres avec Emails Temporaires
 
-Les 76 membres avec `@mhm.mg` ne recevront PAS d'email automatiquement.
+Les 76 membres avec `@HFM.mg` ne recevront PAS d'email automatiquement.
 
 **Pour les envoyer plus tard :**
 

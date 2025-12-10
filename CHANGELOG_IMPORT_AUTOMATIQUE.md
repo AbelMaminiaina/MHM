@@ -352,7 +352,7 @@ http://localhost:5173/admin/qrcodes
 
 ### 2. Emails Temporaires
 
-Les membres avec `@mhm.mg` sont créés mais **ne reçoivent PAS d'email**.
+Les membres avec `@HFM.mg` sont créés mais **ne reçoivent PAS d'email**.
 
 **Solution :**
 1. Compléter les emails dans la base de données

@@ -1,7 +1,7 @@
 {
-  "name": "mhm-backend",
+  "name": "HFM-backend",
   "version": "1.0.0",
-  "description": "Backend API REST for MHM project",
+  "description": "Backend API REST for HFM project",
   "main": "src/server.js",
   "type": "module",
   "scripts": {
@@ -28,7 +28,7 @@
     "jwt",
     "authentication"
   ],
-  "author": "MHM Team",
+  "author": "HFM Team",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",

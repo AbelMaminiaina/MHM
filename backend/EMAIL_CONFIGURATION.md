@@ -1,8 +1,8 @@
-# Configuration des Emails - MHM Backend
+# Configuration des Emails - HFM Backend
 
 ## Vue d'ensemble
 
-**Madagasikara Hoan'ny Malagasy (MHM)** - Madagascar pour les Malgaches
+**Madagasikara Hoan'ny Malagasy (HFM)** - Madagascar pour les Malgaches
 
 Le système d'envoi d'emails est utilisé pour notifier les membres lors de l'approbation de leur adhésion. Un email contenant leur numéro de membre et leur QR code personnel est automatiquement envoyé.
 
@@ -19,7 +19,7 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=your-username
 SMTP_PASS=your-password
-EMAIL_FROM=noreply@mhm.mg
+EMAIL_FROM=noreply@HFM.mg
 EMAIL_FROM_NAME=Madagasikara Hoan'ny Malagasy
 ```
 
@@ -39,7 +39,7 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=bernadette.ruecker@ethereal.email
 SMTP_PASS=jGmAx7K9HvF2kP3qR8
-EMAIL_FROM=noreply@mhm.mg
+EMAIL_FROM=noreply@HFM.mg
 EMAIL_FROM_NAME=Madagasikara Hoan'ny Malagasy
 ```
 
@@ -97,9 +97,9 @@ EMAIL_FROM_NAME=Madagasikara Hoan'ny Malagasy
 
 Quand un administrateur approuve une demande d'adhésion via l'endpoint `PUT /api/applications/:id/approve`, le système :
 
-**Organisation : Madagasikara Hoan'ny Malagasy (MHM) - Madagascar pour les Malgaches**
+**Organisation : Madagasikara Hoan'ny Malagasy (HFM) - Madagascar pour les Malgaches**
 
-1. ✅ Génère un numéro de membre unique (format: `MHM-YYYY-XXXXX`)
+1. ✅ Génère un numéro de membre unique (format: `HFM-YYYY-XXXXX`)
 2. ✅ Crée un QR code personnel pour le membre
 3. ✅ Met à jour le statut du membre à "active"
 4. ✅ Envoie un email de confirmation contenant :
@@ -156,7 +156,7 @@ Les logs d'email apparaissent dans la console :
 Email sent successfully: {
   messageId: '<unique-id@ethereal.email>',
   to: 'membre@example.com',
-  subject: 'Bienvenue à MHM - Votre adhésion est approuvée !'
+  subject: 'Bienvenue à HFM - Votre adhésion est approuvée !'
 }
 Preview URL: https://ethereal.email/message/xxxxx
 Approval email sent to membre@example.com

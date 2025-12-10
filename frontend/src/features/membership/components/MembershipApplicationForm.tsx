@@ -488,7 +488,7 @@ export const MembershipApplicationForm = () => {
               Demande d'Adhésion
             </h1>
             <p className="text-gray-600">
-              Rejoignez l'association Madagasikara Hoan'ny Malagasy
+              Rejoignez l'association ho an'ny fahafahan'i Madagasikara
             </p>
           </div>
 

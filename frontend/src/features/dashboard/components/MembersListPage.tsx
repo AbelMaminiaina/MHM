@@ -54,7 +54,7 @@ export const MembersListPage = () => {
             Nos Membres Actifs
           </h1>
           <p className="text-gray-600">
-            Découvrez les membres de l'association Madagasikara Hoan'ny Malagasy
+            Découvrez les membres de l'association ho an'ny fahafahan'i Madagasikara
           </p>
         </div>
 

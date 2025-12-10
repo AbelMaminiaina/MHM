@@ -1,4 +1,4 @@
-# 🔒 Audit de Sécurité Backend - MHM
+# 🔒 Audit de Sécurité Backend - HFM
 
 ## Date : 2025-11-25
 
@@ -300,7 +300,7 @@ SMTP_PASS=kktc enrc crvn ykqt  # App password Gmail
 
 **Problème :**
 ```env
-MONGO_URI=mongodb+srv://mhm_db_user:20240522Iaina%40@cluster0.vrg1xjv.mongodb.net/mhm_db
+MONGO_URI=mongodb+srv://HFM_db_user:20240522Iaina%40@cluster0.vrg1xjv.mongodb.net/HFM_db
                                   ^^^^^^^^^^^^^^^^ Mot de passe visible
 ```
 
@@ -524,7 +524,7 @@ if (config.nodeEnv !== 'production') {
 ### 1. Test des Secrets
 ```bash
 # Vérifier que les secrets ne sont PAS les valeurs par défaut
-curl https://backmhm.vercel.app/health
+curl https://backHFM.vercel.app/health
 # Si JWT_SECRET = valeur par défaut, créer un token avec cette valeur et tester
 ```
 
@@ -532,7 +532,7 @@ curl https://backmhm.vercel.app/health
 ```bash
 # Tester le rate limiting
 for i in {1..150}; do
-  curl https://backmhm.vercel.app/api/users/login -X POST \
+  curl https://backHFM.vercel.app/api/users/login -X POST \
     -H "Content-Type: application/json" \
     -d '{"email":"test","password":"test"}'
 done
@@ -545,14 +545,14 @@ done
 curl -H "Origin: https://malicious-site.com" \
   -H "Access-Control-Request-Method: POST" \
   -X OPTIONS \
-  https://backmhm.vercel.app/api/users/login
+  https://backHFM.vercel.app/api/users/login
 # Devrait être rejeté
 ```
 
 ### 4. Test MongoDB Injection
 ```bash
 # Tenter une injection MongoDB
-curl -X POST https://backmhm.vercel.app/api/users/login \
+curl -X POST https://backHFM.vercel.app/api/users/login \
   -H "Content-Type: application/json" \
   -d '{"email":{"$gt":""},"password":{"$gt":""}}'
 # Devrait être bloqué par mongoSanitize
@@ -612,7 +612,7 @@ node -e "console.log('QR_CODE_SECRET_KEY=' + require('crypto').randomBytes(64).t
 ### 4. Changer MongoDB Password
 
 1. **MongoDB Atlas** → Database Access
-2. **Edit User** `mhm_db_user`
+2. **Edit User** `HFM_db_user`
 3. **Change Password**
 4. **Mettez à jour** `MONGO_URI` sur Vercel Backend
 

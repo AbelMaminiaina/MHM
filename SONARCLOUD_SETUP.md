@@ -1,6 +1,6 @@
 # SonarCloud Setup Guide
 
-This guide explains how to set up SonarCloud for code quality analysis in the MHM project.
+This guide explains how to set up SonarCloud for code quality analysis in the HFM project.
 
 ## Prerequisites
 
@@ -20,7 +20,7 @@ This guide explains how to set up SonarCloud for code quality analysis in the MH
 1. Click on the "+" icon in the top right
 2. Select "Analyze new project"
 3. Choose your organization (or create one): `abelmaminiaina`
-4. Select the `MHM` repository
+4. Select the `HFM` repository
 5. Click "Set Up"
 
 ### 3. Create Two Projects in SonarCloud
@@ -28,21 +28,21 @@ This guide explains how to set up SonarCloud for code quality analysis in the MH
 You need to create two separate projects for backend and frontend:
 
 #### Backend Project
-- **Project Key**: `AbelMaminiaina_MHM-backend`
+- **Project Key**: `AbelMaminiaina_HFM-backend`
 - **Organization**: `abelmaminiaina`
-- **Name**: MHM Backend
+- **Name**: HFM Backend
 
 #### Frontend Project
-- **Project Key**: `AbelMaminiaina_MHM-frontend`
+- **Project Key**: `AbelMaminiaina_HFM-frontend`
 - **Organization**: `abelmaminiaina`
-- **Name**: MHM Frontend
+- **Name**: HFM Frontend
 
 ### 4. Get Your SonarCloud Token
 
 1. Go to your SonarCloud account settings
 2. Navigate to **Security** tab
 3. Generate a new token:
-   - **Name**: `GitHub Actions MHM`
+   - **Name**: `GitHub Actions HFM`
    - **Type**: `Global Analysis Token` or `Project Analysis Token`
    - **Expiration**: Choose your preferred expiration
 4. Copy the generated token (you won't be able to see it again!)
@@ -84,7 +84,7 @@ The following files have been configured:
 After the first successful scan, you can view your code quality metrics at:
 
 - **Backend**: https://sonarcloud.io/project/overview?id=AbelMaminiaina_MHM-backend
-- **Frontend**: https://sonarcloud.io/project/overview?id=AbelMaminiaina_MHM-frontend
+- **Frontend**: https://sonarcloud.io/project/overview?id=AbelMaminiaina_HFM-frontend
 
 ## What SonarCloud Analyzes
 
@@ -114,14 +114,14 @@ Add SonarCloud badges to your README.md:
 
 ### Backend
 ```markdown
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=AbelMaminiaina_MHM-backend&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=AbelMaminiaina_MHM-backend)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=AbelMaminiaina_MHM-backend&metric=coverage)](https://sonarcloud.io/summary/new_code?id=AbelMaminiaina_MHM-backend)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=AbelMaminiaina_HFM-backend&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=AbelMaminiaina_HFM-backend)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=AbelMaminiaina_HFM-backend&metric=coverage)](https://sonarcloud.io/summary/new_code?id=AbelMaminiaina_HFM-backend)
 ```
 
 ### Frontend
 ```markdown
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=AbelMaminiaina_MHM-frontend&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=AbelMaminiaina_MHM-frontend)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=AbelMaminiaina_MHM-frontend&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=AbelMaminiaina_MHM-frontend)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=AbelMaminiaina_HFM-frontend&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=AbelMaminiaina_HFM-frontend)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=AbelMaminiaina_HFM-frontend&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=AbelMaminiaina_HFM-frontend)
 ```
 
 ## Troubleshooting

@@ -29,7 +29,7 @@ const workbook = xlsx.readFile(excelFilePath);
 console.log('\n📄 Feuilles disponibles :');
 workbook.SheetNames.forEach((name, index) => {
   console.log(`   ${index + 1}. ${name}`);
-});
+});1
 
 // Récupérer la feuille 1 (index 0)
 const sheetName = workbook.SheetNames[0];

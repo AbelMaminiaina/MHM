@@ -7,7 +7,7 @@
 POST http://localhost:5000/api/qrcodes/import-csv net::ERR_UPLOAD_FILE_CHANGED
 ```
 
-**Cause :** Le frontend en production utilise `http://localhost:5000` au lieu de `https://backmhm.vercel.app/api`
+**Cause :** Le frontend en production utilise `http://localhost:5000` au lieu de `https://backHFM.vercel.app/api`
 
 **Raison :** La variable d'environnement `VITE_API_URL` n'est pas configurée sur Vercel Frontend
 

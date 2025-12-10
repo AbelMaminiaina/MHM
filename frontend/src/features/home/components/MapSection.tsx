@@ -8,7 +8,7 @@ export const MapSection = () => {
       id: 1,
       title: 'ENGAGEZ-VOUS POUR MADAGASCAR',
       subtitle: 'REJOIGNEZ',
-      name: 'LE MHM !',
+      name: 'LE HFM !',
       image: '/images/antananarivo.jpg',
       link: '#'
     }
@@ -145,7 +145,7 @@ export const MapSection = () => {
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <img src="/mhm.svg" alt="Logo MHM" className="h-8 sm:h-10 lg:h-12 drop-shadow-2xl" />
+                    <img src="/hfm.jpg" alt="Logo HFM" className="h-8 sm:h-10 lg:h-12 drop-shadow-2xl" />
                   </motion.div>
                 </motion.div>
               </motion.a>

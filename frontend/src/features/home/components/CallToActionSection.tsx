@@ -30,7 +30,7 @@ export const CallToActionSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           >
-            Tout savoir de l'actualité du MHM et de VAL
+            Tout savoir de l'actualité du HFM et de VAL
           </motion.h2>
           <motion.div
             className="flex w-full max-w-md"
@@ -73,7 +73,7 @@ export const CallToActionSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           >
-            Je soutiens la première force de MHM !
+            Je soutiens la première force de HFM !
           </motion.h2>
           <motion.div
             className="flex gap-2 sm:gap-3"
@@ -105,7 +105,7 @@ export const CallToActionSection = () => {
         <div className="bg-white py-4 sm:py-5 px-4 sm:px-6 rounded-lg mt-4 shadow-md">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
           <h3 className="text-gray-900 text-xs sm:text-sm font-bold uppercase text-center">
-            Suivez le Madagasikara hoan'ny Malagasy
+            Suivez le ho an'ny fahafahan'i Madagasikara
           </h3>
           <div className="flex gap-2.5 sm:gap-3 items-center">
             {/* X (Twitter) */}

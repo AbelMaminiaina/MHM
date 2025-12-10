@@ -24,7 +24,7 @@ const slides: Slide[] = [
   {
     id: 3,
     badge: "ENGAGEMENT",
-    title: "REJOIGNEZ LE MHM",
+    title: "REJOIGNEZ LE HFM",
     ctaText: "J'ADHÈRE",
     bookImage: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&h=600&fit=crop",
     showBook: false,
@@ -42,7 +42,7 @@ const slides: Slide[] = [
   {
     id: 5,
     badge: "ACTUALITÉ",
-    title: "SUIVEZ TOUTE L'ACTUALITÉ DU MADAGASIKARA HOAN'NY MALAGASY (MHM)",
+    title: "SUIVEZ TOUTE L'ACTUALITÉ DU HO AN'NY FAHAFAHAN'I MADAGASIKARA (HFM)",
     ctaText: "EN SAVOIR PLUS",
     bookImage: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&h=600&fit=crop",
     showBook: false,
@@ -60,7 +60,7 @@ const slides: Slide[] = [
   {
     id: 7,
     badge: "SOUTIEN",
-    title: "SOUTENEZ VALOHERY ET LE MADAGASIKARA HOAN'NY MALAGASY (MHM)",
+    title: "SOUTENEZ VALOHERY ET LE HO AN'NY FAHAFAHAN'I MADAGASIKARA (HFM)",
     ctaText: "JE SOUTIENS",
     bookImage: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&h=600&fit=crop",
     showBook: false,
@@ -119,7 +119,7 @@ export const HeroSection = () => {
         {/* Partie Droite - Zone avec Image de fond (En arrière-plan) */}
         <motion.div
           key={`background-${currentSlide}`}
-          className="absolute inset-0 lg:right-0 lg:left-auto lg:top-2 lg:bottom-16 lg:w-[90%] bg-cover bg-center transition-all duration-700"
+          className="absolute inset-0 bg-cover bg-center transition-all duration-700"
           style={{ backgroundImage: `url(${slide.backgroundImage})` }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -132,28 +132,31 @@ export const HeroSection = () => {
         {/* Partie Gauche - Zone Blanche avec Accents Rouge (Superposée) */}
         <motion.div
           key={`content-${currentSlide}`}
-          className="relative z-30 w-full lg:w-[50%] h-[450px] lg:h-[320px] lg:bg-white/90 backdrop-blur-sm border-l-8 border-red-600 lg:shadow-2xl lg:rounded-lg flex flex-col px-6 md:px-12 lg:px-16 xl:px-20 pt-4 lg:pt-5 pb-24 lg:pb-20 my-0 lg:my-16"
+          className="relative z-30 w-full lg:w-[40%] h-[450px] lg:h-[320px] border-l-8 border-red-600 lg:border-l-8 lg:border-l-red-600 lg:border-r lg:border-t lg:border-b lg:border-white/60 lg:shadow-2xl lg:rounded-lg flex flex-col px-6 md:px-12 lg:px-12 xl:px-16 pt-4 lg:pt-5 pb-24 lg:pb-20 my-0 lg:my-16 lg:ml-12 overflow-hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, ease: appleEase }}
         >
+          {/* Fond dégradé sombre pour la lisibilité du texte blanc */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40 -z-10"></div>
+
           {/* Badge Rouge - En haut */}
           <div className="w-full mb-6 lg:mb-8 flex justify-center">
-            <div className="inline-block bg-red-600 text-white px-6 py-2.5 text-sm font-bold uppercase shadow-lg rounded-md ring-2 ring-white ring-offset-2 ring-offset-transparent">
+            <div className="inline-block bg-red-600 text-white px-6 py-2.5 text-sm font-bold uppercase shadow-2xl rounded-md">
               {slide.badge}
             </div>
           </div>
 
           {/* Titre Principal - Centré verticalement */}
           <div className="w-full flex-1 flex items-center justify-center">
-            <h1 className="text-white lg:text-gray-900 text-xl md:text-2xl lg:text-4xl xl:text-2xl font-black leading-tight uppercase text-center drop-shadow-2xl">
+            <h1 className="text-white text-xl md:text-2xl lg:text-4xl xl:text-2xl font-black leading-tight uppercase text-center drop-shadow-2xl">
               {slide.title}
             </h1>
           </div>
 
           {/* Bouton CTA - En bas fixe */}
           <div className="absolute bottom-4 lg:bottom-5 left-0 right-0 flex justify-center px-6">
-            <button className="bg-red-600 text-white px-8 md:px-10 py-3 md:py-3.5 text-sm md:text-base lg:text-lg font-bold uppercase shadow-xl rounded-lg cursor-pointer hover:bg-red-700 hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-105 ring-2 ring-white ring-offset-2 ring-offset-transparent">
+            <button className="bg-red-600 text-white px-8 md:px-10 py-3 md:py-3.5 text-sm md:text-base lg:text-lg font-bold uppercase shadow-2xl rounded-lg cursor-pointer hover:bg-red-700 hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] transition-all duration-300 ease-in-out transform hover:scale-105">
               {slide.ctaText}
             </button>
           </div>

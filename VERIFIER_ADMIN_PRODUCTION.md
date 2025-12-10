@@ -2,7 +2,7 @@
 
 ## Problème : 401 Unauthorized lors du login
 
-L'erreur `POST https://backmhm.vercel.app/api/users/login 401 (Unauthorized)` signifie que :
+L'erreur `POST https://backHFM.vercel.app/api/users/login 401 (Unauthorized)` signifie que :
 1. ❌ L'admin n'existe pas dans la base de données de production
 2. ❌ Le mot de passe est incorrect
 3. ❌ L'email est incorrect
@@ -15,9 +15,9 @@ L'erreur `POST https://backmhm.vercel.app/api/users/login 401 (Unauthorized)` si
 
 1. **Téléchargez MongoDB Compass** : https://www.mongodb.com/try/download/compass
 2. **Connectez-vous** avec votre URI MongoDB Atlas
-3. **Naviguez** vers la base de données `mhm_db`
+3. **Naviguez** vers la base de données `HFM_db`
 4. **Ouvrez** la collection `users`
-5. **Cherchez** l'utilisateur avec `email: "admin@mhm.mg"`
+5. **Cherchez** l'utilisateur avec `email: "admin@HFM.mg"`
 
 **Si l'admin n'existe pas :**
 - Passez à la Solution 2 pour créer l'admin
@@ -33,9 +33,9 @@ L'erreur `POST https://backmhm.vercel.app/api/users/login 401 (Unauthorized)` si
 1. **Allez sur** : https://cloud.mongodb.com
 2. **Connectez-vous** à votre compte
 3. **Clusters** → Votre cluster → **Browse Collections**
-4. **Base de données** : `mhm_db`
+4. **Base de données** : `HFM_db`
 5. **Collection** : `users`
-6. **Cherchez** : `{ "email": "admin@mhm.mg" }`
+6. **Cherchez** : `{ "email": "admin@HFM.mg" }`
 
 ---
 
@@ -52,7 +52,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 
 // Remplacez par votre MONGO_URI de production
-const MONGO_URI = 'mongodb+srv://username:password@cluster.mongodb.net/mhm_db?retryWrites=true&w=majority';
+const MONGO_URI = 'mongodb+srv://username:password@cluster.mongodb.net/HFM_db?retryWrites=true&w=majority';
 
 const UserSchema = new mongoose.Schema(
   {
@@ -77,7 +77,7 @@ async function createAdmin() {
     console.log('✅ Connecté à MongoDB\n');
 
     // Vérifier si l'admin existe déjà
-    const existingAdmin = await User.findOne({ email: 'admin@mhm.mg' });
+    const existingAdmin = await User.findOne({ email: 'admin@HFM.mg' });
 
     if (existingAdmin) {
       console.log('⚠️  L\'admin existe déjà !');
@@ -97,8 +97,8 @@ async function createAdmin() {
     // Créer l'admin
     const admin = await User.create({
       firstName: 'Admin',
-      lastName: 'MHM',
-      email: 'admin@mhm.mg',
+      lastName: 'HFM',
+      email: 'admin@HFM.mg',
       password: hashedPassword,
       role: 'admin',
     });
@@ -106,9 +106,9 @@ async function createAdmin() {
     console.log('✅ Admin créé avec succès !\n');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
     console.log('📋 Informations de connexion :\n');
-    console.log('  📧 Email       : admin@mhm.mg');
+    console.log('  📧 Email       : admin@HFM.mg');
     console.log('  🔑 Mot de passe: Admin123!');
-    console.log('  👤 Nom         : Admin MHM');
+    console.log('  👤 Nom         : Admin HFM');
     console.log('  🆔 ID          :', admin._id);
     console.log('  🔐 Rôle        : admin');
     console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
@@ -145,12 +145,12 @@ node scripts/create-admin-production.js
 2. **Installez** `mongosh` si nécessaire
 3. **Connectez-vous** :
    ```bash
-   mongosh "mongodb+srv://cluster.mongodb.net/mhm_db" --username votre-username
+   mongosh "mongodb+srv://cluster.mongodb.net/HFM_db" --username votre-username
    ```
 4. **Créez l'admin** (avec mot de passe hashé) :
 
 ```javascript
-use mhm_db
+use HFM_db
 
 // Générer le hash du mot de passe avec bcrypt
 // Vous devez le générer localement d'abord avec Node.js:
@@ -159,8 +159,8 @@ use mhm_db
 
 db.users.insertOne({
   firstName: "Admin",
-  lastName: "MHM",
-  email: "admin@mhm.mg",
+  lastName: "HFM",
+  email: "admin@HFM.mg",
   password: "$2a$10$YourHashedPasswordHere",  // Remplacez par le hash généré
   role: "admin",
   createdAt: new Date(),
@@ -180,7 +180,7 @@ db.users.insertOne({
 // TEMPORAIRE - À SUPPRIMER APRÈS CRÉATION DE L'ADMIN
 router.post('/create-admin-temp', async (req, res) => {
   try {
-    const existingAdmin = await User.findOne({ email: 'admin@mhm.mg' });
+    const existingAdmin = await User.findOne({ email: 'admin@HFM.mg' });
     if (existingAdmin) {
       return res.status(400).json({ message: 'Admin already exists' });
     }
@@ -188,8 +188,8 @@ router.post('/create-admin-temp', async (req, res) => {
     const hashedPassword = await bcrypt.hash('Admin123!', 10);
     const admin = await User.create({
       firstName: 'Admin',
-      lastName: 'MHM',
-      email: 'admin@mhm.mg',
+      lastName: 'HFM',
+      email: 'admin@HFM.mg',
       password: hashedPassword,
       role: 'admin',
     });
@@ -204,7 +204,7 @@ router.post('/create-admin-temp', async (req, res) => {
 2. **Déployez** sur Vercel
 3. **Appelez** l'endpoint :
    ```bash
-   curl -X POST https://backmhm.vercel.app/api/users/create-admin-temp
+   curl -X POST https://backHFM.vercel.app/api/users/create-admin-temp
    ```
 4. **SUPPRIMEZ** l'endpoint immédiatement après
 
@@ -234,9 +234,9 @@ Après avoir créé l'admin, testez :
 
 1. **Via l'API directement** :
    ```bash
-   curl -X POST https://backmhm.vercel.app/api/users/login \
+   curl -X POST https://backHFM.vercel.app/api/users/login \
      -H "Content-Type: application/json" \
-     -d '{"email":"admin@mhm.mg","password":"Admin123!"}'
+     -d '{"email":"admin@HFM.mg","password":"Admin123!"}'
    ```
 
    **Résultat attendu :**
@@ -244,7 +244,7 @@ Après avoir créé l'admin, testez :
    {
      "success": true,
      "data": {
-       "email": "admin@mhm.mg",
+       "email": "admin@HFM.mg",
        "role": "admin",
        "token": "eyJhbGci..."
      }
@@ -253,7 +253,7 @@ Après avoir créé l'admin, testez :
 
 2. **Via le frontend** :
    - Allez sur : https://www.madagasikarahoanymalagasy.org/login
-   - Email : `admin@mhm.mg`
+   - Email : `admin@HFM.mg`
    - Password : `Admin123!`
    - Devrait vous rediriger vers le dashboard
 
@@ -267,7 +267,7 @@ Après avoir créé l'admin, testez :
 
 ```javascript
 // Dans MongoDB
-db.users.findOne({ email: "admin@mhm.mg" })
+db.users.findOne({ email: "admin@HFM.mg" })
 // Le champ password doit ressembler à :
 // "$2a$10$abc..."
 ```
@@ -275,7 +275,7 @@ db.users.findOne({ email: "admin@mhm.mg" })
 ### 2. Mauvaise Base de Données
 
 **Vérifiez** que `MONGO_URI` sur Vercel pointe vers la bonne base de données :
-- Doit se terminer par `/mhm_db`
+- Doit se terminer par `/HFM_db`
 - Pas `/test` ou autre
 
 ### 3. Backend Cache

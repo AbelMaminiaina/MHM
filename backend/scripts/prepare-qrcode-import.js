@@ -73,7 +73,7 @@ lines.forEach((line, index) => {
   const memberId = `M-2022-${memberNumber}`;
 
   // Email par défaut (devra être complété manuellement)
-  const email = `membre${memberNumber}@mhm.mg`;
+  const email = `membre${memberNumber}@HFM.mg`;
 
   // Statut par défaut
   const status = 'active';
@@ -117,7 +117,7 @@ console.log('━━━━━━━━━━━━━━━━━━━━━━�
 
 console.log('⚠️  IMPORTANT - Actions requises :\n');
 console.log('1. 📧 COMPLÉTER LES EMAILS');
-console.log('   Les emails générés sont fictifs (membre0001@mhm.mg)');
+console.log('   Les emails générés sont fictifs (membre0001@HFM.mg)');
 console.log('   Vous devez les remplacer par les vrais emails des membres\n');
 
 console.log('2. 🔢 VÉRIFIER LES NUMÉROS DE MEMBRE');

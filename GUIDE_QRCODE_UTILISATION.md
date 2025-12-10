@@ -486,4 +486,4 @@ En cas de problème :
 
 **Dernière mise à jour** : 2025-11-23
 **Version** : 1.0.0
-**Auteur** : Équipe Technique MHM
+**Auteur** : Équipe Technique HFM

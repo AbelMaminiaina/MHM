@@ -78,7 +78,7 @@ const actionItems = [
   {
     id: '3',
     title: 'ADHÉRER',
-    description: 'Devenez membre MHM',
+    description: 'Devenez membre HFM',
     color: 'from-rose-600 to-rose-800',
     imageUrl: '/images/sud-madagascar.jpg',
     link: '#'

@@ -1,6 +1,6 @@
 # Docker & Docker Compose Documentation
 
-Guide complet pour déployer et développer le projet MHM avec Docker.
+Guide complet pour déployer et développer le projet HFM avec Docker.
 
 ## Table des matières
 
@@ -25,7 +25,7 @@ Guide complet pour déployer et développer le projet MHM avec Docker.
 ```bash
 # 1. Cloner le repository
 git clone https://github.com/votre-org/MHM.git
-cd MHM
+cd HFM
 
 # 2. Copier le fichier d'environnement
 cp .env.docker.example .env.docker
@@ -224,7 +224,7 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=votre-email@gmail.com
 SMTP_PASS=votre-mot-de-passe-application
-EMAIL_FROM=noreply@mhm.mg
+EMAIL_FROM=noreply@HFM.mg
 EMAIL_FROM_NAME=Madagasikara Hoan'ny Malagasy
 
 # Logging
@@ -246,7 +246,7 @@ Les données persistantes sont stockées dans des volumes Docker :
 ```bash
 # Sauvegarder MongoDB
 docker compose exec mongodb mongodump --out /backup
-docker cp mhm-mongodb:/backup ./mongodb-backup-$(date +%Y%m%d)
+docker cp HFM-mongodb:/backup ./mongodb-backup-$(date +%Y%m%d)
 
 # Restaurer MongoDB
 docker cp ./mongodb-backup-20240101 mhm-mongodb:/backup
@@ -255,7 +255,7 @@ docker compose exec mongodb mongorestore /backup
 
 ### Réseau
 
-Les services communiquent via un réseau Docker bridge `mhm-network` :
+Les services communiquent via un réseau Docker bridge `HFM-network` :
 
 - Backend → MongoDB : `mongodb:27017`
 - Frontend → Backend : Via variable d'environnement `VITE_API_URL`
@@ -269,7 +269,7 @@ Tous les services ont des healthchecks configurés :
 docker compose ps
 
 # Détails d'un service
-docker inspect mhm-backend | grep -A 10 Health
+docker inspect HFM-backend | grep -A 10 Health
 ```
 
 **Endpoints de santé** :
@@ -418,4 +418,4 @@ docker compose exec backend cat /app/logs/combined-*.log
 Pour toute question ou problème :
 - Ouvrir une issue sur GitHub
 - Consulter la documentation : [docs/](./docs/)
-- Contact : support@mhm.mg
+- Contact : support@HFM.mg

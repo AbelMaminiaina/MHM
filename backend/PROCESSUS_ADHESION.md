@@ -1,6 +1,6 @@
-# Processus d'adhésion MHM
+# Processus d'adhésion HFM
 
-Ce document décrit le processus complet d'adhésion des membres à l'association MHM.
+Ce document décrit le processus complet d'adhésion des membres à l'association HFM.
 
 ## Vue d'ensemble du processus
 
@@ -196,8 +196,8 @@ Adhésion familiale
     "status": "active",
     "approvedBy": {
       "_id": "...",
-      "name": "Admin MHM",
-      "email": "admin@mhm.mg"
+      "name": "Admin HFM",
+      "email": "admin@HFM.mg"
     },
     "approvalDate": "2024-11-04T11:00:00.000Z",
     "membershipDate": "2024-11-04T11:00:00.000Z"
@@ -356,7 +356,7 @@ curl -X POST http://localhost:5000/api/applications \
 curl -X POST http://localhost:5000/api/users/login \
   -H "Content-Type: application/json" \
   -d '{
-    "email": "admin@mhm.mg",
+    "email": "admin@HFM.mg",
     "password": "AdminPassword123"
   }'
 ```

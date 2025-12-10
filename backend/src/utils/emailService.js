@@ -204,13 +204,13 @@ export const sendApprovalEmail = async (member, qrCodeData) => {
       <div class="email-container">
         <div class="header">
           <h1>🎉 Félicitations ${member.firstName} !</h1>
-          <p>Votre adhésion à MHM a été approuvée</p>
+          <p>Votre adhésion à HFM a été approuvée</p>
         </div>
 
         <div class="content">
           <p>Cher(e) ${member.firstName} ${member.lastName},</p>
 
-          <p>Nous sommes ravis de vous informer que votre demande d'adhésion à <strong>Madagasikara Hoan'ny Malagasy (MHM)</strong> a été approuvée avec succès !</p>
+          <p>Nous sommes ravis de vous informer que votre demande d'adhésion à <strong>Madagasikara Hoan'ny Malagasy (HFM)</strong> a été approuvée avec succès !</p>
 
           <div class="member-info">
             <h3>📋 Vos informations d'adhérent</h3>
@@ -229,7 +229,7 @@ export const sendApprovalEmail = async (member, qrCodeData) => {
 
           <div class="qr-section">
             <h2>🎫 Votre QR Code Personnel</h2>
-            <p>Présentez ce QR code lors de vos visites et événements MHM</p>
+            <p>Présentez ce QR code lors de vos visites et événements HFM</p>
             <img src="cid:qrcode" alt="QR Code Membre" />
             <p style="color: #666; font-size: 14px;">
               Code unique : <code style="background-color: #e0e0e0; padding: 2px 8px; border-radius: 3px;">${qrCodeData.code}</code>
@@ -240,7 +240,7 @@ export const sendApprovalEmail = async (member, qrCodeData) => {
             <h3>📱 Comment utiliser votre QR code ?</h3>
             <ul>
               <li>Sauvegardez ce QR code sur votre téléphone</li>
-              <li>Présentez-le lors de votre arrivée aux événements MHM</li>
+              <li>Présentez-le lors de votre arrivée aux événements HFM</li>
               <li>Il peut être scanné directement depuis votre écran</li>
               <li>Gardez une copie imprimée en cas de besoin</li>
             </ul>
@@ -252,7 +252,7 @@ export const sendApprovalEmail = async (member, qrCodeData) => {
         </div>
 
         <div class="footer">
-          <p><strong>Madagasikara Hoan'ny Malagasy (MHM)</strong></p>
+          <p><strong>Madagasikara Hoan'ny Malagasy (HFM)</strong></p>
           <p>Email : contact@madagasikarahoanymalagasy.org | Téléphone : +261 XX XX XXX XX</p>
           <p>
             <a href="#">Site Web</a> |
@@ -291,7 +291,7 @@ export const sendApprovalEmail = async (member, qrCodeData) => {
  * @returns {Promise<Object>} Send result
  */
 export const sendApplicationConfirmationEmail = async (member) => {
-  const subject = `MHM - Confirmation de votre demande d'adhésion`;
+  const subject = `HFM - Confirmation de votre demande d'adhésion`;
 
   const html = `
     <!DOCTYPE html>
@@ -360,7 +360,7 @@ export const sendApplicationConfirmationEmail = async (member) => {
         <div class="content">
           <p>Bonjour ${member.firstName} ${member.lastName},</p>
 
-          <p>Nous avons bien reçu votre demande d'adhésion à <strong>Madagasikara Hoan'ny Malagasy (MHM)</strong>.</p>
+          <p>Nous avons bien reçu votre demande d'adhésion à <strong>Madagasikara Hoan'ny Malagasy (HFM)</strong>.</p>
 
           <div class="info-box">
             <h3>📋 Informations de votre demande</h3>
@@ -400,7 +400,7 @@ export const sendApplicationConfirmationEmail = async (member) => {
         </div>
 
         <div class="footer">
-          <p><strong>Madagasikara Hoan'ny Malagasy (MHM)</strong></p>
+          <p><strong>Madagasikara Hoan'ny Malagasy (HFM)</strong></p>
           <p>Email : <a href="mailto:contact@madagasikarahoanymalagasy.org">contact@madagasikarahoanymalagasy.org</a></p>
           <p style="margin-top: 20px; font-size: 12px; color: #999;">
             Cet email a été envoyé automatiquement. Merci de ne pas y répondre.
@@ -416,7 +416,7 @@ export const sendApplicationConfirmationEmail = async (member) => {
 
     Bonjour ${member.firstName} ${member.lastName},
 
-    Nous avons bien reçu votre demande d'adhésion à Madagasikara Hoan'ny Malagasy (MHM).
+    Nous avons bien reçu votre demande d'adhésion à Madagasikara Hoan'ny Malagasy (HFM).
 
     Informations de votre demande :
     • Nom complet : ${member.fullName}
@@ -459,7 +459,7 @@ export const sendApplicationConfirmationEmail = async (member) => {
  * @returns {Promise<Object>} Send result
  */
 export const sendRejectionEmail = async (member) => {
-  const subject = `MHM - Réponse à votre demande d'adhésion`;
+  const subject = `HFM - Réponse à votre demande d'adhésion`;
 
   const html = `
     <!DOCTYPE html>
@@ -506,14 +506,14 @@ export const sendRejectionEmail = async (member) => {
         </div>
         <div class="content">
           <p>Cher(e) ${member.firstName} ${member.lastName},</p>
-          <p>Nous vous remercions de l'intérêt que vous portez à Madagasikara Hoan'ny Malagasy (MHM).</p>
+          <p>Nous vous remercions de l'intérêt que vous portez à Madagasikara Hoan'ny Malagasy (HFM).</p>
           <p>Après examen attentif de votre demande, nous regrettons de vous informer que nous ne pouvons pas donner suite à votre candidature pour le moment.</p>
           ${member.rejectionReason ? `<p><strong>Raison :</strong> ${member.rejectionReason}</p>` : ''}
           <p>N'hésitez pas à nous recontacter si vous souhaitez soumettre une nouvelle demande à l'avenir.</p>
-          <p>Cordialement,<br>L'équipe MHM</p>
+          <p>Cordialement,<br>L'équipe HFM</p>
         </div>
         <div class="footer">
-          <p><strong>Madagasikara Hoan'ny Malagasy (MHM)</strong></p>
+          <p><strong>Madagasikara Hoan'ny Malagasy (HFM)</strong></p>
           <p>Email : contact@madagasikarahoanymalagasy.org</p>
         </div>
       </div>

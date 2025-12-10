@@ -11,10 +11,10 @@ describe('QR Code Generator Utils', () => {
       const memberNumber = await generateMemberNumber(MockMember);
 
       const year = new Date().getFullYear();
-      const expectedPattern = new RegExp(`^MHM-${year}-\\d{5}$`);
+      const expectedPattern = new RegExp(`^HFM-${year}-\\d{5}$`);
 
       expect(memberNumber).toMatch(expectedPattern);
-      expect(memberNumber).toBe(`MHM-${year}-00006`);
+      expect(memberNumber).toBe(`HFM-${year}-00006`);
     });
 
     test('should generate sequential member numbers', async () => {
@@ -25,7 +25,7 @@ describe('QR Code Generator Utils', () => {
       const memberNumber = await generateMemberNumber(MockMember);
 
       const year = new Date().getFullYear();
-      expect(memberNumber).toBe(`MHM-${year}-00100`);
+      expect(memberNumber).toBe(`HFM-${year}-00100`);
     });
 
     test('should pad numbers correctly', async () => {
@@ -47,7 +47,7 @@ describe('QR Code Generator Utils', () => {
         const memberNumber = await generateMemberNumber(MockMember);
         const year = new Date().getFullYear();
 
-        expect(memberNumber).toBe(`MHM-${year}-${testCase.expected}`);
+        expect(memberNumber).toBe(`HFM-${year}-${testCase.expected}`);
       }
     });
   });

@@ -79,9 +79,9 @@ nakarombamichaelgorbatchev@gmail.com
 
 **Emails temporaires générés (76 membres) :**
 ```
-membre0005@mhm.mg
-membre0012@mhm.mg
-membre0013@mhm.mg
+membre0005@HFM.mg
+membre0012@HFM.mg
+membre0013@HFM.mg
 ...
 ```
 
@@ -130,7 +130,7 @@ Format automatiquement converti en format international :
 
 **Option B - Complétion manuelle (COMPLET) :**
 1. Ouvrir le CSV dans Excel
-2. Rechercher `@mhm.mg`
+2. Rechercher `@HFM.mg`
 3. Remplacer par les vrais emails
 4. Importer le fichier complété
 5. Les 118 membres recevront leur QR Code
@@ -253,10 +253,10 @@ Import terminé !
 
 ```bash
 # Afficher les lignes avec email temporaire
-grep "membre.*@mhm.mg" backend/templates/ekipa-filoha-tantsoroka-feuil1-import-qrcode.csv
+grep "membre.*@HFM.mg" backend/templates/ekipa-filoha-tantsoroka-feuil1-import-qrcode.csv
 
 # Compter combien il y en a
-grep -c "membre.*@mhm.mg" backend/templates/ekipa-filoha-tantsoroka-feuil1-import-qrcode.csv
+grep -c "membre.*@HFM.mg" backend/templates/ekipa-filoha-tantsoroka-feuil1-import-qrcode.csv
 ```
 
 **Résultat :** `76`
@@ -299,9 +299,9 @@ M-2022-0007,"Fihavanana Théodose RAMAHAFALIMAMONJY",fihavananatheeodose@gmail.c
 ### Membres sans Email ⚠️
 
 ```csv
-M-2022-0005,"Silvère Augustin SOAVINA",membre0005@mhm.mg,active,2025,501051005867,"SOAVINA","Silvère Augustin",,"Enseignant","CONSEILLER"
-M-2022-0012,"Bruno MANAHIRA",membre0012@mhm.mg,active,2025,501111033213,"MANAHIRA","Bruno",,"Opérateur","membre"
-M-2022-0013,"Georgie NILAH",membre0013@mhm.mg,active,2025,204012015128,"NILAH","Georgie",,"Privée","membre"
+M-2022-0005,"Silvère Augustin SOAVINA",membre0005@HFM.mg,active,2025,501051005867,"SOAVINA","Silvère Augustin",,"Enseignant","CONSEILLER"
+M-2022-0012,"Bruno MANAHIRA",membre0012@HFM.mg,active,2025,501111033213,"MANAHIRA","Bruno",,"Opérateur","membre"
+M-2022-0013,"Georgie NILAH",membre0013@HFM.mg,active,2025,204012015128,"NILAH","Georgie",,"Privée","membre"
 ```
 
 **À compléter manuellement !**
@@ -356,7 +356,7 @@ node backend/scripts/prepare-qrcode-import-sheet1.js
 
 ### 1. Emails Temporaires
 ```
-membre0005@mhm.mg  ← Email fictif à remplacer
+membre0005@HFM.mg  ← Email fictif à remplacer
 ```
 
 ### 2. Membres Sans Téléphone

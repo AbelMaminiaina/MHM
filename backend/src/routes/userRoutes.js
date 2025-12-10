@@ -50,7 +50,7 @@ const router = express.Router();
  *       example:
  *         _id: 507f1f77bcf86cd799439011
  *         name: Jean Dupont
- *         email: jean.dupont@mhm.mg
+ *         email: jean.dupont@HFM.mg
  *         role: user
  *         createdAt: 2024-11-04T10:00:00.000Z
  *         updatedAt: 2024-11-04T10:00:00.000Z
@@ -86,7 +86,7 @@ const router = express.Router();
  *                 type: string
  *                 format: email
  *                 description: Adresse email unique
- *                 example: jean.dupont@mhm.mg
+ *                 example: jean.dupont@HFM.mg
  *               password:
  *                 type: string
  *                 format: password
@@ -137,7 +137,7 @@ router.post('/register', authLimiter, validate(registerValidation), registerUser
  *                 type: string
  *                 format: email
  *                 description: Adresse email de l'utilisateur
- *                 example: jean.dupont@mhm.mg
+ *                 example: jean.dupont@HFM.mg
  *               password:
  *                 type: string
  *                 format: password
@@ -227,7 +227,7 @@ router.get('/me', protect, getUserProfile);
  *                 type: string
  *                 format: email
  *                 description: Nouvelle adresse email
- *                 example: jean.martin@mhm.mg
+ *                 example: jean.martin@HFM.mg
  *               password:
  *                 type: string
  *                 format: password

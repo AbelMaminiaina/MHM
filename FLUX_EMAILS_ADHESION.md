@@ -47,7 +47,7 @@ Le système envoie maintenant **3 types d'emails automatiques** durant le proces
 
 **Sujet :**
 ```
-MHM - Confirmation de votre demande d'adhésion
+HFM - Confirmation de votre demande d'adhésion
 ```
 
 **Message :**
@@ -56,7 +56,7 @@ MHM - Confirmation de votre demande d'adhésion
 
 Bonjour [Prénom] [Nom],
 
-Nous avons bien reçu votre demande d'adhésion à Madagasikara Hoan'ny Malagasy (MHM).
+Nous avons bien reçu votre demande d'adhésion à Madagasikara Hoan'ny Malagasy (HFM).
 
 📋 Informations de votre demande
 • Nom complet : [Nom Complet]
@@ -111,12 +111,12 @@ Bienvenue à Madagasikara Hoan'ny Malagasy - Votre adhésion est approuvée !
 **Message :**
 ```
 🎉 Félicitations [Prénom] !
-Votre adhésion à MHM a été approuvée
+Votre adhésion à HFM a été approuvée
 
 Cher(e) [Prénom] [Nom],
 
 Nous sommes ravis de vous informer que votre demande d'adhésion
-à Madagasikara Hoan'ny Malagasy (MHM) a été approuvée avec succès !
+à Madagasikara Hoan'ny Malagasy (HFM) a été approuvée avec succès !
 
 📋 Vos informations d'adhérent
 • Numéro de membre : M-2025-XXXX
@@ -131,14 +131,14 @@ Code unique : [signature]
 
 📱 Comment utiliser votre QR code ?
 • Sauvegardez ce QR code sur votre téléphone
-• Présentez-le lors de votre arrivée aux événements MHM
+• Présentez-le lors de votre arrivée aux événements HFM
 • Il peut être scanné directement depuis votre écran
 • Gardez une copie imprimée en cas de besoin
 
 Nous sommes impatients de vous accueillir !
 
 Cordialement,
-L'équipe MHM
+L'équipe HFM
 ```
 
 **Pièce jointe :**
@@ -169,7 +169,7 @@ L'équipe MHM
 
 **Sujet :**
 ```
-MHM - Réponse à votre demande d'adhésion
+HFM - Réponse à votre demande d'adhésion
 ```
 
 **Message :**
@@ -179,7 +179,7 @@ Réponse à votre demande d'adhésion
 Cher(e) [Prénom] [Nom],
 
 Nous vous remercions de l'intérêt que vous portez à
-Madagasikara Hoan'ny Malagasy (MHM).
+Madagasikara Hoan'ny Malagasy (HFM).
 
 Après examen attentif de votre demande, nous regrettons
 de vous informer que nous ne pouvons pas donner suite à
@@ -191,7 +191,7 @@ N'hésitez pas à nous recontacter si vous souhaitez
 soumettre une nouvelle demande à l'avenir.
 
 Cordialement,
-L'équipe MHM
+L'équipe HFM
 ```
 
 ### Objectif
@@ -222,7 +222,7 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=votre-email@gmail.com
 SMTP_PASS=votre-mot-de-passe-application
-EMAIL_FROM=noreply@mhm.mg
+EMAIL_FROM=noreply@HFM.mg
 EMAIL_FROM_NAME=Madagasikara Hoan'ny Malagasy
 ```
 

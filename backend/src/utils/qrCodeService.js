@@ -87,7 +87,7 @@ export const generateAndSendQRCode = async (member, validity = null) => {
  * @returns {Promise<Object>} Send result
  */
 export const sendQRCodeEmail = async (member, qrCodeData) => {
-  const subject = `Votre QR Code Membre ${qrCodeData.validity} - MHM`;
+  const subject = `Votre QR Code Membre ${qrCodeData.validity} - HFM`;
 
   const html = `
     <!DOCTYPE html>
@@ -202,7 +202,7 @@ export const sendQRCodeEmail = async (member, qrCodeData) => {
       <div class="email-container">
         <div class="header">
           <h1>Votre QR Code Membre ${qrCodeData.validity}</h1>
-          <p>MHM - Madagasikara Hoan'ny Malagasy</p>
+          <p>HFM - Madagasikara Hoan'ny Malagasy</p>
         </div>
 
         <div class="content">
@@ -215,7 +215,7 @@ export const sendQRCodeEmail = async (member, qrCodeData) => {
             <p><strong>Numéro de membre :</strong> ${member.memberNumber}</p>
             <p><strong>Nom complet :</strong> ${member.firstName} ${member.lastName}</p>
             <p><strong>Email :</strong> ${member.email}</p>
-            <p><strong>Association :</strong> MHM</p>
+            <p><strong>Association :</strong> HFM</p>
             <p><strong>Statut :</strong> <span style="color: #4CAF50; font-weight: bold;">Membre actif</span></p>
           </div>
 
@@ -250,7 +250,7 @@ export const sendQRCodeEmail = async (member, qrCodeData) => {
         </div>
 
         <div class="footer">
-          <p><strong>MHM - Madagasikara Hoan'ny Malagasy</strong></p>
+          <p><strong>HFM - Madagasikara Hoan'ny Malagasy</strong></p>
           <p>Email : contact@madagasikarahoanymalagasy.org</p>
           <p style="margin-top: 20px; font-size: 12px; color: #999;">
             Cet email a été envoyé automatiquement. Merci de ne pas y répondre.

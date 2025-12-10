@@ -1,6 +1,6 @@
-# Guide de Déploiement - Backend MHM sur Vercel avec MongoDB Atlas
+# Guide de Déploiement - Backend HFM sur Vercel avec MongoDB Atlas
 
-Ce guide vous explique comment déployer le backend MHM sur Vercel avec MongoDB Atlas.
+Ce guide vous explique comment déployer le backend HFM sur Vercel avec MongoDB Atlas.
 
 ## 📋 Prérequis
 
@@ -25,7 +25,7 @@ Ce guide vous explique comment déployer le backend MHM sur Vercel avec MongoDB 
 2. Choisissez l'option **FREE** (M0)
 3. Sélectionnez votre région (choisir la plus proche de vos utilisateurs)
    - Recommandé : **Europe** (Paris ou Frankfurt) ou **US East** (N. Virginia)
-4. Donnez un nom à votre cluster : `mhm-cluster`
+4. Donnez un nom à votre cluster : `HFM-cluster`
 5. Cliquez sur **"Create Cluster"**
 
 ### 1.3 Configurer l'accès à la base de données
@@ -36,7 +36,7 @@ Ce guide vous explique comment déployer le backend MHM sur Vercel avec MongoDB 
 2. Cliquez sur **"Add New Database User"**
 3. Choisissez **"Password"** comme méthode d'authentification
 4. Remplissez les informations :
-   - **Username** : `mhm_admin` (ou autre nom de votre choix)
+   - **Username** : `HFM_admin` (ou autre nom de votre choix)
    - **Password** : Générez un mot de passe fort (cliquez sur "Autogenerate Secure Password")
    - ⚠️ **IMPORTANT** : Sauvegardez ce mot de passe dans un endroit sûr !
 5. Dans **"Database User Privileges"**, sélectionnez **"Read and write to any database"**
@@ -58,10 +58,10 @@ Ce guide vous explique comment déployer le backend MHM sur Vercel avec MongoDB 
 4. Choisissez **"Driver"** : Node.js
 5. Copiez la chaîne de connexion qui ressemble à :
    ```
-   mongodb+srv://<username>:<password>@mhm-cluster.xxxxx.mongodb.net/?retryWrites=true&w=majority
+   mongodb+srv://<username>:<password>@HFM-cluster.xxxxx.mongodb.net/?retryWrites=true&w=majority
    ```
 6. Remplacez `<username>` et `<password>` par vos identifiants
-7. Ajoutez le nom de la base de données après `.net/` : `mhm_db`
+7. Ajoutez le nom de la base de données après `.net/` : `HFM_db`
 
 **Exemple de chaîne de connexion finale :**
 ```
@@ -89,7 +89,7 @@ mongodb+srv://mhm_admin:VotreMo%24dePa$$e@mhm-cluster.xxxxx.mongodb.net/mhm_db?r
 ### 2.2 Importer votre projet
 
 1. Sur le dashboard Vercel, cliquez sur **"Add New..."** puis **"Project"**
-2. Trouvez et sélectionnez votre repository **"MHM"**
+2. Trouvez et sélectionnez votre repository **"HFM"**
 3. Cliquez sur **"Import"**
 
 ### 2.3 Configurer le projet
@@ -144,7 +144,7 @@ FRONTEND_URL=https://madagasikarahoanymalagasy.org,https://www.madagasikarahoany
 ### 2.6 Tester votre API
 
 1. Cliquez sur le bouton **"Visit"** ou copiez l'URL de déploiement
-2. Votre URL ressemblera à : `https://mhm-backend-xxxxx.vercel.app`
+2. Votre URL ressemblera à : `https://HFM-backend-xxxxx.vercel.app`
 3. Testez les endpoints :
    - **Health Check** : `https://votre-app.vercel.app/health`
    - **API Docs** : `https://votre-app.vercel.app/api-docs`
@@ -187,7 +187,7 @@ Réponse attendue :
 ```json
 {
   "success": true,
-  "message": "MHM Backend API is running",
+  "message": "HFM Backend API is running",
   "timestamp": "2024-11-04T..."
 }
 ```
@@ -256,7 +256,7 @@ Vous pouvez voir tous vos déploiements dans l'onglet **"Deployments"** de votre
 
 ## 🎉 Félicitations !
 
-Votre backend MHM est maintenant déployé sur Vercel avec MongoDB Atlas ! 🚀
+Votre backend HFM est maintenant déployé sur Vercel avec MongoDB Atlas ! 🚀
 
 **URLs importantes à sauvegarder :**
 - Backend API : `https://votre-backend.vercel.app`

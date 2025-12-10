@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import Member from '../src/models/Member.js';
 
 // URI MongoDB fourni
-const MONGO_URI = 'mongodb+srv://mhm_db_user:20240522Iaina%40@cluster0.vrg1xjv.mongodb.net/mhm_db?retryWrites=true&w=majority&appName=Cluster0';
+const MONGO_URI = 'mongodb+srv://mhm_db_user:20240522Iaina%40@cluster0.vrg1xjv.mongodb.net/HFM_db?retryWrites=true&w=majority&appName=Cluster0';
 
 // Données des membres à créer
 const membersData = [
@@ -321,7 +321,7 @@ async function seedMembers() {
     console.log('='.repeat(70));
 
     console.log('\n🔌 Connexion à MongoDB Atlas...');
-    console.log(`📍 Base de données: mhm_db`);
+    console.log(`📍 Base de données: HFM_db`);
 
     // Connexion à MongoDB
     await mongoose.connect(MONGO_URI, {

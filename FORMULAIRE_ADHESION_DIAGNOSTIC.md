@@ -58,7 +58,7 @@ curl http://localhost:5000/health
 ```json
 {
   "success": true,
-  "message": "MHM Backend API is running"
+  "message": "HFM Backend API is running"
 }
 ```
 
@@ -303,7 +303,7 @@ cd backend
 cat > .env << 'EOF'
 NODE_ENV=development
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/mhm_db
+MONGO_URI=mongodb://localhost:27017/HFM_db
 JWT_SECRET=test_secret_key_for_development_minimum_32_chars
 JWT_EXPIRE=30d
 FRONTEND_URL=http://localhost:5173
@@ -312,8 +312,8 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=your-ethereal-username
 SMTP_PASS=your-ethereal-password
-EMAIL_FROM=noreply@mhm.mg
-EMAIL_FROM_NAME=Association MHM
+EMAIL_FROM=noreply@HFM.mg
+EMAIL_FROM_NAME=Association HFM
 QR_CODE_SECRET_KEY=test_qrcode_secret_key_minimum_32_characters
 EOF
 

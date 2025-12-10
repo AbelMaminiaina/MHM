@@ -22,11 +22,11 @@ export const generateQRSignature = (memberId, validity) => {
 
 /**
  * Generate a unique member number
- * Format: MHM-YYYY-XXXXX (e.g., MHM-2025-00142)
+ * Format: HFM-YYYY-XXXXX (e.g., HFM-2025-00142)
  */
 export const generateMemberNumber = async (Member) => {
   const year = new Date().getFullYear();
-  const prefix = `MHM-${year}-`;
+  const prefix = `HFM-${year}-`;
 
   // Get the count of members created this year
   const startOfYear = new Date(year, 0, 1);
@@ -59,7 +59,7 @@ export const generateMemberQRCode = async (memberData, validity = null) => {
       memberId: memberData.memberNumber,
       name: `${memberData.firstName} ${memberData.lastName}`,
       email: memberData.email,
-      association: 'MHM',
+      association: 'HFM',
       validity: validityYear,
       status: memberData.status === 'active' ? 'Membre actif' : memberData.status,
       signature,

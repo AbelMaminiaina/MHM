@@ -42,7 +42,7 @@ Vous verrez :
 │                                     │
 │  ┌───────────────────────────────┐  │
 │  │  Adresse email                │  │
-│  │  [admin@mhm.mg            ]   │  │
+│  │  [admin@HFM.mg            ]   │  │
 │  │                               │  │
 │  │  Mot de passe                 │  │
 │  │  [••••••••                ]   │  │
@@ -60,7 +60,7 @@ Vous verrez :
 
 ## 🔑 Identifiants de Connexion
 
-**Email :** `admin@mhm.mg`
+**Email :** `admin@HFM.mg`
 **Mot de passe :** `Admin123!`
 
 ⚠️ **IMPORTANT :** Le mot de passe est sensible à la casse !
@@ -99,7 +99,7 @@ http://localhost:5173/login
 
 ### Étape 3 : Se Connecter
 
-1. **Adresse email :** `admin@mhm.mg`
+1. **Adresse email :** `admin@HFM.mg`
 2. **Mot de passe :** `Admin123!`
 3. Cliquez sur **"Se connecter"**
 
@@ -181,7 +181,7 @@ Vérifiez que MongoDB est également démarré.
    ```
 
 2. **Mauvais identifiants**
-   - Email : `admin@mhm.mg` (pas d'espace, tout en minuscules)
+   - Email : `admin@HFM.mg` (pas d'espace, tout en minuscules)
    - Mot de passe : `Admin123!` (avec majuscule A, sensible à la casse)
 
 3. **Base de données vide**
@@ -238,7 +238,7 @@ http://localhost:5000/health
 ```json
 {
   "success": true,
-  "message": "MHM Backend API is running",
+  "message": "HFM Backend API is running",
   "timestamp": "..."
 }
 ```
@@ -249,7 +249,7 @@ http://localhost:5000/health
 
 **Via MongoDB :**
 ```bash
-mongosh mongodb://localhost:27017/mhm_db
+mongosh mongodb://localhost:27017/HFM_db
 use mhm_db
 db.users.find({ role: "admin" })
 ```
@@ -273,7 +273,7 @@ Avant de vous connecter, vérifiez :
 - [ ] Frontend démarré (`npm run dev`)
 - [ ] Admin créé (`node scripts/create-admin.js`)
 - [ ] URL correcte : http://localhost:5173/login
-- [ ] Identifiants corrects : `admin@mhm.mg` / `Admin123!`
+- [ ] Identifiants corrects : `admin@HFM.mg` / `Admin123!`
 
 ---
 
@@ -354,7 +354,7 @@ cd frontend && npm run dev
 http://localhost:5173/login
 
 # 3. Se connecter
-Email: admin@mhm.mg
+Email: admin@HFM.mg
 Password: Admin123!
 ```
 
@@ -384,5 +384,5 @@ curl http://localhost:5173/
 
 **Date de création :** 2025-11-24
 **URL de login :** http://localhost:5173/login
-**Identifiants :** admin@mhm.mg / Admin123!
+**Identifiants :** admin@HFM.mg / Admin123!
 **Statut :** ✅ Page fonctionnelle

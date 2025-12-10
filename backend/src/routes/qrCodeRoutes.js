@@ -173,7 +173,7 @@ router.post('/regenerate-year', protect, authorize('admin'), regenerateForNewYea
  *               qrData:
  *                 type: string
  *                 description: QR code JSON data as string
- *                 example: '{"memberId":"M-2025-0142","name":"Jean Dupont","email":"jean.dupont@email.com","association":"MHM","validity":"2025","status":"Membre actif","signature":"abc123..."}'
+ *                 example: '{"memberId":"M-2025-0142","name":"Jean Dupont","email":"jean.dupont@email.com","association":"HFM","validity":"2025","status":"Membre actif","signature":"abc123..."}'
  *     responses:
  *       200:
  *         description: QR code verification result

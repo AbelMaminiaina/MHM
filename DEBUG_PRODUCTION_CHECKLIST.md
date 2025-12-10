@@ -17,7 +17,7 @@ https://backmhm.vercel.app/health
 ```json
 {
   "success": true,
-  "message": "MHM Backend API is running",
+  "message": "HFM Backend API is running",
   "timestamp": "2025-11-25..."
 }
 ```
@@ -41,7 +41,7 @@ fetch('https://backmhm.vercel.app/health')
 
 **Résultat attendu :**
 ```json
-{ "success": true, "message": "MHM Backend API is running" }
+{ "success": true, "message": "HFM Backend API is running" }
 ```
 
 **Si erreur CORS :**
@@ -81,7 +81,7 @@ fetch('https://backmhm.vercel.app/api/users/login', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
-    email: 'admin@mhm.mg',
+    email: 'admin@HFM.mg',
     password: 'Admin123!'
   })
 })
@@ -97,7 +97,7 @@ fetch('https://backmhm.vercel.app/api/users/login', {
 {
   "success": true,
   "data": {
-    "email": "admin@mhm.mg",
+    "email": "admin@HFM.mg",
     "role": "admin",
     "token": "eyJhbGci..."
   }
@@ -145,11 +145,11 @@ Access to fetch ... has been blocked by CORS
 
 ### ✅ Test 6 : Vérifier si l'Admin Existe
 
-**MongoDB Atlas** → **Browse Collections** → `mhm_db` → `users`
+**MongoDB Atlas** → **Browse Collections** → `HFM_db` → `users`
 
 **Cherchez :**
 ```json
-{ "email": "admin@mhm.mg" }
+{ "email": "admin@HFM.mg" }
 ```
 
 **Si trouvé, vérifiez :**
@@ -168,7 +168,7 @@ Access to fetch ... has been blocked by CORS
 **Causes possibles :**
 1. L'admin n'existe pas dans la base de données
 2. Le mot de passe stocké n'est pas correct
-3. Mauvaise base de données (le backend regarde dans `test` au lieu de `mhm_db`)
+3. Mauvaise base de données (le backend regarde dans `test` au lieu de `HFM_db`)
 
 **Solution :**
 
@@ -205,8 +205,8 @@ node scripts/create-admin-production.js
    ```json
    {
      "firstName": "Admin",
-     "lastName": "MHM",
-     "email": "admin@mhm.mg",
+     "lastName": "HFM",
+     "email": "admin@HFM.mg",
      "password": "$2a$10$...le hash généré...",
      "role": "admin",
      "createdAt": { "$date": "2025-11-25T00:00:00.000Z" },
@@ -336,7 +336,7 @@ Vérifiez :
 
 ```javascript
 (async function debug() {
-  console.log('🔍 Diagnostic Production MHM\n');
+  console.log('🔍 Diagnostic Production HFM\n');
 
   // Test 1: Backend Health
   try {
@@ -351,7 +351,7 @@ Vérifiez :
     const login = await fetch('https://backmhm.vercel.app/api/users/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: 'admin@mhm.mg', password: 'Admin123!' })
+      body: JSON.stringify({ email: 'admin@HFM.mg', password: 'Admin123!' })
     }).then(r => r.json());
     console.log('✅ Login Response:', login);
   } catch (e) {
@@ -373,7 +373,7 @@ Vérifiez :
 Avant de tester à nouveau :
 
 **Backend Vercel :**
-- [ ] Variable `MONGO_URI` configurée (avec `/mhm_db`)
+- [ ] Variable `MONGO_URI` configurée (avec `/HFM_db`)
 - [ ] Variable `FRONTEND_URL` configurée (les 2 domaines)
 - [ ] Variable `JWT_SECRET` configurée
 - [ ] MongoDB Atlas Network Access : `0.0.0.0/0` autorisé

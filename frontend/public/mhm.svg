@@ -14,8 +14,8 @@
   <!-- Cercle intérieur blanc -->
   <circle cx="50" cy="50" r="40" fill="#ffffff" opacity="0.95"/>
 
-  <!-- Texte MHM -->
-  <text x="50" y="58" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#1e3a8a" text-anchor="middle">MHM</text>
+  <!-- Texte HFM -->
+  <text x="50" y="58" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#1e3a8a" text-anchor="middle">HFM</text>
 
   <!-- Petite étoile décorative -->
   <path d="M 50 20 L 52 26 L 58 26 L 53 30 L 55 36 L 50 32 L 45 36 L 47 30 L 42 26 L 48 26 Z" fill="#DC143C" opacity="0.8"/>

@@ -55,7 +55,7 @@ transporter.verify()
     const testEmail = {
       from: `${process.env.EMAIL_FROM_NAME} <${process.env.EMAIL_FROM}>`,
       to: process.env.SMTP_USER, // Send to self
-      subject: '✅ Test SMTP - MHM Backend',
+      subject: '✅ Test SMTP - HFM Backend',
       html: `
         <!DOCTYPE html>
         <html>

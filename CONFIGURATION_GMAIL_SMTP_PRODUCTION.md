@@ -38,7 +38,7 @@ Si pas encore fait :
    - Si vous ne le voyez pas, l'authentification à 2 facteurs n'est pas activée
 3. Cliquez sur **"Mots de passe des applications"**
 4. Sélectionnez **"Autre (nom personnalisé)"**
-5. Nom : `MHM Backend Email System`
+5. Nom : `HFM Backend Email System`
 6. Cliquez sur **"Générer"**
 7. **COPIEZ** le mot de passe de 16 caractères
    - Format : `abcd efgh ijkl mnop`
@@ -65,7 +65,7 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=votre-email@gmail.com
 SMTP_PASS=abcd efgh ijkl mnop
-EMAIL_FROM=noreply@mhm.mg
+EMAIL_FROM=noreply@HFM.mg
 EMAIL_FROM_NAME=Madagasikara Hoan'ny Malagasy
 ```
 
@@ -83,7 +83,7 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=contact@madagasikarahoanymalagasy.org
 SMTP_PASS=xmkq rfft appl xyzk
-EMAIL_FROM=noreply@mhm.mg
+EMAIL_FROM=noreply@HFM.mg
 EMAIL_FROM_NAME=Madagasikara Hoan'ny Malagasy
 ```
 
@@ -129,7 +129,7 @@ node test-smtp.js
 
 1. Ouvrez votre Gmail : **https://mail.google.com**
 2. Cherchez un email de **"Madagasikara Hoan'ny Malagasy"**
-3. Sujet : **"✅ Test SMTP - MHM Backend"**
+3. Sujet : **"✅ Test SMTP - HFM Backend"**
 
 **Si l'email arrive → Configuration réussie ! ✅**
 
@@ -175,7 +175,7 @@ Gmail a des limites d'envoi :
 
 1. **NE JAMAIS** commiter le fichier `.env` sur Git
 2. **Gardez** votre mot de passe d'application secret
-3. **Utilisez** un email dédié (ex: noreply@mhm.mg)
+3. **Utilisez** un email dédié (ex: noreply@HFM.mg)
 4. **Révoyez** le mot de passe d'application si compromis
 
 ### 🔄 Révoquer un Mot de Passe d'Application
@@ -263,7 +263,7 @@ NODE_ENV=production
 PORT=5000
 
 # MongoDB
-MONGO_URI=mongodb://localhost:27017/mhm_db
+MONGO_URI=mongodb://localhost:27017/HFM_db
 
 # JWT
 JWT_SECRET=hDy4+Of2JkRazkEqiF1Pq3qqvxcz6TVfC0tVrbeJySo02VZ+e71WNeV1lLHafSbYrDFJozDbmw8K8IhoSUg5cA==
@@ -278,7 +278,7 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=contact@madagasikarahoanymalagasy.org
 SMTP_PASS=xmkq rfft appl xyzk
-EMAIL_FROM=noreply@mhm.mg
+EMAIL_FROM=noreply@HFM.mg
 EMAIL_FROM_NAME=Madagasikara Hoan'ny Malagasy
 ```
 

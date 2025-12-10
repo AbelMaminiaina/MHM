@@ -132,7 +132,7 @@ const router = express.Router();
  *         phone: +261 34 12 345 67
  *         status: active
  *         memberType: regular
- *         memberNumber: MHM-2024-001
+ *         memberNumber: HFM-2024-001
  */
 
 /**
