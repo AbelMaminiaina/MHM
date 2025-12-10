@@ -102,46 +102,20 @@ export const ActualiteSection = () => {
             <motion.div
               key={item.id}
               className="group cursor-pointer"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
             >
               {/* Image/Video Container */}
-              <motion.div
-                className="relative overflow-hidden mb-3 rounded-lg shadow-lg"
-                initial={{ scale: 1.15, opacity: 0 }}
-                whileInView={{ scale: [1.15, 1.05, 1.15], opacity: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{
-                  opacity: { duration: 0.8, delay: index * 0.1 },
-                  scale: {
-                    duration: 5,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    delay: index * 0.1
-                  }
-                }}
-                whileHover={item.type === 'video' ? {
-                  scale: 1.03,
-                  boxShadow: "0 20px 40px rgba(153, 27, 27, 0.3)",
-                  transition: { duration: 0.3 }
-                } : {
-                  scale: 1.02,
-                  boxShadow: "0 15px 30px rgba(220, 38, 38, 0.2)",
-                  transition: { duration: 0.3 }
-                }}
+              <div
+                className="relative overflow-hidden mb-3 rounded-lg shadow-lg group-hover:shadow-xl transition-shadow duration-300"
               >
                 {item.type === 'video' ? (
                   <div className="relative">
                     {/* Desktop: toujours afficher l'iframe */}
-                    <motion.div
-                      className="hidden md:block"
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.3 }}
-                    >
+                    <div className="hidden md:block">
                       <iframe
                         src={item.videoUrl?.replace('watch?v=', 'embed/')}
                         title={item.title}
@@ -150,17 +124,11 @@ export const ActualiteSection = () => {
                         allowFullScreen
                         className="w-full aspect-video"
                       ></iframe>
-                      {/* Animation pulse sur vidéo au hover */}
-                      <motion.div
-                        className="absolute top-2 right-2 bg-red-700 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg"
-                        initial={{ scale: 1 }}
-                        whileHover={{ scale: 1.1 }}
-                        animate={{ scale: [1, 1.05, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      >
+                      {/* Badge vidéo */}
+                      <div className="absolute top-2 right-2 bg-red-700 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
                         ▶ VIDÉO
-                      </motion.div>
-                    </motion.div>
+                      </div>
+                    </div>
 
                     {/* Mobile: thumbnail puis iframe au clic */}
                     <div className="block md:hidden">
@@ -174,11 +142,9 @@ export const ActualiteSection = () => {
                           className="w-full aspect-video"
                         ></iframe>
                       ) : (
-                        <motion.button
+                        <button
                           onClick={() => setPlayingVideo(item.id)}
                           className="relative w-full block"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
                         >
                           <img
                             src={item.thumbnail}
@@ -187,17 +153,13 @@ export const ActualiteSection = () => {
                           />
                           {/* Play Button Overlay */}
                           <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-                            <motion.div
-                              className="w-16 h-16 bg-red-700 rounded-full flex items-center justify-center shadow-lg"
-                              animate={{ scale: [1, 1.1, 1] }}
-                              transition={{ duration: 1.5, repeat: Infinity }}
-                            >
+                            <div className="w-16 h-16 bg-red-700 rounded-full flex items-center justify-center shadow-lg">
                               <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M8 5v14l11-7z"/>
                               </svg>
-                            </motion.div>
+                            </div>
                           </div>
-                        </motion.button>
+                        </button>
                       )}
                     </div>
                   </div>
@@ -208,14 +170,10 @@ export const ActualiteSection = () => {
                     className="w-full aspect-video object-cover"
                   />
                 )}
-              </motion.div>
+              </div>
 
               {/* Content */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-              >
+              <div>
                 {/* Category Badge */}
                 <div className="flex items-center gap-1.5 mb-1.5">
                   <div className="w-1.5 h-1.5 bg-red-600 rounded-full"></div>
@@ -246,7 +204,7 @@ export const ActualiteSection = () => {
                   <p className="font-semibold">{item.author}</p>
                   <p className="text-xs">{item.date}</p>
                 </div>
-              </motion.div>
+              </div>
             </motion.div>
           ))}
         </div>
