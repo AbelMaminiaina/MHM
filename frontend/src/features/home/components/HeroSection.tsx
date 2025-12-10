@@ -119,39 +119,41 @@ export const HeroSection = () => {
         {/* Partie Droite - Zone avec Image de fond (En arrière-plan) */}
         <motion.div
           key={`background-${currentSlide}`}
-          className="absolute right-0 top-0 lg:top-2 bottom-0 md:bottom-10 lg:bottom-16 w-full md:w-[70%] lg:w-[90%] bg-cover bg-center transition-all duration-700"
+          className="absolute inset-0 lg:right-0 lg:left-auto lg:top-2 lg:bottom-16 lg:w-[90%] bg-cover bg-center transition-all duration-700"
           style={{ backgroundImage: `url(${slide.backgroundImage})` }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ opacity: { duration: 0.8, ease: appleEase } }}
         >
+          {/* Overlay pour améliorer la lisibilité du texte en mobile */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50 lg:bg-transparent"></div>
         </motion.div>
 
         {/* Partie Gauche - Zone Blanche avec Accents Rouge (Superposée) */}
         <motion.div
           key={`content-${currentSlide}`}
-          className="relative z-30 w-full lg:w-[50%] h-[450px] lg:h-[320px] bg-white/95 lg:bg-white border-l-8 border-red-600 shadow-2xl flex flex-col px-6 md:px-12 lg:px-16 xl:px-20 pt-4 lg:pt-5 pb-24 lg:pb-20 my-0 lg:my-16"
+          className="relative z-30 w-full lg:w-[50%] h-[450px] lg:h-[320px] lg:bg-white border-l-8 border-red-600 lg:shadow-2xl flex flex-col px-6 md:px-12 lg:px-16 xl:px-20 pt-4 lg:pt-5 pb-24 lg:pb-20 my-0 lg:my-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, ease: appleEase }}
         >
           {/* Badge Rouge - En haut */}
           <div className="w-full mb-6 lg:mb-8 flex justify-center">
-            <div className="inline-block bg-red-600 text-white px-6 py-2.5 text-sm font-bold uppercase shadow-lg">
+            <div className="inline-block bg-red-600 text-white px-6 py-2.5 text-sm font-bold uppercase shadow-lg ring-2 ring-white ring-offset-2 ring-offset-transparent">
               {slide.badge}
             </div>
           </div>
 
           {/* Titre Principal - Centré verticalement */}
           <div className="w-full flex-1 flex items-center justify-center">
-            <h1 className="text-gray-900 text-xl md:text-2xl lg:text-4xl xl:text-2xl font-black leading-tight uppercase text-center">
+            <h1 className="text-white lg:text-gray-900 text-xl md:text-2xl lg:text-4xl xl:text-2xl font-black leading-tight uppercase text-center drop-shadow-2xl">
               {slide.title}
             </h1>
           </div>
 
           {/* Bouton CTA - En bas fixe */}
           <div className="absolute bottom-4 lg:bottom-5 left-0 right-0 flex justify-center px-6">
-            <button className="bg-red-600 text-white px-8 md:px-10 py-2 md:py-2.5 text-sm md:text-base lg:text-lg font-bold uppercase shadow-xl cursor-pointer hover:bg-red-700 transition-all duration-300 ease-in-out transform hover:scale-105">
+            <button className="bg-red-600 text-white px-8 md:px-10 py-2 md:py-2.5 text-sm md:text-base lg:text-lg font-bold uppercase shadow-xl cursor-pointer hover:bg-red-700 transition-all duration-300 ease-in-out transform hover:scale-105 ring-2 ring-white ring-offset-2 ring-offset-transparent">
               {slide.ctaText}
             </button>
           </div>
