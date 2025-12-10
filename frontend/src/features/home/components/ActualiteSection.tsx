@@ -23,7 +23,7 @@ export const ActualiteSection = () => {
     {
       id: 1,
       type: 'image',
-      image: 'https://source.unsplash.com/400x300/?madagascar,politics',
+      image: '/images/antananarivo.jpg',
       category: 'COMMUNIQUÉS',
       title: "Madagascar : Le mouvement MHM appelle à la souveraineté nationale et à la défense des valeurs malagasy",
       author: 'Bureau Exécutif MHM',
@@ -33,7 +33,7 @@ export const ActualiteSection = () => {
     {
       id: 2,
       type: 'image',
-      image: 'https://source.unsplash.com/400x300/?madagascar,nature',
+      image: '/images/tsingy.jpg',
       category: 'COMMUNIQUÉS',
       title: "Développement durable : Le MHM présente son programme pour la protection de l'environnement malagasy",
       author: 'Commission Environnement',
@@ -69,7 +69,7 @@ export const ActualiteSection = () => {
     {
       id: 5,
       type: 'image',
-      image: 'https://source.unsplash.com/400x300/?agriculture,farming',
+      image: '/images/rizieres.jpg',
       category: 'COMMUNIQUÉS',
       title: "Agriculture et sécurité alimentaire : Le MHM propose un plan de valorisation des producteurs locaux",
       author: 'Val',
@@ -79,7 +79,7 @@ export const ActualiteSection = () => {
     {
       id: 6,
       type: 'image',
-      image: 'https://source.unsplash.com/400x300/?education,school',
+      image: '/images/sud-madagascar.jpg',
       category: 'COMMUNIQUÉS',
       title: "Éducation nationale : Le MHM demande la revalorisation du système éducatif malgache et la promotion du bilinguisme",
       author: 'Randrianarisoa Fidy',
