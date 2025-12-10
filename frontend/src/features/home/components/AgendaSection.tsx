@@ -26,7 +26,7 @@ const agendaData: AgendaEvent[] = [
     title: 'VAL SUR MADAGASIKARA INFO',
     category: 'Medias',
     description: 'Val sera l\'invité de Madagasikara Info mardi 28 octobre à 7h45.',
-    imageUrl: 'https://source.unsplash.com/200x200/?radio,interview,media'
+    imageUrl: '/images/antananarivo.jpg'
   },
   {
     id: '2',
@@ -36,7 +36,7 @@ const agendaData: AgendaEvent[] = [
     title: 'Val SUR TVM',
     category: 'Medias',
     description: 'Valohery sera l\'invité de TVM mercredi 29 octobre à 10h30.',
-    imageUrl: 'https://source.unsplash.com/200x200/?television,studio,broadcast'
+    imageUrl: '/images/baobabs.jpg'
   },
   {
     id: '3',
@@ -46,7 +46,7 @@ const agendaData: AgendaEvent[] = [
     title: '« CE QUE VEULENT LES MALAGASY »',
     category: 'Evenements',
     description: '« Ce que veulent les Malagasy » : précommandez dès maintenant le nouveau livre de Valohery',
-    imageUrl: 'https://source.unsplash.com/200x200/?book,library,reading'
+    imageUrl: '/images/lakana.jpg'
   },
   {
     id: '4',
@@ -56,7 +56,7 @@ const agendaData: AgendaEvent[] = [
     title: 'SÉANCE DE DÉDICACES À VELIZY',
     category: 'Deplacements',
     description: 'Séance de dédicaces du nouveau livre de Valohery',
-    imageUrl: 'https://source.unsplash.com/200x200/?book,signing,author'
+    imageUrl: '/images/nosy-be.jpg'
   }
 ];
 
@@ -66,7 +66,7 @@ const actionItems = [
     title: 'MILITER',
     description: 'Rejoignez le mouvement',
     color: 'from-red-600 to-red-800',
-    imageUrl: 'https://source.unsplash.com/800x600/?protest,activism',
+    imageUrl: '/images/rizieres.jpg',
     link: '#'
   },
   {
@@ -74,7 +74,7 @@ const actionItems = [
     title: 'FAIRE UN DON',
     description: 'Soutenez nos actions',
     color: 'from-pink-600 to-pink-800',
-    imageUrl: 'https://source.unsplash.com/800x600/?donation,charity',
+    imageUrl: '/images/tsingy.jpg',
     link: '#'
   },
   {
@@ -82,7 +82,7 @@ const actionItems = [
     title: 'ADHÉRER',
     description: 'Devenez membre MHM',
     color: 'from-rose-600 to-rose-800',
-    imageUrl: 'https://source.unsplash.com/800x600/?handshake,team',
+    imageUrl: '/images/sud-madagascar.jpg',
     link: '#'
   },
   {
@@ -90,7 +90,7 @@ const actionItems = [
     title: 'PROJET',
     description: 'Découvrez notre vision',
     color: 'from-red-700 to-red-900',
-    imageUrl: 'https://source.unsplash.com/800x600/?future,vision',
+    imageUrl: '/images/baobabs1.jpg',
     link: '#'
   }
 ];
@@ -163,7 +163,7 @@ export const AgendaSection = () => {
                     >
                       {event.category}
                     </motion.span>
-                    <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-gray-700 leading-relaxed text-justify">
                       {event.description}
                     </p>
                   </div>

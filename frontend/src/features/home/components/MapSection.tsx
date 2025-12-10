@@ -9,7 +9,7 @@ export const MapSection = () => {
       title: 'ENGAGEZ-VOUS POUR MADAGASCAR',
       subtitle: 'REJOIGNEZ',
       name: 'LE MHM !',
-      image: 'https://source.unsplash.com/800x600/?madagascar,people,crowd',
+      image: '/images/antananarivo.jpg',
       link: '#'
     }
   ];
@@ -48,7 +48,7 @@ export const MapSection = () => {
             </motion.h2>
 
             <motion.p
-              className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8 lg:mb-10 leading-relaxed"
+              className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8 lg:mb-10 leading-relaxed text-justify"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -108,7 +108,7 @@ export const MapSection = () => {
             </motion.h2>
 
             <motion.p
-              className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8 lg:mb-10 leading-relaxed"
+              className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8 lg:mb-10 leading-relaxed text-justify"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

@@ -194,7 +194,7 @@ export const ActualiteSection = () => {
 
                 {/* Description (pour les vidéos) */}
                 {item.type === 'video' && item.description && (
-                  <p className="text-xs text-gray-600 mb-2 line-clamp-2">
+                  <p className="text-xs text-gray-600 mb-2 line-clamp-2 text-justify">
                     {item.description}
                   </p>
                 )}
