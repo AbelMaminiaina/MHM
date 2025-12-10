@@ -105,22 +105,13 @@ export const AgendaSection = () => {
             AGENDA
           </h2>
           <div className="space-y-3 sm:space-y-4">
-            {agendaData.map((event, index) => (
-              <motion.div
+            {agendaData.map((event) => (
+              <div
                 key={event.id}
-                className="flex flex-col sm:flex-row gap-3 sm:gap-5 p-4 sm:p-5 rounded-xl border-2 border-pink-100 hover:border-pink-400 bg-white hover:bg-gradient-to-r hover:from-pink-50 hover:to-white transition-all duration-300 shadow-sm hover:shadow-xl cursor-pointer"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-20px" }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                whileHover={{ x: 5, transition: { duration: 0.2 } }}
+                className="flex flex-col sm:flex-row gap-3 sm:gap-5 p-4 sm:p-5 rounded-xl border-2 border-pink-100 hover:border-pink-400 bg-white hover:bg-gradient-to-r hover:from-pink-50 hover:to-white transition-all duration-200 shadow-sm hover:shadow-lg cursor-pointer"
               >
                 {/* Date */}
-                <motion.div
-                  className="flex-shrink-0 text-center w-full sm:min-w-[100px] sm:w-auto bg-gradient-to-br from-pink-600 to-pink-800 text-white rounded-lg p-3 sm:p-4 shadow-md"
-                  whileHover={{ scale: 1.05, rotate: 2 }}
-                  transition={{ duration: 0.3 }}
-                >
+                <div className="flex-shrink-0 text-center w-full sm:min-w-[100px] sm:w-auto bg-gradient-to-br from-pink-600 to-pink-800 text-white rounded-lg p-3 sm:p-4 shadow-md">
                   <div className="text-3xl sm:text-4xl font-black leading-none">
                     {event.day}
                   </div>
@@ -130,7 +121,7 @@ export const AgendaSection = () => {
                   <div className="text-sm font-bold mt-2 bg-white/20 px-2 py-1 rounded">
                     {event.time}
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Details */}
                 <div className="flex gap-3 sm:gap-5 flex-1">
@@ -145,49 +136,30 @@ export const AgendaSection = () => {
                     </div>
                   )}
                   <div className="flex-1">
-                    <h3 className="text-base sm:text-lg font-black text-gray-900 mb-2 uppercase group-hover:text-pink-700 transition-colors">
+                    <h3 className="text-base sm:text-lg font-black text-gray-900 mb-2 uppercase">
                       {event.title}
                     </h3>
-                    <motion.span
-                      className={`inline-flex items-center gap-1 text-xs font-bold text-white px-2.5 sm:px-3 py-1 rounded-full mb-2 sm:mb-3 ${categoryColors[event.category]}`}
-                      whileHover={{ scale: 1.05 }}
-                    >
+                    <span className={`inline-flex items-center gap-1 text-xs font-bold text-white px-2.5 sm:px-3 py-1 rounded-full mb-2 sm:mb-3 ${categoryColors[event.category]}`}>
                       {event.category}
-                    </motion.span>
+                    </span>
                     <p className="text-xs sm:text-sm text-gray-700 leading-relaxed text-justify">
                       {event.description}
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
 
         {/* Right - Actions */}
         <div>
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            {actionItems.map((action, index) => (
-              <motion.a
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            {actionItems.map((action) => (
+              <a
                 key={action.id}
                 href={action.link}
-                className="relative h-56 sm:h-64 rounded-xl sm:rounded-2xl overflow-hidden group cursor-pointer shadow-2xl border-2 border-transparent hover:border-white"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-20px" }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                whileHover={{
-                  scale: 1.02,
-                  boxShadow: "0 30px 60px rgba(0, 0, 0, 0.5)",
-                  transition: { duration: 0.3 }
-                }}
-                whileTap={{ scale: 0.98 }}
+                className="relative h-56 sm:h-64 rounded-xl sm:rounded-2xl overflow-hidden group cursor-pointer shadow-xl hover:shadow-2xl border-2 border-transparent hover:border-white transition-all duration-200"
               >
                 {/* Image de fond */}
                 <div
@@ -195,51 +167,28 @@ export const AgendaSection = () => {
                   style={{ backgroundImage: `url(${action.imageUrl})` }}
                 />
                 {/* Gradient overlay avec couleur dynamique */}
-                <motion.div
-                  className={`absolute inset-0 bg-gradient-to-br ${action.color} opacity-60 group-hover:opacity-80 transition-opacity duration-300`}
-                />
-
-                {/* Effet de brillance animé */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "100%" }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
-                />
+                <div className={`absolute inset-0 bg-gradient-to-br ${action.color} opacity-60 group-hover:opacity-75 transition-opacity duration-200`} />
 
                 {/* Contenu */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6">
                   {/* Titre */}
-                  <motion.h3
-                    className="text-white text-2xl sm:text-3xl lg:text-4xl font-black text-center uppercase drop-shadow-2xl mb-2 sm:mb-3"
-                    whileHover={{ scale: 1.15, y: -8 }}
-                    transition={{ duration: 0.3 }}
-                  >
+                  <h3 className="text-white text-2xl sm:text-3xl lg:text-4xl font-black text-center uppercase drop-shadow-2xl mb-2 sm:mb-3">
                     {action.title}
-                  </motion.h3>
+                  </h3>
 
                   {/* Description qui apparaît au hover */}
-                  <motion.p
-                    className="text-white text-sm sm:text-base font-bold text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 px-4 sm:px-5 py-2 sm:py-3 rounded-full backdrop-blur-sm"
-                    initial={{ y: 10 }}
-                    whileHover={{ y: 0 }}
-                  >
+                  <p className="text-white text-sm sm:text-base font-bold text-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/40 px-4 sm:px-5 py-2 sm:py-3 rounded-full backdrop-blur-sm">
                     {action.description}
-                  </motion.p>
+                  </p>
                 </div>
 
                 {/* Flèche d'action */}
-                <motion.div
-                  className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 bg-white text-gray-900 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-black text-lg sm:text-xl opacity-0 group-hover:opacity-100 shadow-2xl"
-                  initial={{ scale: 0, rotate: -180 }}
-                  whileHover={{ scale: 1, rotate: 0 }}
-                  transition={{ duration: 0.5, type: "spring", bounce: 0.5 }}
-                >
+                <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 bg-white text-gray-900 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-black text-lg sm:text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-2xl">
                   →
-                </motion.div>
-              </motion.a>
+                </div>
+              </a>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
