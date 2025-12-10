@@ -132,14 +132,14 @@ export const HeroSection = () => {
         {/* Partie Gauche - Zone Blanche avec Accents Rouge (Superposée) */}
         <motion.div
           key={`content-${currentSlide}`}
-          className="relative z-30 w-full lg:w-[50%] h-[450px] lg:h-[320px] lg:bg-white border-l-8 border-red-600 lg:shadow-2xl flex flex-col px-6 md:px-12 lg:px-16 xl:px-20 pt-4 lg:pt-5 pb-24 lg:pb-20 my-0 lg:my-16"
+          className="relative z-30 w-full lg:w-[50%] h-[450px] lg:h-[320px] lg:bg-white/90 backdrop-blur-sm border-l-8 border-red-600 lg:shadow-2xl lg:rounded-lg flex flex-col px-6 md:px-12 lg:px-16 xl:px-20 pt-4 lg:pt-5 pb-24 lg:pb-20 my-0 lg:my-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, ease: appleEase }}
         >
           {/* Badge Rouge - En haut */}
           <div className="w-full mb-6 lg:mb-8 flex justify-center">
-            <div className="inline-block bg-red-600 text-white px-6 py-2.5 text-sm font-bold uppercase shadow-lg ring-2 ring-white ring-offset-2 ring-offset-transparent">
+            <div className="inline-block bg-red-600 text-white px-6 py-2.5 text-sm font-bold uppercase shadow-lg rounded-md ring-2 ring-white ring-offset-2 ring-offset-transparent">
               {slide.badge}
             </div>
           </div>
@@ -153,7 +153,7 @@ export const HeroSection = () => {
 
           {/* Bouton CTA - En bas fixe */}
           <div className="absolute bottom-4 lg:bottom-5 left-0 right-0 flex justify-center px-6">
-            <button className="bg-red-600 text-white px-8 md:px-10 py-2 md:py-2.5 text-sm md:text-base lg:text-lg font-bold uppercase shadow-xl cursor-pointer hover:bg-red-700 transition-all duration-300 ease-in-out transform hover:scale-105 ring-2 ring-white ring-offset-2 ring-offset-transparent">
+            <button className="bg-red-600 text-white px-8 md:px-10 py-3 md:py-3.5 text-sm md:text-base lg:text-lg font-bold uppercase shadow-xl rounded-lg cursor-pointer hover:bg-red-700 hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-105 ring-2 ring-white ring-offset-2 ring-offset-transparent">
               {slide.ctaText}
             </button>
           </div>

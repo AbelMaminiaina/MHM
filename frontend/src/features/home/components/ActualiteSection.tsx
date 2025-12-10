@@ -111,7 +111,7 @@ export const ActualiteSection = () => {
                     {/* Desktop: toujours afficher l'iframe */}
                     <div className="hidden md:block">
                       <iframe
-                        src={item.videoUrl?.replace('watch?v=', 'embed/')}
+                        src={item.videoUrl?.replace('watch?v=', 'embed/').replace('youtube.com', 'youtube-nocookie.com')}
                         title={item.title}
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -128,7 +128,7 @@ export const ActualiteSection = () => {
                     <div className="block md:hidden">
                       {playingVideo === item.id ? (
                         <iframe
-                          src={`${item.videoUrl?.replace('watch?v=', 'embed/')}?autoplay=1`}
+                          src={`${item.videoUrl?.replace('watch?v=', 'embed/').replace('youtube.com', 'youtube-nocookie.com')}?autoplay=1`}
                           title={item.title}
                           frameBorder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -206,7 +206,7 @@ export const ActualiteSection = () => {
 
         {/* View More Button */}
         <div className="text-center mt-8 sm:mt-10 lg:mt-12">
-          <button className="bg-red-800 text-white px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-bold uppercase hover:bg-red-900 hover:shadow-lg transition-all duration-200 rounded-lg">
+          <button className="bg-red-800 text-white px-8 sm:px-10 py-3 sm:py-3.5 text-sm sm:text-base font-bold uppercase hover:bg-red-900 hover:shadow-2xl transition-all duration-300 rounded-full shadow-xl hover:scale-105 transform">
             Voir plus d'actualités
           </button>
         </div>

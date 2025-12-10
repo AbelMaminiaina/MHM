@@ -65,7 +65,7 @@ export const MapSection = () => {
             </div>
 
             {/* CTA Button */}
-            <button className="w-full bg-gradient-to-r from-orange-600 to-orange-800 text-white py-3 sm:py-4 px-4 sm:px-6 rounded-xl text-sm sm:text-base font-bold uppercase hover:from-orange-700 hover:to-orange-900 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95">
+            <button className="w-full bg-gradient-to-r from-orange-600 to-orange-800 text-white py-3 sm:py-4 px-4 sm:px-6 rounded-full text-sm sm:text-base font-bold uppercase hover:from-orange-700 hover:to-orange-900 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95">
               Trouver ma fédération →
             </button>
           </motion.div>
@@ -152,7 +152,7 @@ export const MapSection = () => {
             ))}
 
             {/* CTA Button */}
-            <button className="w-full bg-gradient-to-r from-red-700 to-red-900 text-white py-3 sm:py-4 px-4 sm:px-6 rounded-xl text-sm sm:text-base font-bold uppercase hover:from-red-800 hover:to-red-950 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95 inline-flex items-center justify-center gap-2">
+            <button className="w-full bg-gradient-to-r from-red-700 to-red-900 text-white py-3 sm:py-4 px-4 sm:px-6 rounded-full text-sm sm:text-base font-bold uppercase hover:from-red-800 hover:to-red-950 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 inline-flex items-center justify-center gap-2">
               Toutes nos initiatives
               <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

@@ -42,9 +42,9 @@ export const CallToActionSection = () => {
             <input
               type="email"
               placeholder="Votre adresse électronique"
-              className="flex-1 px-2.5 sm:px-3 py-2 text-xs bg-white border-2 border-gray-300 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600"
+              className="flex-1 px-2.5 sm:px-3 py-2 text-xs bg-white border-2 border-gray-300 rounded-l-full text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600"
             />
-            <button className="bg-red-600 text-white border-2 border-red-600 px-2.5 sm:px-3 hover:bg-red-700 hover:border-red-700 transition-colors">
+            <button className="bg-red-600 text-white border-2 border-red-600 px-2.5 sm:px-3 rounded-r-full hover:bg-red-700 hover:border-red-700 transition-colors">
               <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
@@ -84,14 +84,14 @@ export const CallToActionSection = () => {
           >
             <motion.button
               onClick={() => navigate('/adherer')}
-              className="bg-red-600 text-white px-4 sm:px-5 py-2 text-xs sm:text-sm font-bold uppercase hover:bg-red-700 transition-colors shadow-lg"
+              className="bg-red-600 text-white px-4 sm:px-5 py-2 text-xs sm:text-sm font-bold uppercase hover:bg-red-700 transition-colors shadow-lg rounded-full"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               J'adhère
             </motion.button>
             <motion.button
-              className="bg-red-600 text-white px-4 sm:px-5 py-2 text-xs sm:text-sm font-bold uppercase hover:bg-red-700 transition-colors shadow-lg"
+              className="bg-red-600 text-white px-4 sm:px-5 py-2 text-xs sm:text-sm font-bold uppercase hover:bg-red-700 transition-colors shadow-lg rounded-full"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

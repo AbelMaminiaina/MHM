@@ -153,16 +153,19 @@ export const AgendaSection = () => {
         {/* Right - Actions */}
         <div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-            {actionItems.map((action) => (
+            {actionItems.map((action, index) => (
               <a
                 key={action.id}
                 href={action.link}
-                className="relative h-56 sm:h-64 rounded-xl sm:rounded-2xl overflow-hidden group cursor-pointer shadow-xl hover:shadow-2xl border-2 border-transparent hover:border-white transition-all duration-200"
+                className="relative min-h-[240px] sm:h-64 rounded-xl sm:rounded-2xl overflow-hidden group cursor-pointer shadow-xl hover:shadow-2xl border-2 border-transparent hover:border-white transition-all duration-200"
               >
                 {/* Image de fond */}
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${action.imageUrl})` }}
+                <img
+                  src={action.imageUrl}
+                  alt={action.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading={index < 2 ? "eager" : "lazy"}
+                  decoding="async"
                 />
                 {/* Gradient overlay avec couleur dynamique */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${action.color} opacity-60 group-hover:opacity-75 transition-opacity duration-200`} />
@@ -170,12 +173,12 @@ export const AgendaSection = () => {
                 {/* Contenu */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6">
                   {/* Titre */}
-                  <h3 className="text-white text-2xl sm:text-3xl lg:text-4xl font-black text-center uppercase drop-shadow-2xl mb-2 sm:mb-3">
+                  <h3 className="text-white text-xl sm:text-2xl lg:text-3xl font-black text-center uppercase drop-shadow-2xl mb-2 sm:mb-3">
                     {action.title}
                   </h3>
 
                   {/* Description qui apparaît au hover */}
-                  <p className="text-white text-sm sm:text-base font-bold text-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/40 px-4 sm:px-5 py-2 sm:py-3 rounded-full backdrop-blur-sm">
+                  <p className="text-white text-xs sm:text-sm font-bold text-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/40 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full backdrop-blur-sm">
                     {action.description}
                   </p>
                 </div>
