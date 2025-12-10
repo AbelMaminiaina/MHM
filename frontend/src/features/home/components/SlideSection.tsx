@@ -111,23 +111,15 @@ export const SlideSection = () => {
             {topCards.map((card) => (
               <div
                 key={card.id}
-                className={`${card.bgColor} text-white p-6 cursor-pointer snap-start flex-shrink-0 w-[280px] md:w-[320px] transition-all duration-300 hover:scale-105 hover:shadow-2xl relative overflow-hidden group`}
+                className={`${card.bgColor} text-white p-6 cursor-pointer snap-start flex-shrink-0 w-[280px] md:w-[320px] transition-all duration-200 hover:shadow-xl relative overflow-hidden`}
               >
-                {/* Overlay gradient au survol */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/30 group-hover:via-purple-500/30 group-hover:to-pink-500/30 transition-all duration-500"></div>
-
                 {/* Contenu */}
-                <div className="relative z-10">
-                  <p className="text-xs font-semibold mb-2 group-hover:text-yellow-300 transition-colors duration-300">{card.subtitle}</p>
-                  <h3 className="text-2xl md:text-3xl font-black mb-1 group-hover:scale-105 transition-transform duration-300">{card.title}</h3>
+                <div>
+                  <p className="text-xs font-semibold mb-2">{card.subtitle}</p>
+                  <h3 className="text-2xl md:text-3xl font-black mb-1">{card.title}</h3>
                   {card.description && (
-                    <p className="text-xs font-medium group-hover:text-gray-100 transition-colors duration-300">{card.description}</p>
+                    <p className="text-xs font-medium">{card.description}</p>
                   )}
-                </div>
-
-                {/* Effet de brillance au survol */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute top-0 -left-full h-full w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 group-hover:left-full transition-all duration-1000"></div>
                 </div>
               </div>
             ))}

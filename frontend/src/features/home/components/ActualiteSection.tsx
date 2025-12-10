@@ -98,15 +98,10 @@ export const ActualiteSection = () => {
 
         {/* News Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 items-start">
-          {newsItems.map((item, index) => (
-            <motion.div
+          {newsItems.map((item) => (
+            <div
               key={item.id}
-              className="group cursor-pointer"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-20px" }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              className="group cursor-pointer hover:-translate-y-2 transition-transform duration-200"
             >
               {/* Image/Video Container */}
               <div
@@ -206,26 +201,16 @@ export const ActualiteSection = () => {
                   <p className="text-xs">{item.date}</p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* View More Button */}
-        <motion.div
-          className="text-center mt-8 sm:mt-10 lg:mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <motion.button
-            className="bg-red-800 text-white px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-bold uppercase hover:bg-red-900 transition-colors rounded-lg"
-            whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(153, 27, 27, 0.4)" }}
-            whileTap={{ scale: 0.95 }}
-          >
+        <div className="text-center mt-8 sm:mt-10 lg:mt-12">
+          <button className="bg-red-800 text-white px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-bold uppercase hover:bg-red-900 hover:shadow-lg transition-all duration-200 rounded-lg">
             Voir plus d'actualités
-          </motion.button>
-        </motion.div>
+          </button>
+        </div>
       </div>
     </section>
   );
