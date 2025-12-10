@@ -121,20 +121,9 @@ export const HeroSection = () => {
           key={`background-${currentSlide}`}
           className="absolute right-0 top-0 lg:top-2 bottom-0 md:bottom-10 lg:bottom-16 w-full md:w-[70%] lg:w-[90%] bg-cover bg-center transition-all duration-700"
           style={{ backgroundImage: `url(${slide.backgroundImage})` }}
-          initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 1.15 }}
-          animate={{
-            opacity: 1,
-            scale: prefersReducedMotion ? 1 : [1.15, 1.05, 1.15]
-          }}
-          transition={{
-            opacity: { duration: 0.8, ease: appleEase },
-            scale: {
-              duration: prefersReducedMotion ? 0 : 6,
-              ease: "easeInOut",
-              repeat: Infinity,
-              repeatType: "loop"
-            }
-          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ opacity: { duration: 0.8, ease: appleEase } }}
         >
         </motion.div>
 
@@ -142,60 +131,30 @@ export const HeroSection = () => {
         <motion.div
           key={`content-${currentSlide}`}
           className="relative z-30 w-full lg:w-[50%] h-[450px] lg:h-[320px] bg-white/95 lg:bg-white border-l-8 border-red-600 shadow-2xl flex flex-col px-6 md:px-12 lg:px-16 xl:px-20 pt-4 lg:pt-5 pb-24 lg:pb-20 my-0 lg:my-16"
-          initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{
-            duration: prefersReducedMotion ? 0.3 : 0.7,
-            ease: appleEase,
-          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, ease: appleEase }}
         >
           {/* Badge Rouge - En haut */}
-          <motion.div
-            className="w-full mb-6 lg:mb-8 flex justify-center"
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : -15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: prefersReducedMotion ? 0.2 : 0.5,
-              ease: appleEase,
-              delay: 0.1,
-            }}
-          >
+          <div className="w-full mb-6 lg:mb-8 flex justify-center">
             <div className="inline-block bg-red-600 text-white px-6 py-2.5 text-sm font-bold uppercase shadow-lg">
               {slide.badge}
             </div>
-          </motion.div>
+          </div>
 
           {/* Titre Principal - Centré verticalement */}
-          <motion.div
-            className="w-full flex-1 flex items-center justify-center"
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: prefersReducedMotion ? 0.2 : 0.6,
-              ease: appleEase,
-              delay: 0.2,
-            }}
-          >
+          <div className="w-full flex-1 flex items-center justify-center">
             <h1 className="text-gray-900 text-xl md:text-2xl lg:text-4xl xl:text-2xl font-black leading-tight uppercase text-center">
               {slide.title}
             </h1>
-          </motion.div>
+          </div>
 
           {/* Bouton CTA - En bas fixe */}
-          <motion.div
-            className="absolute bottom-4 lg:bottom-5 left-0 right-0 flex justify-center px-6"
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: prefersReducedMotion ? 0.2 : 0.5,
-              ease: appleEase,
-              delay: 0.3,
-            }}
-          >
+          <div className="absolute bottom-4 lg:bottom-5 left-0 right-0 flex justify-center px-6">
             <button className="bg-red-600 text-white px-8 md:px-10 py-2 md:py-2.5 text-sm md:text-base lg:text-lg font-bold uppercase shadow-xl cursor-pointer hover:bg-red-700 transition-all duration-300 ease-in-out transform hover:scale-105">
               {slide.ctaText}
             </button>
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* Ligne lumineuse au centre (glow effect) - Uniquement au premier chargement */}

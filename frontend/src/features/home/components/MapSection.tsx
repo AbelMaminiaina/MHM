@@ -31,31 +31,19 @@ export const MapSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
           {/* Left - Federations Section */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-20px" }}
+            transition={{ duration: 0.3 }}
           >
-            <motion.h2
-              className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4 sm:mb-6 uppercase leading-tight"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4 sm:mb-6 uppercase leading-tight">
               Nos Fédérations à<br />
               <span className="text-orange-600">Madagascar</span>
-            </motion.h2>
+            </h2>
 
-            <motion.p
-              className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8 lg:mb-10 leading-relaxed text-justify"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
+            <p className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8 lg:mb-10 leading-relaxed text-justify">
               Retrouvez votre fédération locale et connectez-vous avec des milliers de membres engagés pour Madagascar.
-            </motion.p>
+            </p>
 
             {/* Federation Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
@@ -63,10 +51,10 @@ export const MapSection = () => {
                 <motion.div
                   key={fed.name}
                   className="bg-white p-5 sm:p-6 rounded-2xl border-2 border-orange-200 hover:border-orange-500 hover:shadow-xl transition-all duration-300 cursor-pointer group"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true, margin: "-20px" }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
                   whileHover={{ y: -5, scale: 1.02 }}
                 >
                   <div className="text-3xl sm:text-4xl mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">{fed.icon}</div>
@@ -77,45 +65,25 @@ export const MapSection = () => {
             </div>
 
             {/* CTA Button */}
-            <motion.button
-              className="w-full bg-gradient-to-r from-orange-600 to-orange-800 text-white py-3 sm:py-4 px-4 sm:px-6 rounded-xl text-sm sm:text-base font-bold uppercase hover:from-orange-700 hover:to-orange-900 transition-all duration-300 shadow-lg hover:shadow-2xl"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
+            <button className="w-full bg-gradient-to-r from-orange-600 to-orange-800 text-white py-3 sm:py-4 px-4 sm:px-6 rounded-xl text-sm sm:text-base font-bold uppercase hover:from-orange-700 hover:to-orange-900 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95">
               Trouver ma fédération →
-            </motion.button>
+            </button>
           </motion.div>
 
           {/* Right - Actions Section */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-20px" }}
+            transition={{ duration: 0.3 }}
           >
-            <motion.h2
-              className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4 sm:mb-6 lg:mb-8 uppercase leading-tight"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4 sm:mb-6 lg:mb-8 uppercase leading-tight">
               Nos <span className="text-orange-600">Actions</span>
-            </motion.h2>
+            </h2>
 
-            <motion.p
-              className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8 lg:mb-10 leading-relaxed text-justify"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
+            <p className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8 lg:mb-10 leading-relaxed text-justify">
               Engagez-vous pour Madagascar et rejoignez un mouvement citoyen qui agit pour le développement et la souveraineté de notre nation.
-            </motion.p>
+            </p>
 
             {/* Action Card */}
             {actions.map((action) => (
@@ -134,19 +102,10 @@ export const MapSection = () => {
                   transition: { duration: 0.3 }
                 }}
               >
-                {/* Image de fond avec effet zoom */}
-                <motion.div
+                {/* Image de fond */}
+                <div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: `url(${action.image})` }}
-                  initial={{ scale: 1.15 }}
-                  animate={{ scale: [1.15, 1.05, 1.15] }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 5.5,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                    repeatType: "loop"
-                  }}
                 />
                 {/* Gradient Overlay */}
                 <motion.div
@@ -193,20 +152,12 @@ export const MapSection = () => {
             ))}
 
             {/* CTA Button */}
-            <motion.button
-              className="w-full bg-gradient-to-r from-red-700 to-red-900 text-white py-3 sm:py-4 px-4 sm:px-6 rounded-xl text-sm sm:text-base font-bold uppercase hover:from-red-800 hover:to-red-950 transition-all duration-300 shadow-lg hover:shadow-2xl inline-flex items-center justify-center gap-2"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
+            <button className="w-full bg-gradient-to-r from-red-700 to-red-900 text-white py-3 sm:py-4 px-4 sm:px-6 rounded-xl text-sm sm:text-base font-bold uppercase hover:from-red-800 hover:to-red-950 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95 inline-flex items-center justify-center gap-2">
               Toutes nos initiatives
               <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </motion.button>
+            </button>
           </motion.div>
         </div>
       </div>

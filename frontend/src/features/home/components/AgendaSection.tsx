@@ -109,10 +109,10 @@ export const AgendaSection = () => {
               <motion.div
                 key={event.id}
                 className="flex flex-col sm:flex-row gap-3 sm:gap-5 p-4 sm:p-5 rounded-xl border-2 border-pink-100 hover:border-pink-400 bg-white hover:bg-gradient-to-r hover:from-pink-50 hover:to-white transition-all duration-300 shadow-sm hover:shadow-xl cursor-pointer"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
                 whileHover={{ x: 5, transition: { duration: 0.2 } }}
               >
                 {/* Date */}
@@ -136,20 +136,11 @@ export const AgendaSection = () => {
                 <div className="flex gap-3 sm:gap-5 flex-1">
                   {event.imageUrl && (
                     <div className="relative overflow-hidden rounded-lg flex-shrink-0 shadow-md w-20 h-20 sm:w-24 sm:h-24">
-                      <motion.img
+                      <img
                         src={event.imageUrl}
                         alt={event.title}
                         className="w-full h-full object-cover"
-                        initial={{ scale: 1.15 }}
-                        animate={{ scale: [1.15, 1.05, 1.15] }}
-                        viewport={{ once: true }}
-                        transition={{
-                          duration: 4.5,
-                          ease: "easeInOut",
-                          repeat: Infinity,
-                          repeatType: "loop",
-                          delay: index * 0.15
-                        }}
+                        loading="lazy"
                       />
                     </div>
                   )}
@@ -187,31 +178,21 @@ export const AgendaSection = () => {
                 key={action.id}
                 href={action.link}
                 className="relative h-56 sm:h-64 rounded-xl sm:rounded-2xl overflow-hidden group cursor-pointer shadow-2xl border-2 border-transparent hover:border-white"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
                 whileHover={{
-                  scale: 1.05,
+                  scale: 1.02,
                   boxShadow: "0 30px 60px rgba(0, 0, 0, 0.5)",
-                  transition: { duration: 0.4 }
+                  transition: { duration: 0.3 }
                 }}
-                whileTap={{ scale: 0.95 }}
+                whileTap={{ scale: 0.98 }}
               >
-                {/* Image de fond avec effet zoom */}
-                <motion.div
+                {/* Image de fond */}
+                <div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: `url(${action.imageUrl})` }}
-                  initial={{ scale: 1.15 }}
-                  animate={{ scale: [1.15, 1.05, 1.15] }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 5.5,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    delay: index * 0.15
-                  }}
                 />
                 {/* Gradient overlay avec couleur dynamique */}
                 <motion.div
