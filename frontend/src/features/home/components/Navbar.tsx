@@ -31,8 +31,8 @@ export const Navbar = () => {
             className="w-10 h-10 md:w-12 md:h-12"
           />
           <div className="flex flex-col leading-tight">
+            <span className="text-gray-700 font-black text-base md:text-lg">HO AN'NY FANAFAHAN'I</span>
             <span className="text-gray-700 font-black text-base md:text-lg">MADAGASIKARA</span>
-            <span className="text-gray-700 font-black text-base md:text-lg">HOAN'NY MALAGASY</span>
           </div>
         </div>
 
