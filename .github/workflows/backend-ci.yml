@@ -138,7 +138,7 @@ jobs:
           file: ./backend/Dockerfile
           target: production
           push: false
-          tags: HFM-backend:${{ github.sha }}
+          tags: hfm-backend:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
