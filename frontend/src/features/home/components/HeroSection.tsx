@@ -89,7 +89,7 @@ export const HeroSection = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 13000);
+    }, 3000);
 
     // Désactiver l'animation d'entrée après le premier chargement
     const firstLoadTimer = setTimeout(() => {
@@ -104,6 +104,14 @@ export const HeroSection = () => {
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
   const slide = slides[currentSlide];
@@ -185,21 +193,80 @@ export const HeroSection = () => {
         )}
       </div> 
 
-      {/* Indicateurs de Slides */}
-      <div className="relative lg:absolute bottom-0 lg:bottom-12 left-0 lg:left-1/2 lg:-translate-x-1/2 flex justify-center gap-3 z-20 py-4 lg:py-0">
+      {/* Boutons de Navigation - Précédent */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-40 bg-white/90 hover:bg-white text-gray-800 p-3 lg:p-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-110 group backdrop-blur-sm"
+        aria-label="Slide précédent"
+      >
+        <svg
+          className="w-5 h-5 lg:w-6 lg:h-6 transform group-hover:-translate-x-1 transition-transform duration-300"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      {/* Boutons de Navigation - Suivant */}
+      <button
+        onClick={nextSlide}
+        className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-40 bg-white/90 hover:bg-white text-gray-800 p-3 lg:p-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-110 group backdrop-blur-sm"
+        aria-label="Slide suivant"
+      >
+        <svg
+          className="w-5 h-5 lg:w-6 lg:h-6 transform group-hover:translate-x-1 transition-transform duration-300"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      {/* Indicateurs de Slides Modernisés */}
+      <div className="relative lg:absolute bottom-0 lg:bottom-12 left-0 lg:left-1/2 lg:-translate-x-1/2 flex justify-center items-center gap-2 z-20 py-4 lg:py-0">
         {slides.map((_, index) => (
           <button
             key={index}
-            className={`h-2 ${
-              index === currentSlide
-                ? 'w-10 bg-red-600'
-                : 'w-10 bg-red-200 hover:bg-red-300'
-            }`}
+            className="group relative"
             onClick={() => goToSlide(index)}
             aria-label={`Aller au slide ${index + 1}`}
-          />
+          >
+            {/* Cercle indicateur */}
+            <div className={`relative transition-all duration-300 ${
+              index === currentSlide
+                ? 'w-4 h-4 lg:w-5 lg:h-5'
+                : 'w-3 h-3 lg:w-4 lg:h-4'
+            }`}>
+              {/* Point indicateur */}
+              <div className={`w-full h-full rounded-full transition-all duration-300 ${
+                index === currentSlide
+                  ? 'bg-red-600 shadow-lg shadow-red-600/50'
+                  : 'bg-gray-400 lg:bg-white/70 hover:bg-gray-500 lg:hover:bg-white hover:shadow-md backdrop-blur-sm'
+              }`} />
+            </div>
+
+            {/* Tooltip au survol */}
+            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-3 py-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
+              {slides[index].badge}
+            </div>
+          </button>
         ))}
       </div>
+
+      {/* Style pour l'animation de progression */}
+      <style>{`
+        @keyframes progress {
+          from {
+            stroke-dashoffset: 283;
+          }
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+      `}</style>
     </section>
   );
 };
